@@ -14,17 +14,26 @@ namespace Squadron5missing
     class Event
     {
         //properties
-        private float Timespan { get; set; }
-        private string EventName { get; set; }
+        protected float Timespan { get; set; }
+        protected string EventName { get; set; }
 
         //booleans
-        public bool EventFinished = false;
+        protected bool eventFinished = false;
 
         //constructor(s)
         protected Event(float timespan, string eventName)
         {
             this.Timespan = timespan;
             this.EventName = eventName;
+        }
+        //gif, hur säger man det?
+        //method(s)
+        protected virtual void Update()
+        {
+            if (Timespan == 0)
+            {
+                eventFinished = true;
+            }
         }
     }
 }
