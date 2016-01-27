@@ -18,13 +18,26 @@ namespace Squadron5missing
         private string EventName { get; set; }
 
         //booleans
-        public bool EventFinished = false;
+        public bool eventFinished = false;
 
         //constructor(s)
         protected Event(float timespan, string eventName)
         {
             this.Timespan = timespan;
             this.EventName = eventName;
+        }
+    }
+    class SpecialEvent : Event
+    {
+        protected Event event1 { get; set; }
+        protected SpecialEvent(float timespan, string eventName, Event specialEvent) : base(timespan,eventName)
+        {
+            event1 = specialEvent;
+        }
+
+        protected void RunEvent()
+        {
+            event1.eventFinished = true;
         }
     }
 }
