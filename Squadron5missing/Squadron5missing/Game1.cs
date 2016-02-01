@@ -18,6 +18,11 @@ namespace Squadron5missing
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        DateTime clock;
+        SpriteFont testFont;
+        Event e;
+
+
 
         public Game1()
         {
@@ -34,7 +39,9 @@ namespace Squadron5missing
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+            clock = new DateTime();
 
+            e = new Event(14.0, "Stuff", clock);
             base.Initialize();
         }
 
@@ -46,7 +53,7 @@ namespace Squadron5missing
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
+            testFont = Content.Load<SpriteFont>("TestFont");
             // TODO: use this.Content to load your game content here
         }
 
@@ -70,8 +77,9 @@ namespace Squadron5missing
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
 
-            // TODO: Add your update logic here
-
+            clock = clock.AddMilliseconds(16.6666666666667);
+            e.CurrentTime = clock;
+            e.Update();
             base.Update(gameTime);
         }
 
@@ -82,7 +90,14 @@ namespace Squadron5missing
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
+            spriteBatch.Begin();
 
+            spriteBatch.DrawString(testFont, e.ETC.ToLongTimeString(), new Vector2(3, 62), Color.White);
+            spriteBatch.DrawString(testFont, e.CurrentTime.ToLongTimeString(), new Vector2(3, 42), Color.White);
+            spriteBatch.DrawString(testFont, e.eventFinished.ToString(), new Vector2(3, 22), Color.White);
+            spriteBatch.DrawString(testFont, clock.ToLongTimeString(), new Vector2(3, 2), Color.White);
+
+            spriteBatch.End();
             // TODO: Add your drawing code here
 
             base.Draw(gameTime);

@@ -5,6 +5,7 @@ using System.Text;
 
 namespace Squadron5missing
 {
+    /*
     class EngineEvent : Event
     {
         //properties
@@ -17,4 +18,5 @@ namespace Squadron5missing
             this.EngineRepaired = engineRepaired;
         }
     }
+     * */
 }
