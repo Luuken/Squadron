@@ -19,7 +19,7 @@ namespace Squadron5missing
         EngineRoom,
         Cockpit,
         Infirmary,
-        kitchen,
+        Kitchen,
         Battlestation
     }
     class Character
@@ -28,6 +28,7 @@ namespace Squadron5missing
         protected Texture2D Texture { get; set; }
         protected Vector2 Position { get; set; }
         protected RoomE RoomV { get; set; }
+        protected string CharName { get; set; }
 
         //stats(properties)
         protected int Intellect { get; set; } //medics and ship tweaking
@@ -42,14 +43,30 @@ namespace Squadron5missing
         
 
         //constructor(s)
-        protected Character(Texture2D texture, Vector2 position)
+        protected Character(Texture2D texture, Vector2 position, RoomE room, string name, int intel, int perc, int stam, int con, int hand)
         {
             this.Texture = texture;
             this.Position = position;
+            this.RoomV = room;
+            this.CharName = name;
+
+            this.Intellect = intel;
+            this.Perception = perc;
+            this.Stamina = stam;
+            this.Constitution = con;
+            this.Handyness = hand;
         }
 
         //method(s) add Update and Draw functions!
+        public virtual void Update()
+        {
 
+        }
+
+        public virtual void Draw(SpriteBatch spriteBatch)
+        {
+            spriteBatch.Draw(this.Texture, this.Position, Color.White);
+        }
 
 
     }
