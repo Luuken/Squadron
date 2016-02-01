@@ -24,7 +24,7 @@ namespace Squadron5missing
         SpriteFont testFont;
         Event e;
         Mechanic mechanic;
-
+        EngineEvent engineEvent;
 
 
         public Game1()
@@ -55,6 +55,9 @@ namespace Squadron5missing
 
             //Initializing characters
             mechanic = new Mechanic(Content.Load<Texture2D>("placeHolder"), new Vector2(1000, 100), RoomE.Bridge, "Morgan the Mechanic", 5, 5, 5, 5, 5, "Olaf");
+
+            //Initializing events
+            engineEvent = new EngineEvent(200, "Engine broke down", "The engines Fluxual Accelerate Perperator has been damaged and needs repair", clock);
         }
 
         /// <summary>
@@ -104,6 +107,7 @@ namespace Squadron5missing
             GraphicsDevice.Clear(Color.CornflowerBlue);
             spriteBatch.Begin();
 
+            engineEvent.DrawText(spriteBatch, testFont, new Vector2(100, 700));
             mechanic.Draw(spriteBatch);
             e.Draw(spriteBatch ,testFont);
             spriteBatch.DrawString(testFont, clock.ToLongTimeString(), new Vector2(3, 2), Color.White);
