@@ -26,6 +26,13 @@ namespace Squadron5missing
         Mechanic mechanic;
         EngineEvent engineEvent;
 
+        Texture2D repairKnapp;
+        Texture2D matKnapp;
+        Texture2D sjukvårdsKnapp;
+        Rectangle repairKnappRectangle;
+        Rectangle matKnappRectangle;
+        Rectangle sjukvårdsKnappRectangle;
+
 
         public Game1()
         {
@@ -68,7 +75,15 @@ namespace Squadron5missing
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+
             testFont = Content.Load<SpriteFont>("TestFont");
+            matKnapp = Content.Load<Texture2D>("Mat knapp");
+            sjukvårdsKnapp = Content.Load<Texture2D>("Sjukvårds knapp");
+            repairKnapp = Content.Load<Texture2D>("Repair_knapp");
+
+            repairKnappRectangle = new Rectangle(125, 3, 111, 83);
+            sjukvårdsKnappRectangle = new Rectangle(125, 103, 111, 83);
+            matKnappRectangle = new Rectangle(125, 203, 111, 83);
             // TODO: use this.Content to load your game content here
         }
 
@@ -111,7 +126,9 @@ namespace Squadron5missing
             mechanic.Draw(spriteBatch);
             e.Draw(spriteBatch ,testFont);
             spriteBatch.DrawString(testFont, clock.ToLongTimeString(), new Vector2(3, 2), Color.White);
-
+            spriteBatch.Draw(matKnapp, matKnappRectangle, Color.White);
+            spriteBatch.Draw(sjukvårdsKnapp, sjukvårdsKnappRectangle, Color.White);
+            spriteBatch.Draw(repairKnapp, repairKnappRectangle, Color.White);
             spriteBatch.End();
             // TODO: Add your drawing code here
 
