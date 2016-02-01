@@ -105,9 +105,7 @@ namespace Squadron5missing
             spriteBatch.Begin();
 
             mechanic.Draw(spriteBatch);
-            spriteBatch.DrawString(testFont, e.ETC.ToLongTimeString(), new Vector2(3, 62), Color.White);
-            spriteBatch.DrawString(testFont, e.CurrentTime.ToLongTimeString(), new Vector2(3, 42), Color.White);
-            spriteBatch.DrawString(testFont, e.eventFinished.ToString(), new Vector2(3, 22), Color.White);
+            e.Draw(spriteBatch ,testFont);
             spriteBatch.DrawString(testFont, clock.ToLongTimeString(), new Vector2(3, 2), Color.White);
 
             spriteBatch.End();

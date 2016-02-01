@@ -14,6 +14,7 @@ namespace Squadron5missing
     class Event
     {
         //properties
+
         public DateTime ETC { get; set; }
         protected double Timespan { get; set; }
         public DateTime CurrentTime { get; set; }
@@ -32,6 +33,13 @@ namespace Squadron5missing
         }
         //gif, hur säger man det?
         //method(s)
+        public virtual void Draw(SpriteBatch spriteB,SpriteFont Font)
+        {
+            spriteB.DrawString(Font, this.ETC.ToLongTimeString(), new Vector2(3, 62), Color.White);
+            spriteB.DrawString(Font, this.CurrentTime.ToLongTimeString(), new Vector2(3, 42), Color.White);
+            spriteB.DrawString(Font, this.eventFinished.ToString(), new Vector2(3, 22), Color.White);
+        }
+
         public virtual void Update()
         {
             
