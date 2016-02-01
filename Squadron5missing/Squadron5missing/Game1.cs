@@ -19,16 +19,10 @@ namespace Squadron5missing
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        Texture2D background;
-        
-        Mechanic mechanic;
-
-
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-
         }
 
         /// <summary>
@@ -40,16 +34,6 @@ namespace Squadron5missing
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-
-            //Setting the graphics settings
-            graphics.PreferredBackBufferWidth = 1600;
-            graphics.PreferredBackBufferHeight = 900;
-            graphics.IsFullScreen = true;
-            graphics.ApplyChanges();
-
-            //Initialize characters
-            mechanic = new Mechanic(Content.Load<Texture2D>("placeHolder"), new Vector2(1000, 100), RoomE.Bridge, "Morgan the Mechanic", 5, 5, 5, 5, 5, "Ol' Betty");
-            background = Content.Load<Texture2D>("background");
 
             base.Initialize();
         }
@@ -83,7 +67,7 @@ namespace Squadron5missing
         protected override void Update(GameTime gameTime)
         {
             // Allows the game to exit
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState(PlayerIndex.One).IsKeyDown(Keys.Escape))
+            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
 
             // TODO: Add your update logic here
@@ -98,11 +82,7 @@ namespace Squadron5missing
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-            spriteBatch.Begin();
 
-            spriteBatch.Draw(background, new Vector2(0, 0), Color.White);
-            mechanic.Draw(spriteBatch);
-            spriteBatch.End();
             // TODO: Add your drawing code here
 
             base.Draw(gameTime);
