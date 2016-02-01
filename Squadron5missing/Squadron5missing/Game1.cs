@@ -18,9 +18,12 @@ namespace Squadron5missing
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        
+        
         DateTime clock;
         SpriteFont testFont;
         Event e;
+        Mechanic mechanic;
 
 
 
@@ -43,6 +46,15 @@ namespace Squadron5missing
 
             e = new Event(14.0, "Stuff", clock);
             base.Initialize();
+
+            //Setting graphics settings
+            graphics.PreferredBackBufferWidth = 1600;
+            graphics.PreferredBackBufferHeight = 900;
+            graphics.IsFullScreen = true;
+            graphics.ApplyChanges();
+
+            //Initializing characters
+            mechanic = new Mechanic(Content.Load<Texture2D>("placeHolder"), new Vector2(1000, 100), RoomE.Bridge, "Morgan the Mechanic", 5, 5, 5, 5, 5, "Olaf");
         }
 
         /// <summary>
@@ -74,7 +86,7 @@ namespace Squadron5missing
         protected override void Update(GameTime gameTime)
         {
             // Allows the game to exit
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
+            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState(PlayerIndex.One).IsKeyDown(Keys.Escape))
                 this.Exit();
 
             clock = clock.AddMilliseconds(16.6666666666667);
@@ -92,6 +104,7 @@ namespace Squadron5missing
             GraphicsDevice.Clear(Color.CornflowerBlue);
             spriteBatch.Begin();
 
+            mechanic.Draw(spriteBatch);
             spriteBatch.DrawString(testFont, e.ETC.ToLongTimeString(), new Vector2(3, 62), Color.White);
             spriteBatch.DrawString(testFont, e.CurrentTime.ToLongTimeString(), new Vector2(3, 42), Color.White);
             spriteBatch.DrawString(testFont, e.eventFinished.ToString(), new Vector2(3, 22), Color.White);
