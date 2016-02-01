@@ -16,7 +16,7 @@ namespace Squadron5missing
     class EngineEvent : Event
     {
         //properties
-        protected string StartText { get; set; }
+        public string StartText { get; set; }
 
         //constructor(s)
         public EngineEvent(double timespan, string eventName, string startText, DateTime currentTime)
@@ -25,9 +25,10 @@ namespace Squadron5missing
             this.StartText = startText;
         }
 
-        public void DrawText(string textToDraw, SpriteBatch spriteBatch, SpriteFont sFont, Vector2 position)
+        public void DrawText(SpriteBatch spriteBatch, SpriteFont sFont, Vector2 position)
         {
-            spriteBatch.DrawString(sFont, textToDraw, position, Color.White);
+
+            spriteBatch.DrawString(sFont, StartText, position, Color.White);
         }
     }
 }
