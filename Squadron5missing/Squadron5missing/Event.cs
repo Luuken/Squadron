@@ -26,7 +26,6 @@ namespace Squadron5missing
             this.Timespan = timespan;
             this.EventName = eventName;
         }
-        //gif, hur säger man det?
         //method(s)
         protected virtual void Update()
         {
