@@ -34,6 +34,8 @@ namespace Squadron5missing
         Rectangle matKnappRectangle;
         Rectangle sjukvårdsKnappRectangle;
 
+        int gameSpeed = 1;
+
 
         public Game1()
         {
@@ -108,8 +110,19 @@ namespace Squadron5missing
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState(PlayerIndex.One).IsKeyDown(Keys.Escape))
                 this.Exit();
             mechanic.Update(gameTime);
-            clock = clock.AddMilliseconds(16.6666666666667);
-
+            
+            if (gameSpeed == 1)
+            {
+                clock = clock.AddMilliseconds(16.6666666666667);
+            }
+            else if (gameSpeed == 2)
+            {
+                clock = clock.AddMilliseconds(16.6666666666667 * 2);
+            }
+            else if (gameSpeed == 3)
+            {
+                clock = clock.AddMilliseconds(16.6666666666667 * 3);
+            }
             
             //e.CurrentTime = clock;
             //e.Update();
