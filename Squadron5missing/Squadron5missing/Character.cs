@@ -36,6 +36,11 @@ namespace Squadron5missing
         protected int Stamina { get; set; } //rapairs and fights
         protected int Constitution { get; set; } //not getting sick
         protected int Handyness { get; set; } //general handyness and workspeed also repairs
+
+        //private members
+        private int frame = 0;
+        private int animationDelayTimer = 0;
+        private int animationDelay = 10;
         
         
 
@@ -58,14 +63,24 @@ namespace Squadron5missing
         }
 
         //method(s) add Update and Draw functions!
-        public virtual void Update()
+        public virtual void Update(GameTime gameTime)
         {
-
+            animationDelayTimer += gameTime.ElapsedGameTime.Milliseconds;
+            if (animationDelayTimer >= animationDelay)
+            {
+                animationDelayTimer = 0;
+                frame++;
+                if (frame == 1)
+                {
+                    frame = 0;
+                }
+            }
         }
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(this.Texture, this.Position, Color.White);
+            Rectangle tmp = new Rectangle((frame % 2) * 64, (frame / 1) * 128, 64, 128);
+            spriteBatch.Draw(this.Texture, this.Position, tmp, Color.White);
         }
 
 
