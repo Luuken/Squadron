@@ -26,6 +26,13 @@ namespace Squadron5missing
         Mechanic mechanic;
         EngineEvent engineEvent;
 
+        Texture2D repairKnapp;
+        Texture2D matKnapp;
+        Texture2D sjukvårdsKnapp;
+        Rectangle repairKnappRectangle;
+        Rectangle matKnappRectangle;
+        Rectangle sjukvårdsKnappRectangle;
+
 
         public Game1()
         {
@@ -44,7 +51,7 @@ namespace Squadron5missing
             // TODO: Add your initialization logic here
             clock = new DateTime();
 
-            e = new Event(14.0, "Stuff", clock);
+            
             base.Initialize();
 
             //Setting graphics settings
@@ -57,7 +64,7 @@ namespace Squadron5missing
             mechanic = new Mechanic(Content.Load<Texture2D>("placeHolder"), new Vector2(1000, 100), RoomE.Bridge, "Morgan the Mechanic", 5, 5, 5, 5, 5, "Olaf");
 
             //Initializing events
-            engineEvent = new EngineEvent(200, "Engine broke down", "The engines Fluxual Accelerate Perperator has been damaged and needs repair", clock);
+            engineEvent = new EngineEvent(200, "Engine broke down", clock, "The engines Fluxual Accelerate Perperator has been damaged and needs repair");
         }
 
         /// <summary>
@@ -68,7 +75,15 @@ namespace Squadron5missing
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+
             testFont = Content.Load<SpriteFont>("TestFont");
+            matKnapp = Content.Load<Texture2D>("Mat knapp");
+            sjukvårdsKnapp = Content.Load<Texture2D>("Sjukvårds knapp");
+            repairKnapp = Content.Load<Texture2D>("Repair_knapp");
+
+            repairKnappRectangle = new Rectangle(125, 3, 111, 83);
+            sjukvårdsKnappRectangle = new Rectangle(125, 103, 111, 83);
+            matKnappRectangle = new Rectangle(125, 203, 111, 83);
             // TODO: use this.Content to load your game content here
         }
 
@@ -93,8 +108,8 @@ namespace Squadron5missing
                 this.Exit();
 
             clock = clock.AddMilliseconds(16.6666666666667);
-            e.CurrentTime = clock;
-            e.Update();
+            //e.CurrentTime = clock;
+            //e.Update();
             base.Update(gameTime);
         }
 
@@ -109,9 +124,11 @@ namespace Squadron5missing
 
             engineEvent.DrawText(spriteBatch, testFont, new Vector2(100, 700));
             mechanic.Draw(spriteBatch);
-            e.Draw(spriteBatch ,testFont);
+            //e.Draw(spriteBatch ,testFont);
             spriteBatch.DrawString(testFont, clock.ToLongTimeString(), new Vector2(3, 2), Color.White);
-
+            /*spriteBatch.Draw(matKnapp, matKnappRectangle, Color.White);
+            spriteBatch.Draw(sjukvårdsKnapp, sjukvårdsKnappRectangle, Color.White);
+            spriteBatch.Draw(repairKnapp, repairKnappRectangle, Color.White);*/
             spriteBatch.End();
             // TODO: Add your drawing code here
 
