@@ -122,7 +122,7 @@ namespace Squadron5missing
             GraphicsDevice.Clear(Color.CornflowerBlue);
             spriteBatch.Begin();
 
-            engineEvent.DrawText(spriteBatch, testFont, new Vector2(100, 700));
+            //engineEvent.DrawText(spriteBatch, testFont, new Vector2(100, 700));
             mechanic.Draw(spriteBatch);
             //e.Draw(spriteBatch ,testFont);
             spriteBatch.DrawString(testFont, clock.ToLongTimeString(), new Vector2(3, 2), Color.White);
