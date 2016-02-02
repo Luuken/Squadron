@@ -43,7 +43,7 @@ namespace Squadron5missing
         //private members
         private int frame = 0;
         private int animationDelayTimer = 0;
-        private int animationDelay = 100;
+        private int animationDelay = 200;
         
         
 
@@ -86,7 +86,7 @@ namespace Squadron5missing
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-            Rectangle tmp = new Rectangle(frame * AnimWidth, 0, AnimWidth, AnimHeight);
+            Rectangle tmp = new Rectangle((frame % 2) * AnimWidth, (frame / 2) * AnimHeight, AnimWidth, AnimHeight);
             spriteBatch.Draw(this.Texture, this.Position, tmp, Color.White);
         }
 
