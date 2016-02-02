@@ -34,19 +34,19 @@ namespace Squadron5missing
         }
         //gif, hur säger man det?
         //method(s)
-        protected virtual void Draw(SpriteBatch spriteB,SpriteFont Font)
+        public virtual void Draw(SpriteBatch spriteB,SpriteFont Font)
         {
             spriteB.DrawString(Font, this.ETC.ToLongTimeString(), new Vector2(3, 62), Color.White);
             spriteB.DrawString(Font, this.CurrentTime.ToLongTimeString(), new Vector2(3, 42), Color.White);
             spriteB.DrawString(Font, this.eventFinished.ToString(), new Vector2(3, 22), Color.White);
         }
-        protected void DrawText(SpriteBatch spriteBatch, SpriteFont sFont, Vector2 position)
+        public virtual void DrawText(SpriteBatch spriteBatch, SpriteFont sFont, Vector2 position)
         {
 
             spriteBatch.DrawString(sFont, StartText, position, Color.White);
         }
 
-        protected virtual void Update()
+        public virtual void Update()
         {
             
             if (ETC.CompareTo(CurrentTime) == -1)
