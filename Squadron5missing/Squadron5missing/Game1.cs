@@ -61,7 +61,7 @@ namespace Squadron5missing
             graphics.ApplyChanges();
 
             //Initializing characters
-            mechanic = new Mechanic(Content.Load<Texture2D>("placeHolder"), new Vector2(1000, 100), RoomE.Bridge, "Morgan the Mechanic", 5, 5, 5, 5, 5, "Olaf");
+            mechanic = new Mechanic(Content.Load<Texture2D>("placeHolder"), new Vector2(1000, 100), RoomE.Bridge, "Morgan the Mechanic", 64, 128, 5, 5, 5, 5, 5, "Olaf");
 
             //Initializing events
             engineEvent = new EngineEvent(200, "Engine broke down", clock, "The engines Fluxual Accelerate Perperator has been damaged and needs repair");
@@ -106,8 +106,10 @@ namespace Squadron5missing
             // Allows the game to exit
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState(PlayerIndex.One).IsKeyDown(Keys.Escape))
                 this.Exit();
-
+            mechanic.Update(gameTime);
             clock = clock.AddMilliseconds(16.6666666666667);
+
+            
             //e.CurrentTime = clock;
             //e.Update();
             base.Update(gameTime);
