@@ -15,32 +15,38 @@ namespace Squadron5missing
     {
         //properties
 
-        public DateTime ETC { get; set; }
+        protected DateTime ETC { get; set; }
         protected double Timespan { get; set; }
-        public DateTime CurrentTime { get; set; }
+        protected DateTime CurrentTime { get; set; }
         protected string EventName { get; set; }
-
+        protected string StartText { get; set; }
         //booleans
         public bool eventFinished = false;
 
         //constructor(s)
-        public Event(double timespan, string eventName, DateTime currentTime)
+        protected Event(double timespan, string eventName, DateTime currentTime, string startText)
         {
             this.Timespan = timespan;
             this.EventName = eventName;
             this.CurrentTime = currentTime;
             this.ETC = CurrentTime.AddSeconds(timespan);
+            this.StartText = startText;
         }
         //gif, hur säger man det?
         //method(s)
-        public virtual void Draw(SpriteBatch spriteB,SpriteFont Font)
+        protected virtual void Draw(SpriteBatch spriteB,SpriteFont Font)
         {
             spriteB.DrawString(Font, this.ETC.ToLongTimeString(), new Vector2(3, 62), Color.White);
             spriteB.DrawString(Font, this.CurrentTime.ToLongTimeString(), new Vector2(3, 42), Color.White);
             spriteB.DrawString(Font, this.eventFinished.ToString(), new Vector2(3, 22), Color.White);
         }
+        protected void DrawText(SpriteBatch spriteBatch, SpriteFont sFont, Vector2 position)
+        {
 
-        public virtual void Update()
+            spriteBatch.DrawString(sFont, StartText, position, Color.White);
+        }
+
+        protected virtual void Update()
         {
             
             if (ETC.CompareTo(CurrentTime) == -1)

@@ -15,20 +15,17 @@ namespace Squadron5missing
     
     class EngineEvent : Event
     {
-        //properties
-        public string StartText { get; set; }
-
         //constructor(s)
-        public EngineEvent(double timespan, string eventName, string startText, DateTime currentTime)
-            : base(timespan, eventName, currentTime)
+        public EngineEvent(double timespan, string eventName, DateTime currentTime, string startText)
+            : base(timespan, eventName, currentTime, startText)
         {
-            this.StartText = startText;
+            
         }
-
-        public void DrawText(SpriteBatch spriteBatch, SpriteFont sFont, Vector2 position)
+        //methods
+        public void MoveTooRoom()
         {
-
-            spriteBatch.DrawString(sFont, StartText, position, Color.White);
+            //for-loops too move to the elevators X and Y cordiantes
+            //then move too the correct room
         }
     }
 }
