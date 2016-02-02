@@ -20,8 +20,8 @@ namespace Squadron5missing
         //boolean(s)
 
         //contructor(s)
-        public Mechanic(Texture2D texture, Vector2 position, RoomE room, string name, int animWidth, int animHeight, int intel, int perc, int stam, int con, int hand, string wName)
-            : base(texture, position, room, name, animWidth, animHeight, intel, perc, stam, con, hand)
+        public Mechanic(Texture2D texture, Vector2 position, RoomE room, string name, int animWidth, int animHeight, int maxFrames, int intel, int perc, int stam, int con, int hand, string wName)
+            : base(texture, position, room, name, animWidth, animHeight, maxFrames, intel, perc, stam, con, hand)
         {
             this.WrenchName = wName;
         }

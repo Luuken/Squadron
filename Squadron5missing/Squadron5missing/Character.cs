@@ -31,6 +31,7 @@ namespace Squadron5missing
         protected string CharName { get; set; }
         protected int AnimWidth { get; set; }
         protected int AnimHeight { get; set; }
+        protected int MaxFrames { get; set; }
 
         //stats(properties)
         protected int Intellect { get; set; } //medics and ship tweaking
@@ -50,7 +51,7 @@ namespace Squadron5missing
         
 
         //constructor(s)
-        protected Character(Texture2D texture, Vector2 position, RoomE room, string name, int animWidth, int animHeight, int intel, int perc, int stam, int con, int hand)
+        protected Character(Texture2D texture, Vector2 position, RoomE room, string name, int animWidth, int animHeight, int maxFrames, int intel, int perc, int stam, int con, int hand)
         {
             this.Texture = texture;
             this.Position = position;
@@ -58,6 +59,7 @@ namespace Squadron5missing
             this.CharName = name;
             this.AnimHeight = animHeight;
             this.AnimWidth = animWidth;
+            this.MaxFrames = maxFrames;
 
             this.Intellect = intel;
             this.Perception = perc;
@@ -75,7 +77,7 @@ namespace Squadron5missing
             {
                 animationDelayTimer = 0;
                 frame++;
-                if (frame == 2)
+                if (frame == MaxFrames)
                 {
                     frame = 0;
                 }

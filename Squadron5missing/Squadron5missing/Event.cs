@@ -32,7 +32,7 @@ namespace Squadron5missing
             this.ETC = CurrentTime.AddSeconds(timespan);
             this.StartText = startText;
         }
-        //gif, hur säger man det?
+
         //method(s)
         public virtual void Draw(SpriteBatch spriteB,SpriteFont Font)
         {

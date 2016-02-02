@@ -26,6 +26,7 @@ namespace Squadron5missing
         Mechanic mechanic;
         EngineEvent engineEvent;
 
+        Texture2D background;
         Texture2D repairKnapp;
         Texture2D matKnapp;
         Texture2D sjukvårdsKnapp;
@@ -50,7 +51,7 @@ namespace Squadron5missing
         {
             // TODO: Add your initialization logic here
             clock = new DateTime();
-
+            background = Content.Load<Texture2D>("background01");
             
             base.Initialize();
 
@@ -61,7 +62,7 @@ namespace Squadron5missing
             graphics.ApplyChanges();
 
             //Initializing characters
-            mechanic = new Mechanic(Content.Load<Texture2D>("placeHolder"), new Vector2(1000, 100), RoomE.Bridge, "Morgan the Mechanic", 64, 128, 5, 5, 5, 5, 5, "Olaf");
+            mechanic = new Mechanic(Content.Load<Texture2D>("placeHolder"), new Vector2(1000, 100), RoomE.Bridge, "Morgan the Mechanic", 64, 128, 2, 5, 5, 5, 5, 5, "Olaf");
 
             //Initializing events
             engineEvent = new EngineEvent(200, "Engine broke down", clock, "The engines Fluxual Accelerate Perperator has been damaged and needs repair");
@@ -123,7 +124,7 @@ namespace Squadron5missing
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
             spriteBatch.Begin();
-
+            spriteBatch.Draw(background, new Vector2(0, 0), Color.White);
             engineEvent.DrawText(spriteBatch, testFont, new Vector2(100, 700));
             mechanic.Draw(spriteBatch);
             //e.Draw(spriteBatch ,testFont);
@@ -131,6 +132,7 @@ namespace Squadron5missing
             /*spriteBatch.Draw(matKnapp, matKnappRectangle, Color.White);
             spriteBatch.Draw(sjukvårdsKnapp, sjukvårdsKnappRectangle, Color.White);
             spriteBatch.Draw(repairKnapp, repairKnappRectangle, Color.White);*/
+            
             spriteBatch.End();
             // TODO: Add your drawing code here
 
