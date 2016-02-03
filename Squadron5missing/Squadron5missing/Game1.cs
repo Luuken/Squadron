@@ -38,13 +38,9 @@ namespace Squadron5missing
         Rectangle repairKnappRectangle;
         Rectangle matKnappRectangle;
         Rectangle sjukvårdsKnappRectangle;
-<<<<<<< HEAD
 
-
-=======
         string alertTemp;
         ErrorMessage p;
->>>>>>> origin/master
         int gameSpeed = 1;
         int temp;
         bool writeEvent;
@@ -81,20 +77,9 @@ namespace Squadron5missing
             graphics.ApplyChanges();
             rand = new Random();
             //Initializing characters
-<<<<<<< HEAD
-<<<<<<< HEAD
             mechanic = new Mechanic(Content.Load<Texture2D>("character 1"), new Vector2(1000, 250), RoomE.Bridge, "Morgan the Mechanic", 131, 500, 1, 5, 5, 5, 5, 5, "Olaf");
-=======
-<<<<<<< HEAD
-=======
 
->>>>>>> origin/master
-            mechanic = new Mechanic(Content.Load<Texture2D>("placeHolder"), new Vector2(1000, 100), RoomE.Bridge, "Morgan the Mechanic", 64, 128, 2, 5, 5, 5, 5, 5, "Olaf");
             p = new ErrorMessage();
-           
-            mechanic = new Mechanic(Content.Load<Texture2D>("placeHolder"), new Vector2(1000, 100), RoomE.Bridge, "Morgan the Mechanic", 64, 64, 4, 5, 5, 5, 5, 5, "Olaf");
->>>>>>> origin/master
-
 
             //Initializing events
             engineEvent = new EngineEvent(200, "Engine broke down", clock, "The engines Fluxual Accelerate Perperator has been damaged and needs repair");
