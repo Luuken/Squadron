@@ -101,5 +101,10 @@ namespace Squadron5missing
             }
             return "WOW DUDE EMPTY STRING MUCH????";
         }
+
+        public void Update()
+        {
+
+        }
     }
 }
