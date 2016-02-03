@@ -31,6 +31,7 @@ namespace Squadron5missing
         List<string> alertList = new List<string>();
         List<Event> alertListv2 = new List<Event>();
 
+        Texture2D ProblemMenuBackground;
         Texture2D background;
         Texture2D repairKnapp;
         Texture2D matKnapp;
@@ -44,7 +45,10 @@ namespace Squadron5missing
         int gameSpeed = 1;
         int temp;
         bool writeEvent;
+        bool startTimer;
         int maxEvents;
+        int timer;
+        
 
         public Game1()
         {
@@ -85,6 +89,7 @@ namespace Squadron5missing
             engineEvent = new EngineEvent(200, "Engine broke down", clock, "The engines Fluxual Accelerate Perperator has been damaged and needs repair");
 
             //Initializing variables
+            startTimer = false;
             maxEvents = 5;
         }
 
@@ -102,6 +107,7 @@ namespace Squadron5missing
             matKnapp = Content.Load<Texture2D>("Mat knapp");
             sjukvårdsKnapp = Content.Load<Texture2D>("Sjukvårds knapp");
             repairKnapp = Content.Load<Texture2D>("Repair_knapp");
+            ProblemMenuBackground = Content.Load<Texture2D>("ProblemMenu");
 
             repairKnappRectangle = new Rectangle(125, 3, 111, 83);
             sjukvårdsKnappRectangle = new Rectangle(125, 103, 111, 83);
@@ -134,7 +140,7 @@ namespace Squadron5missing
             clock = clock.AddMilliseconds(16.6666666666667 * gameSpeed);
             
             //setts random values to se if a random event should happen
-            temp = rand.Next(1, 30);
+            temp = rand.Next(1, 500);
             if (temp == 2)
             {
                 //binds random message too a string that is then put in a list
@@ -144,33 +150,51 @@ namespace Squadron5missing
 	            {
                     tempD = rand.Next(60,190);
                     alertList.Add(alertTemp);
+                    startTimer = true;
+                    timer = 0;
 		            //alertListv2.Add(new PilotEvent((double)tempD, "Pilot event", clock, alertTemp));
 	            }
                 else if (p.eventNumber == 2)
 	            {
 		            tempD = rand.Next(20,230);
                     alertList.Add(alertTemp);
+                    startTimer = true;
+                    timer = 0;
                     //alertListv2.Add(new RadarEvent((double)tempD, "Radar event", clock, alertTemp));
 	            }
                 else if (p.eventNumber == 3)
 	            {
 		            tempD = rand.Next(90,110);
                     alertList.Add(alertTemp);
+                    startTimer = true;
+                    timer = 0;
                     //alertListv2.Add(new InfermaryEvent((double)tempD, "Infermary event", clock, alertTemp));
 	            }
                 else if (p.eventNumber == 4)
 	            {
 		            tempD = rand.Next(50,200);
                     alertList.Add(alertTemp);
+                    startTimer = true;
+                    timer = 0;
                     //alertListv2.Add(new EngineEvent((double)tempD, "Engine event", clock, alertTemp));
 	            }
                 
-                
                 //we should create events based on what string it is + random numbers for duration and such
             }
-            
+            if (startTimer == true)
+            {
+                timer++;
+            }
+
+            if (timer == 121)
+            {
+                timer = 0;
+                writeEvent = false;
+                startTimer = false;
+            }
             //e.CurrentTime = clock;
             //e.Update();
+
             base.Update(gameTime);
         }
 
@@ -190,17 +214,25 @@ namespace Squadron5missing
 
             if (Keyboard.GetState(PlayerIndex.One).IsKeyDown(Keys.G))
             {
-                spriteBatch.DrawString(testFont, "List of problems", new Vector2(350, 20), Color.White);
+                spriteBatch.Draw(ProblemMenuBackground, new Vector2(332, 5), Color.White);
+                spriteBatch.DrawString(testFont, "List of problems", new Vector2(365, 20), Color.White);
                 for (int i = 0; i < alertList.Count; i++)
                 {
                     spriteBatch.DrawString(fontSmall, alertList[i], new Vector2(400,50 + (i * 20)), Color.White);
                 }
             }
+            spriteBatch.DrawString(testFont, timer.ToString(), new Vector2(600, 600), Color.DarkCyan);
             //early draft, draws the message byt not for as long as i would like nor can you use this for anything
-            if (temp == 2)
+            if (timer > 0)
+            {
+                writeEvent = true;
+                //spriteBatch.DrawString(testFont, alertTemp, new Vector2(75, 800), Color.Red);
+            }
+            if (writeEvent == true && timer < 120)
             {
                 spriteBatch.DrawString(testFont, alertTemp, new Vector2(75, 800), Color.Red);
             }
+
             spriteBatch.End();
             // TODO: Add your drawing code here
 
