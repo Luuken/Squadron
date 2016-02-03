@@ -20,8 +20,14 @@ namespace Squadron5missing
         public string EventAlert { get; set; }
         public int eventNumber { get; set; }
         Random rnd = new Random();
+
+        List<string> alertList = new List<string>();
+        int temp = 0;
+        string alertTemp = "";
+        bool writeEvent = false;
+        bool startTimer = false;
+        int timer = 0;
         
-       
 
         //pilot Errors
         private string pErMessage1 = "The steering wheel is an oval shape, fix it for increased piloting";
@@ -102,9 +108,83 @@ namespace Squadron5missing
             return "WOW DUDE EMPTY STRING MUCH????";
         }
 
-        public void Update()
+        public void Update(SpriteBatch s, SpriteFont f, Vector2 position)
         {
+            temp = rnd.Next(1, 500);
+            if (temp == 2)
+            {
+                //binds random message too a string that is then put in a list
+                alertTemp = this.DrawText(s, f, position);
+                int tempD;
+                if (this.eventNumber == 1)
+                {
+                    tempD = rnd.Next(60, 190);
+                    alertList.Add(alertTemp);
+                    startTimer = true;
+                    timer = 0;
+                    //alertListv2.Add(new PilotEvent((double)tempD, "Pilot event", clock, alertTemp));
+                }
+                else if (this.eventNumber == 2)
+                {
+                    tempD = rnd.Next(20, 230);
+                    alertList.Add(alertTemp);
+                    startTimer = true;
+                    timer = 0;
+                    //alertListv2.Add(new RadarEvent((double)tempD, "Radar event", clock, alertTemp));
+                }
+                else if (this.eventNumber == 3)
+                {
+                    tempD = rnd.Next(90, 110);
+                    alertList.Add(alertTemp);
+                    startTimer = true;
+                    timer = 0;
+                    //alertListv2.Add(new InfermaryEvent((double)tempD, "Infermary event", clock, alertTemp));
+                }
+                else if (this.eventNumber == 4)
+                {
+                    tempD = rnd.Next(50, 200);
+                    alertList.Add(alertTemp);
+                    startTimer = true;
+                    timer = 0;
+                    //alertListv2.Add(new EngineEvent((double)tempD, "Engine event", clock, alertTemp));
+                }
 
+                //we should create events based on what string it is + random numbers for duration and such
+            }
+            if (startTimer == true)
+            {
+                timer++;
+            }
+
+            if (timer == 121)
+            {
+                timer = 0;
+                writeEvent = false;
+                startTimer = false;
+            }
+        }
+
+        public void Draw(SpriteBatch s, SpriteFont f, Texture2D square, Vector2 V2, SpriteFont fs)
+        {
+            if (Keyboard.GetState(PlayerIndex.One).IsKeyDown(Keys.G))
+            {
+                s.Draw(square, V2, Color.White);
+                s.DrawString(f, "List of problems", new Vector2(365, 20), Color.White);
+                for (int i = 0; i < alertList.Count; i++)
+                {
+                    s.DrawString(fs, alertList[i], new Vector2(400, 50 + (i * 20)), Color.White);
+                }
+            }
+            //early draft, draws the message byt not for as long as i would like nor can you use this for anything
+            if (timer > 0)
+            {
+                writeEvent = true;
+                //spriteBatch.DrawString(testFont, alertTemp, new Vector2(75, 800), Color.Red);
+            }
+            if (writeEvent == true && timer < 120)
+            {
+                s.DrawString(f, alertTemp, new Vector2(75, 800), Color.Red);
+            }
         }
     }
 }
