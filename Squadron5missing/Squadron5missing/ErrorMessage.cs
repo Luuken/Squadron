@@ -41,61 +41,65 @@ namespace Squadron5missing
 
         public string DrawText(SpriteBatch spriteBatch, SpriteFont sFont, Vector2 position)
         {
-            int randomRoomNumber = rnd.Next(1, 4);
+            int randomRoomNumber = rnd.Next(1, 5);
             //pilot errors
             if (randomRoomNumber == 1)
             {
-                randomRoomNumber = rnd.Next(1,2);
+                randomRoomNumber = rnd.Next(1,3);
+                eventNumber = 1;
                 if (randomRoomNumber == 1)
                 {
                     return pErMessage1;
                     
                 }
-                if (randomRoomNumber == 2)
+                else if (randomRoomNumber == 2)
                 {
                     return pErMessage2;
                 }
-                eventNumber = 1;
             }
             //radar errors
             else if (randomRoomNumber == 2)
             {
-                randomRoomNumber = rnd.Next(1, 2);
-                if (randomRoomNumber == 3)
+                eventNumber = 2;
+                randomRoomNumber = rnd.Next(1, 3);
+                if (randomRoomNumber == 1)
                 {
                     return rErMessage4;
                 }
-                if (randomRoomNumber == 2)
+                else if (randomRoomNumber == 2)
                 {
                     return rErMessage3;
                 }
-                eventNumber = 2;
             }
             //infermary errors
             else if (randomRoomNumber == 3)
             {
-                return iErMessage5;
                 eventNumber = 3;
+                return iErMessage5;
             }
             //engine Errors
             else if (randomRoomNumber == 4)
             {
-                randomRoomNumber = rnd.Next(1, 3);
+                eventNumber = 4;
+                randomRoomNumber = rnd.Next(1, 4);
                 if (randomRoomNumber == 1)
                 {
+
                     return eErMessage8;
                 }
-                if (randomRoomNumber == 2)
+                else if (randomRoomNumber == 2)
                 {
+
+
                     return eErMessage7;
                 }
-                if (randomRoomNumber == 3)
+                else if (randomRoomNumber == 3)
                 {
+
                     return eErMessage6;
                 }
-                eventNumber = 4;
             }
-            return "";
+            return "WOW DUDE EMPTY STRING MUCH????";
         }
     }
 }
