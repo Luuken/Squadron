@@ -73,10 +73,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BackScroll.cs" />
+    <Compile Include="Button.cs" />
     <Compile Include="Character.cs" />
     <Compile Include="EngineEvent.cs" />
     <Compile Include="ErrorMessage.cs" />
     <Compile Include="Event.cs" />
+    <Compile Include="ForegroundObject.cs" />
     <Compile Include="InfermaryEvent.cs" />
     <Compile Include="Mechanic.cs" />
     <Compile Include="PilotEvent.cs" />
