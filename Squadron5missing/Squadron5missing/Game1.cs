@@ -18,7 +18,7 @@ namespace Squadron5missing
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        
+        BackScroll b;
         
         DateTime clock;
         SpriteFont testFont;
@@ -59,6 +59,8 @@ namespace Squadron5missing
         {
             // TODO: Add your initialization logic here
             clock = new DateTime();
+
+            b = new BackScroll(Content.Load<Texture2D>("space"), Content.Load<Texture2D>("space"), .2f);
             background = Content.Load<Texture2D>("background01");
             
             base.Initialize();
@@ -70,8 +72,13 @@ namespace Squadron5missing
             graphics.ApplyChanges();
             rand = new Random();
             //Initializing characters
+<<<<<<< HEAD
             mechanic = new Mechanic(Content.Load<Texture2D>("placeHolder"), new Vector2(1000, 100), RoomE.Bridge, "Morgan the Mechanic", 64, 128, 2, 5, 5, 5, 5, 5, "Olaf");
             p = new ErrorMessage();
+=======
+            mechanic = new Mechanic(Content.Load<Texture2D>("placeHolder"), new Vector2(1000, 100), RoomE.Bridge, "Morgan the Mechanic", 64, 64, 4, 5, 5, 5, 5, 5, "Olaf");
+
+>>>>>>> origin/master
             //Initializing events
             engineEvent = new EngineEvent(200, "Engine broke down", clock, "The engines Fluxual Accelerate Perperator has been damaged and needs repair");
         }
@@ -116,6 +123,7 @@ namespace Squadron5missing
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState(PlayerIndex.One).IsKeyDown(Keys.Escape))
                 this.Exit();
             mechanic.Update(gameTime);
+            b.Scroll(GraphicsDevice);
             
             clock = clock.AddMilliseconds(16.6666666666667 * gameSpeed);
             
@@ -165,6 +173,7 @@ namespace Squadron5missing
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
             spriteBatch.Begin();
+            b.Draw(spriteBatch);
             spriteBatch.Draw(background, new Vector2(0, 0), Color.White);
             engineEvent.DrawText(spriteBatch, testFont, new Vector2(100, 700));
             mechanic.Draw(spriteBatch);
