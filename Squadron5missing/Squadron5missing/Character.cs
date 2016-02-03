@@ -71,8 +71,20 @@ namespace Squadron5missing
         //method(s) add Update and Draw functions!
         public virtual void Update(GameTime gameTime)
         {
-            animationDelayTimer += gameTime.ElapsedGameTime.Milliseconds;
+            if (Mouse.GetState().X > Position.X && Mouse.GetState().X < (Position.X + Texture.Width))
+            {
+                if (Mouse.GetState().Y > Position.Y && Mouse.GetState().Y < (Position.Y + Texture.Height))
+                {
+                    if (Mouse.GetState().LeftButton == ButtonState.Pressed)
+                    {
+                        Position = new Vector2(100,100);
+                    }
+                }
+            }
 
+            
+            //AnimationUpdate
+            animationDelayTimer += gameTime.ElapsedGameTime.Milliseconds;
             if (animationDelayTimer >= animationDelay)
             {
                 animationDelayTimer = 0;

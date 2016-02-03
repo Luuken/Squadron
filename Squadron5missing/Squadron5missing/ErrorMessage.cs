@@ -23,20 +23,20 @@ namespace Squadron5missing
         
 
         //pilot Errors
-        private string pErMessage1 = "The steering weel is an oval shape, fix it for increased piloting";
+        private string pErMessage1 = "The steering wheel is an oval shape, fix it for increased piloting";
         private string pErMessage2 = "The ship needs a pilot for this day, select one!";
 
         //radar Errors
-        private string rErMessage3 = "the Radar only shows  nearby plant life, calibrate the (differtius thinius radaraiting) capacitor 2000";
-        private string rErMessage4 = "The ship needs a radar technichan to observ it, select one!";
+        private string rErMessage3 = "The radar only shows nearby plant life, calibrate the (differtius thinius radarating) capacitor 2000";
+        private string rErMessage4 = "The ship needs a radar technichan to observe it, select one!";
 
         //infermary errors
-        private string iErMessage5 = "the bandaids are plugging the sink and none of the blood is not puring away, fix it!";
+        private string iErMessage5 = "The bandaids are plugging the sink and none of the blood is not pouring away, fix it!";
 
         //engine errors
-        private string eErMessage6 = "someone left a bluebery pie on the super engine, repairs needed";
-        private string eErMessage7 = "the engine AI got realy sad when it read it's own reaviews online, someone needs to go comfort it";
-        private string eErMessage8 = "someone mistook the nuts in nuts and bolt for acctual nuts, this made the whole keeping the engine together sort of hard";
+        private string eErMessage6 = "Someone left a blueberry pie on the super engine, repairs needed";
+        private string eErMessage7 = "The engine AI got really sad when it read it's own reviews online, someone needs to go comfort it";
+        private string eErMessage8 = "Someone mistook the nuts in nuts and bolt for actual nuts, this made the whole keeping the engine together sort of hard";
 
         public void DrawText(SpriteBatch spriteBatch, SpriteFont sFont, Vector2 position)
         {

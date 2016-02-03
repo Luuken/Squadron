@@ -34,6 +34,7 @@ namespace Squadron5missing
         Rectangle matKnappRectangle;
         Rectangle sjukvårdsKnappRectangle;
 
+
         int gameSpeed = 1;
 
 
@@ -54,8 +55,10 @@ namespace Squadron5missing
             // TODO: Add your initialization logic here
             clock = new DateTime();
 
-            b = new BackScroll(Content.Load<Texture2D>("space"), Content.Load<Texture2D>("space"), .2f);
+            b = new BackScroll(Content.Load<Texture2D>("space02"), Content.Load<Texture2D>("space03"), .2f);
             background = Content.Load<Texture2D>("background01");
+
+            this.IsMouseVisible = true;
             
             base.Initialize();
 
@@ -66,7 +69,7 @@ namespace Squadron5missing
             graphics.ApplyChanges();
 
             //Initializing characters
-            mechanic = new Mechanic(Content.Load<Texture2D>("placeHolder"), new Vector2(1000, 100), RoomE.Bridge, "Morgan the Mechanic", 64, 64, 4, 5, 5, 5, 5, 5, "Olaf");
+            mechanic = new Mechanic(Content.Load<Texture2D>("character 1"), new Vector2(1000, 250), RoomE.Bridge, "Morgan the Mechanic", 131, 500, 1, 5, 5, 5, 5, 5, "Olaf");
 
             //Initializing events
             engineEvent = new EngineEvent(200, "Engine broke down", clock, "The engines Fluxual Accelerate Perperator has been damaged and needs repair");
