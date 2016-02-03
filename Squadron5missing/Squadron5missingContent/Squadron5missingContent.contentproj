@@ -79,6 +79,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <Compile Include="space02.png">
       <Name>space02</Name>
       <Importer>TextureImporter</Importer>
@@ -97,6 +98,12 @@
       <Name>character 1</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
+=======
+    <Compile Include="CsFontSmall.spritefont">
+      <Name>CsFontSmall</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+>>>>>>> origin/master
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
