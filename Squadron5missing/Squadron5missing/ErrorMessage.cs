@@ -22,6 +22,7 @@ namespace Squadron5missing
         Random rnd = new Random();
 
         List<string> alertList = new List<string>();
+        
         int temp = 0;
         string alertTemp = "";
         bool writeEvent = false;
@@ -31,19 +32,25 @@ namespace Squadron5missing
 
         //pilot Errors
         private string pErMessage1 = "The steering wheel is an oval shape, fix it for increased piloting";
-        private string pErMessage2 = "The ship needs a pilot for this day, select one!";
+        private string pErMessage2 = "The front window has a crack";
 
         //radar Errors
-        private string rErMessage3 = "The radar only shows nearby plant life, calibrate the (differtius thinius radarating) capacitor 2000";
-        private string rErMessage4 = "The ship needs a radar technichan to observe it, select one!";
+        private string rErMessage3 = "The radar only shows nearby plant life, fix bugs";
+        private string rErMessage4 = "The radar got jamed and now it smells of rasberry!";
 
         //infermary errors
-        private string iErMessage5 = "The bandaids are plugging the sink and none of the blood is not pouring away, fix it!";
+        private string iErMessage5 = "The bandaids are plugging the sink.";
+        private string iErMessage9 = "There is a spider problem in the infermary.";
 
         //engine errors
-        private string eErMessage6 = "Someone left a blueberry pie on the super engine, repairs needed";
-        private string eErMessage7 = "The engine AI got really sad when it read it's own reviews online, someone needs to go comfort it";
-        private string eErMessage8 = "Someone mistook the nuts in nuts and bolt for actual nuts, this made the whole keeping the engine together sort of hard";
+        private string eErMessage6 = "Someone left a blueberry pie on the super engine, repairs needed.";
+        private string eErMessage7 = "The engine AI got really sad, someone needs to go comfort it.";
+        private string eErMessage8 = "Someone mistook the nuts in nuts and bolt for actual nuts.";
+
+        //messages
+        private string SMessage = "Select your pilot for the day";
+        private string SMessage2 = "Select radar technichan for the day";
+        private string SMessage3 = "Someone needs to make food for the week";
 
         public string DrawText(SpriteBatch spriteBatch, SpriteFont sFont, Vector2 position)
         {
@@ -81,7 +88,16 @@ namespace Squadron5missing
             else if (randomRoomNumber == 3)
             {
                 eventNumber = 3;
-                return iErMessage5;
+                randomRoomNumber = rnd.Next(1, 3);
+                if (randomRoomNumber == 1)
+                {
+                    return iErMessage5;
+                }
+                if (randomRoomNumber == 2)
+                {
+                    return iErMessage9;
+                }
+                
             }
             //engine Errors
             else if (randomRoomNumber == 4)
@@ -173,6 +189,7 @@ namespace Squadron5missing
                 for (int i = 0; i < alertList.Count; i++)
                 {
                     s.DrawString(fs, alertList[i], new Vector2(400, 50 + (i * 20)), Color.White);
+
                 }
             }
             //early draft, draws the message byt not for as long as i would like nor can you use this for anything
@@ -184,6 +201,18 @@ namespace Squadron5missing
             if (writeEvent == true && timer < 120)
             {
                 s.DrawString(f, alertTemp, new Vector2(75, 800), Color.Red);
+            }
+        }
+        public void SchedueldAlertMessage(DateTime clock)
+        {
+            if (clock.Millisecond <= 30 && clock.Second == 0 && clock.Minute == 0 && clock.Hour == 0)
+            {
+                alertList.Add(SMessage);
+                alertList.Add(SMessage2);
+            }
+            if (clock.DayOfWeek == DayOfWeek.Monday && clock.Millisecond <= 30 && clock.Second == 0 && clock.Minute == 0 && clock.Hour == 0)
+            {
+                alertList.Add(SMessage3);
             }
         }
     }

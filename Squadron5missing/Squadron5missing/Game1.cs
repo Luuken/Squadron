@@ -27,6 +27,7 @@ namespace Squadron5missing
         Mechanic mechanic;
         EngineEvent engineEvent;
 
+
         ForegroundObject chair;
 
         Random rand;
@@ -35,12 +36,19 @@ namespace Squadron5missing
 
         Texture2D ProblemMenuBackground;
         Texture2D background;
+
+        //Not in use remove when there is time
         Texture2D repairKnapp;
         Texture2D matKnapp;
         Texture2D sjukvårdsKnapp;
         Rectangle repairKnappRectangle;
         Rectangle matKnappRectangle;
         Rectangle sjukvårdsKnappRectangle;
+        
+        //in use
+        Texture2D yesButton;
+        Texture2D noButton;
+        
 
         ErrorMessage p;
         int gameSpeed = 1;
@@ -108,6 +116,8 @@ namespace Squadron5missing
             sjukvårdsKnapp = Content.Load<Texture2D>("Sjukvårds knapp");
             repairKnapp = Content.Load<Texture2D>("Repair_knapp");
             ProblemMenuBackground = Content.Load<Texture2D>("ProblemMenu");
+            yesButton = Content.Load<Texture2D>("YesButton");
+            noButton = Content.Load<Texture2D>("NoButton");
 
             repairKnappRectangle = new Rectangle(125, 3, 111, 83);
             sjukvårdsKnappRectangle = new Rectangle(125, 103, 111, 83);
@@ -140,7 +150,7 @@ namespace Squadron5missing
             chair.Update(gameTime);
             
             clock = clock.AddMilliseconds(16.6666666666667 * gameSpeed);
-            
+            p.SchedueldAlertMessage(clock);
             //e.CurrentTime = clock;
             //e.Update();
             p.Update(spriteBatch, testFont, new Vector2(75, 75));
