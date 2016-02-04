@@ -36,5 +36,9 @@ namespace Squadron5missing
         {
             base.Draw(spriteBatch);
         }
+        public override void DrawText(SpriteBatch spriteBatch, SpriteFont font)
+        {
+            base.DrawText(spriteBatch, font);
+        }
     }
 }

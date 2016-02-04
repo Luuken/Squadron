@@ -48,7 +48,7 @@ namespace Squadron5missing
         
 
         //boolean(s)
-        
+        bool characterSelected = false;
 
         //constructor(s)
         protected Character(Texture2D texture, Vector2 position, RoomE room, string name, int animWidth, int animHeight, int maxFrames, int intel, int perc, int stam, int con, int hand)
@@ -77,7 +77,7 @@ namespace Squadron5missing
                 {
                     if (Mouse.GetState().LeftButton == ButtonState.Pressed)
                     {
-                        
+                        characterSelected = true;
                     }
                 }
             }
@@ -100,6 +100,17 @@ namespace Squadron5missing
         {
             Rectangle tmp = new Rectangle((frame % 2) * AnimWidth, (frame / 2) * AnimHeight, AnimWidth, AnimHeight);
             spriteBatch.Draw(this.Texture, this.Position, tmp, Color.White);
+        }
+
+        public virtual void DrawText(SpriteBatch spriteBatch, SpriteFont font)
+        {
+            if (characterSelected == true)
+            {
+            spriteBatch.DrawString(font, ButtonName.Eat.ToString(), new Vector2(575, 600), Color.White);
+            spriteBatch.DrawString(font, ButtonName.Resolve.ToString(), new Vector2(900, 600), Color.White);
+            spriteBatch.DrawString(font, ButtonName.Talk.ToString(), new Vector2(575, 775), Color.White);
+            spriteBatch.DrawString(font, ButtonName.Tweak.ToString(), new Vector2(900, 775), Color.White);
+            }
         }
 
 
