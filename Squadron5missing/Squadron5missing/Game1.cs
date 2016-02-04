@@ -33,6 +33,7 @@ namespace Squadron5missing
         Random rand;
         //List<string> alertList = new List<string>();
         List<Event> alertListv2 = new List<Event>();
+        List<Button> buttonList;
 
         Texture2D ProblemMenuBackground;
         Texture2D background;
@@ -82,6 +83,12 @@ namespace Squadron5missing
             
             base.Initialize();
 
+            buttonList = new List<Button>();
+            buttonList.Add(new Button(Content.Load<Texture2D>("button"), new Vector2(520, 575), Color.White));
+            buttonList.Add(new Button(Content.Load<Texture2D>("button"), new Vector2(850, 575), Color.White));
+            buttonList.Add(new Button(Content.Load<Texture2D>("button"), new Vector2(520, 750), Color.White));
+            buttonList.Add(new Button(Content.Load<Texture2D>("button"), new Vector2(850, 750), Color.White));
+
             //Setting graphics settings
             graphics.PreferredBackBufferWidth = 1600;
             graphics.PreferredBackBufferHeight = 900;
@@ -119,6 +126,7 @@ namespace Squadron5missing
             yesButton = Content.Load<Texture2D>("YesButton");
             noButton = Content.Load<Texture2D>("NoButton");
 
+
             repairKnappRectangle = new Rectangle(125, 3, 111, 83);
             sjukvårdsKnappRectangle = new Rectangle(125, 103, 111, 83);
             matKnappRectangle = new Rectangle(125, 203, 111, 83);
@@ -146,6 +154,11 @@ namespace Squadron5missing
                 this.Exit();
             mechanic.Update(gameTime);
             b.Scroll(GraphicsDevice);
+
+            foreach (Button but in buttonList)
+            {
+                but.Update(gameTime);
+            }
 
             chair.Update(gameTime);
             
@@ -175,6 +188,11 @@ namespace Squadron5missing
             
            
             p.Draw(spriteBatch,testFont,ProblemMenuBackground,new Vector2(332,5),fontSmall);
+
+            foreach (Button but in buttonList)
+            {
+                but.Draw(spriteBatch);
+            }
 
             spriteBatch.End();
             // TODO: Add your drawing code here
