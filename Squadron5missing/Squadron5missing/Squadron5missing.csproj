@@ -80,13 +80,16 @@
     <Compile Include="Event.cs" />
     <Compile Include="ForegroundObject.cs" />
     <Compile Include="InfermaryEvent.cs" />
+    <Compile Include="ListOfYNButtons.cs" />
     <Compile Include="Mechanic.cs" />
+    <Compile Include="NoButtons.cs" />
     <Compile Include="PilotEvent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="RadarEvent.cs" />
     <Compile Include="Room.cs" />
+    <Compile Include="YesButtons.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />

@@ -124,7 +124,7 @@ namespace Squadron5missing
             return "WOW DUDE EMPTY STRING MUCH????";
         }
 
-        public void Update(SpriteBatch s, SpriteFont f, Vector2 position)
+        public void Update(SpriteBatch s, SpriteFont f, Vector2 position, Texture2D buttonTexture, Texture2D buttonTexture2)
         {
             temp = rnd.Next(1, 500);
             if (temp == 2)
@@ -136,6 +136,8 @@ namespace Squadron5missing
                 {
                     tempD = rnd.Next(60, 190);
                     alertList.Add(alertTemp);
+                    ListOfYNButtons.ButtonList.Add(new YesButton(buttonTexture, position));
+                    ListOfYNButtons.ButtonList2.Add(new NoButton(buttonTexture2, position));
                     startTimer = true;
                     timer = 0;
                     //alertListv2.Add(new PilotEvent((double)tempD, "Pilot event", clock, alertTemp));
@@ -144,6 +146,8 @@ namespace Squadron5missing
                 {
                     tempD = rnd.Next(20, 230);
                     alertList.Add(alertTemp);
+                    ListOfYNButtons.ButtonList.Add(new YesButton(buttonTexture, position));
+                    ListOfYNButtons.ButtonList2.Add(new NoButton(buttonTexture2, position));
                     startTimer = true;
                     timer = 0;
                     //alertListv2.Add(new RadarEvent((double)tempD, "Radar event", clock, alertTemp));
@@ -152,6 +156,9 @@ namespace Squadron5missing
                 {
                     tempD = rnd.Next(90, 110);
                     alertList.Add(alertTemp);
+                    ListOfYNButtons.ButtonList.Add(new YesButton(buttonTexture, position));
+                    ListOfYNButtons.ButtonList2.Add(new NoButton(buttonTexture2, position));
+
                     startTimer = true;
                     timer = 0;
                     //alertListv2.Add(new InfermaryEvent((double)tempD, "Infermary event", clock, alertTemp));
@@ -160,6 +167,8 @@ namespace Squadron5missing
                 {
                     tempD = rnd.Next(50, 200);
                     alertList.Add(alertTemp);
+                    ListOfYNButtons.ButtonList.Add(new YesButton(buttonTexture, position));
+                    ListOfYNButtons.ButtonList2.Add(new NoButton(buttonTexture2, position));
                     startTimer = true;
                     timer = 0;
                     //alertListv2.Add(new EngineEvent((double)tempD, "Engine event", clock, alertTemp));
@@ -189,10 +198,11 @@ namespace Squadron5missing
                 for (int i = 0; i < alertList.Count; i++)
                 {
                     s.DrawString(fs, alertList[i], new Vector2(400, 50 + (i * 20)), Color.White);
-
+                    s.Draw(ListOfYNButtons.ButtonList[i].Texture, new Vector2(358, 50 + (i * 20)), Color.White);
+                    s.Draw(ListOfYNButtons.ButtonList2[i].Texture,new Vector2(378, 50 +(i * 20)), Color.White);
                 }
             }
-            //early draft, draws the message byt not for as long as i would like nor can you use this for anything
+
             if (timer > 0)
             {
                 writeEvent = true;
@@ -203,16 +213,22 @@ namespace Squadron5missing
                 s.DrawString(f, alertTemp, new Vector2(75, 800), Color.Red);
             }
         }
-        public void SchedueldAlertMessage(DateTime clock)
+        public void SchedueldAlertMessage(DateTime clock, Texture2D buttonTexture, Vector2 position, Texture2D buttonTexture2)
         {
             if (clock.Millisecond <= 30 && clock.Second == 0 && clock.Minute == 0 && clock.Hour == 0)
             {
                 alertList.Add(SMessage);
+                ListOfYNButtons.ButtonList.Add(new YesButton(buttonTexture, position));
+                ListOfYNButtons.ButtonList2.Add(new NoButton(buttonTexture2, position));
                 alertList.Add(SMessage2);
+                ListOfYNButtons.ButtonList.Add(new YesButton(buttonTexture, position));
+                ListOfYNButtons.ButtonList2.Add(new NoButton(buttonTexture2, position));
             }
             if (clock.DayOfWeek == DayOfWeek.Monday && clock.Millisecond <= 30 && clock.Second == 0 && clock.Minute == 0 && clock.Hour == 0)
             {
                 alertList.Add(SMessage3);
+                ListOfYNButtons.ButtonList.Add(new YesButton(buttonTexture, position));
+                ListOfYNButtons.ButtonList2.Add(new NoButton(buttonTexture2, position));
             }
         }
     }
