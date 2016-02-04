@@ -64,6 +64,18 @@ namespace Squadron5missing
             {
                 Position = new Vector2((Position.X - 1), Position.Y);
             }
+            else if (selectedOption == ButtonName.Eat)
+            {
+                
+            }
+            else if (selectedOption == ButtonName.Talk)
+            {
+
+            }
+            else if (selectedOption == ButtonName.Upgrade)
+            {
+
+            }
         }
 
         public override void Draw(SpriteBatch spriteBatch)

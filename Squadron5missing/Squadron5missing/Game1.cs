@@ -98,7 +98,7 @@ namespace Squadron5missing
             rand = new Random();
             //Initializing characters
             mechanic = new Mechanic(Content.Load<Texture2D>("character 1"), new Vector2(1000, 250), RoomE.Bridge, "Morgan the Mechanic", 131, 500, 1, new Button(Content.Load<Texture2D>("button"), new Vector2(520, 575), Color.White, ButtonName.Eat),
-                new Button(Content.Load<Texture2D>("button"), new Vector2(850, 575), Color.White, ButtonName.Resolve), new Button(Content.Load<Texture2D>("button"), new Vector2(520, 750), Color.White, ButtonName.Talk), new Button(Content.Load<Texture2D>("button"), new Vector2(850, 750), Color.White, ButtonName.Tweak), 5, 5, 5, 5, 5, "Olaf");
+                new Button(Content.Load<Texture2D>("button"), new Vector2(850, 575), Color.White, ButtonName.Resolve), new Button(Content.Load<Texture2D>("button"), new Vector2(520, 750), Color.White, ButtonName.Talk), new Button(Content.Load<Texture2D>("button"), new Vector2(850, 750), Color.White, ButtonName.Upgrade), 5, 5, 5, 5, 5, "Olaf");
 
             p = new ErrorMessage();
 

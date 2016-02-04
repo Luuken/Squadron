@@ -15,7 +15,7 @@ namespace Squadron5missing
     {
         Resolve,
         Eat,
-        Tweak,
+        Upgrade,
         Talk,
         Default
     }
