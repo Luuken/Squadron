@@ -32,6 +32,10 @@ namespace Squadron5missing
         protected int AnimWidth { get; set; }
         protected int AnimHeight { get; set; }
         protected int MaxFrames { get; set; }
+        protected Button CharButton1 { get; set; }
+        protected Button CharButton2 { get; set; }
+        protected Button CharButton3 { get; set; }
+        protected Button CharButton4 { get; set; }
 
         //stats(properties)
         protected int Intellect { get; set; } //medics and ship tweaking
@@ -48,10 +52,10 @@ namespace Squadron5missing
         
 
         //boolean(s)
-        
+        protected bool characterSelected = false;
 
         //constructor(s)
-        protected Character(Texture2D texture, Vector2 position, RoomE room, string name, int animWidth, int animHeight, int maxFrames, int intel, int perc, int stam, int con, int hand)
+        protected Character(Texture2D texture, Vector2 position, RoomE room, string name, int animWidth, int animHeight, int maxFrames, Button button1, Button button2, Button button3, Button button4, int intel, int perc, int stam, int con, int hand)
         {
             this.Texture = texture;
             this.Position = position;
@@ -60,6 +64,10 @@ namespace Squadron5missing
             this.AnimHeight = animHeight;
             this.AnimWidth = animWidth;
             this.MaxFrames = maxFrames;
+            this.CharButton1 = button1;
+            this.CharButton2 = button2;
+            this.CharButton3 = button3;
+            this.CharButton4 = button4;
 
             this.Intellect = intel;
             this.Perception = perc;
@@ -77,7 +85,7 @@ namespace Squadron5missing
                 {
                     if (Mouse.GetState().LeftButton == ButtonState.Pressed)
                     {
-                        
+                        characterSelected = true;
                     }
                 }
             }
@@ -100,6 +108,17 @@ namespace Squadron5missing
         {
             Rectangle tmp = new Rectangle((frame % 2) * AnimWidth, (frame / 2) * AnimHeight, AnimWidth, AnimHeight);
             spriteBatch.Draw(this.Texture, this.Position, tmp, Color.White);
+        }
+
+        public virtual void DrawText(SpriteBatch spriteBatch, SpriteFont font)
+        {
+            if (characterSelected == true)
+            {
+            spriteBatch.DrawString(font, ButtonName.Eat.ToString(), new Vector2(575, 600), Color.White);
+            spriteBatch.DrawString(font, ButtonName.Resolve.ToString(), new Vector2(900, 600), Color.White);
+            spriteBatch.DrawString(font, ButtonName.Talk.ToString(), new Vector2(575, 775), Color.White);
+            spriteBatch.DrawString(font, ButtonName.Tweak.ToString(), new Vector2(900, 775), Color.White);
+            }
         }
 
 

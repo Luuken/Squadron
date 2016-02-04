@@ -11,19 +11,34 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Squadron5missing
 {
+    public enum ButtonName
+    {
+        Resolve,
+        Eat,
+        Tweak,
+        Talk,
+        Default
+    }
+
+
     class Button
     {
         Texture2D Texture { get; set; }
         Vector2 Position { get; set; }
         Color ButtonColorOverlay { get; set; }
+        public ButtonName BName { get; set; }
+        public bool Pressed { get; set; }
 
-        private int clickedDelay = 60;
+        
 
-        public Button(Texture2D texture, Vector2 position, Color btnColorOverlay)
+        private int clickedDelay = 10;
+
+        public Button(Texture2D texture, Vector2 position, Color btnColorOverlay, ButtonName bName)
         {
             this.Texture = texture;
             this.Position = position;
             this.ButtonColorOverlay = btnColorOverlay;
+            this.BName = bName;
         }
 
         public void Update(GameTime gameTime)
@@ -35,10 +50,11 @@ namespace Squadron5missing
                     if (Mouse.GetState().LeftButton == ButtonState.Pressed)
                     {
                         ButtonColorOverlay = Color.CornflowerBlue;
+                        Pressed = true;
                     }
                     else
                     {
-                        ButtonColorOverlay = Color.White;
+                        Pressed = false;
                     }
                 }
             }
@@ -49,9 +65,9 @@ namespace Squadron5missing
                 if (clickedDelay <= 0)
                 {
                     ButtonColorOverlay = Color.White;
-                    clickedDelay = 60;
+                    clickedDelay = 10;
                 }
-            }
+            }     
             
         }
 

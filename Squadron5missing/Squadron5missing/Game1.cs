@@ -74,7 +74,7 @@ namespace Squadron5missing
             // TODO: Add your initialization logic here
             clock = new DateTime();
 
-            b = new BackScroll(Content.Load<Texture2D>("space02"), Content.Load<Texture2D>("space03"), .2f);
+            b = new BackScroll(Content.Load<Texture2D>("space02"), Content.Load<Texture2D>("space03"), .1f);
             background = Content.Load<Texture2D>("background01");
 
             chair = new ForegroundObject(Content.Load<Texture2D>("chair01"), new Vector2(687, 360), 300, 300, 2);
@@ -84,10 +84,11 @@ namespace Squadron5missing
             base.Initialize();
 
             buttonList = new List<Button>();
-            buttonList.Add(new Button(Content.Load<Texture2D>("button"), new Vector2(520, 575), Color.White));
-            buttonList.Add(new Button(Content.Load<Texture2D>("button"), new Vector2(850, 575), Color.White));
-            buttonList.Add(new Button(Content.Load<Texture2D>("button"), new Vector2(520, 750), Color.White));
-            buttonList.Add(new Button(Content.Load<Texture2D>("button"), new Vector2(850, 750), Color.White));
+            /*
+            buttonList.Add(new Button(Content.Load<Texture2D>("button"), new Vector2(520, 575), Color.White, ButtonName.Eat));
+            buttonList.Add(new Button(Content.Load<Texture2D>("button"), new Vector2(850, 575), Color.White, ButtonName.Resolve));
+            buttonList.Add(new Button(Content.Load<Texture2D>("button"), new Vector2(520, 750), Color.White, ButtonName.Talk));
+            buttonList.Add(new Button(Content.Load<Texture2D>("button"), new Vector2(850, 750), Color.White, ButtonName.Tweak));*/
 
             //Setting graphics settings
             graphics.PreferredBackBufferWidth = 1600;
@@ -96,7 +97,8 @@ namespace Squadron5missing
             graphics.ApplyChanges();
             rand = new Random();
             //Initializing characters
-            mechanic = new Mechanic(Content.Load<Texture2D>("character 1"), new Vector2(1000, 250), RoomE.Bridge, "Morgan the Mechanic", 131, 500, 1, 5, 5, 5, 5, 5, "Olaf");
+            mechanic = new Mechanic(Content.Load<Texture2D>("character 1"), new Vector2(1000, 250), RoomE.Bridge, "Morgan the Mechanic", 131, 500, 1, new Button(Content.Load<Texture2D>("button"), new Vector2(520, 575), Color.White, ButtonName.Eat),
+                new Button(Content.Load<Texture2D>("button"), new Vector2(850, 575), Color.White, ButtonName.Resolve), new Button(Content.Load<Texture2D>("button"), new Vector2(520, 750), Color.White, ButtonName.Talk), new Button(Content.Load<Texture2D>("button"), new Vector2(850, 750), Color.White, ButtonName.Tweak), 5, 5, 5, 5, 5, "Olaf");
 
             p = new ErrorMessage();
 
@@ -211,6 +213,7 @@ namespace Squadron5missing
             {
                 no.Draw(spriteBatch);
             }
+            mechanic.DrawText(spriteBatch, testFont);
 
             spriteBatch.End();
             // TODO: Add your drawing code here
