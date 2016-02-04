@@ -164,9 +164,19 @@ namespace Squadron5missing
             
             clock = clock.AddMilliseconds(16.6666666666667 * gameSpeed);
             p.SchedueldAlertMessage(clock, yesButton, new Vector2(75, 75), noButton);
+            foreach (YesButton yes in ListOfYNButtons.ButtonList)
+            {
+                yes.Update(gameTime);
+            }
+            foreach (NoButton no in ListOfYNButtons.ButtonList2)
+            {
+                no.Update(gameTime);
+            }
             //e.CurrentTime = clock;
             //e.Update();
-            p.Update(spriteBatch, testFont, new Vector2(75, 75), yesButton, noButton);
+
+			p.Update(spriteBatch, testFont, new Vector2(75, 75), yesButton, noButton, new Vector2());
+            
             base.Update(gameTime);
         }
 
@@ -186,13 +196,20 @@ namespace Squadron5missing
             mechanic.Draw(spriteBatch);
             spriteBatch.DrawString(testFont, clock.ToLongTimeString(), new Vector2(3, 2), Color.White);
             
-           
             p.Draw(spriteBatch,testFont,ProblemMenuBackground,new Vector2(332,5),fontSmall);
-
+            
             foreach (Button but in buttonList)
             {
                 but.Draw(spriteBatch);
+            }
 
+            foreach (YesButton yes in ListOfYNButtons.ButtonList)
+            {
+                yes.Draw(spriteBatch);
+            }
+            foreach (NoButton no in ListOfYNButtons.ButtonList2)
+            {
+                no.Draw(spriteBatch);
             }
 
             spriteBatch.End();

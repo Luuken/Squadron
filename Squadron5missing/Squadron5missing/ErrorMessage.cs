@@ -19,6 +19,7 @@ namespace Squadron5missing
         public Vector2 position { get; set; }
         public string EventAlert { get; set; }
         public int eventNumber { get; set; }
+        
         Random rnd = new Random();
 
         List<string> alertList = new List<string>();
@@ -28,7 +29,6 @@ namespace Squadron5missing
         bool writeEvent = false;
         bool startTimer = false;
         int timer = 0;
-        
 
         //pilot Errors
         private string pErMessage1 = "The steering wheel is an oval shape, fix it for increased piloting";
@@ -124,7 +124,7 @@ namespace Squadron5missing
             return "WOW DUDE EMPTY STRING MUCH????";
         }
 
-        public void Update(SpriteBatch s, SpriteFont f, Vector2 position, Texture2D buttonTexture, Texture2D buttonTexture2)
+        public void Update(SpriteBatch s, SpriteFont f, Vector2 position, Texture2D buttonTexture, Texture2D buttonTexture2, Vector2 position2)
         {
             temp = rnd.Next(1, 500);
             if (temp == 2)
@@ -136,8 +136,8 @@ namespace Squadron5missing
                 {
                     tempD = rnd.Next(60, 190);
                     alertList.Add(alertTemp);
-                    ListOfYNButtons.ButtonList.Add(new YesButton(buttonTexture, position));
-                    ListOfYNButtons.ButtonList2.Add(new NoButton(buttonTexture2, position));
+                    ListOfYNButtons.ButtonList.Add(new YesButton(buttonTexture, position2, Color.CadetBlue));
+                    ListOfYNButtons.ButtonList2.Add(new NoButton(buttonTexture2, position, Color.CornflowerBlue));
                     startTimer = true;
                     timer = 0;
                     //alertListv2.Add(new PilotEvent((double)tempD, "Pilot event", clock, alertTemp));
@@ -146,8 +146,8 @@ namespace Squadron5missing
                 {
                     tempD = rnd.Next(20, 230);
                     alertList.Add(alertTemp);
-                    ListOfYNButtons.ButtonList.Add(new YesButton(buttonTexture, position));
-                    ListOfYNButtons.ButtonList2.Add(new NoButton(buttonTexture2, position));
+                    ListOfYNButtons.ButtonList.Add(new YesButton(buttonTexture, position2, Color.CadetBlue));
+                    ListOfYNButtons.ButtonList2.Add(new NoButton(buttonTexture2, position2, Color.CornflowerBlue));
                     startTimer = true;
                     timer = 0;
                     //alertListv2.Add(new RadarEvent((double)tempD, "Radar event", clock, alertTemp));
@@ -156,8 +156,8 @@ namespace Squadron5missing
                 {
                     tempD = rnd.Next(90, 110);
                     alertList.Add(alertTemp);
-                    ListOfYNButtons.ButtonList.Add(new YesButton(buttonTexture, position));
-                    ListOfYNButtons.ButtonList2.Add(new NoButton(buttonTexture2, position));
+                    ListOfYNButtons.ButtonList.Add(new YesButton(buttonTexture, position2, Color.CadetBlue));
+                    ListOfYNButtons.ButtonList2.Add(new NoButton(buttonTexture2, position2, Color.CornflowerBlue));
 
                     startTimer = true;
                     timer = 0;
@@ -167,8 +167,8 @@ namespace Squadron5missing
                 {
                     tempD = rnd.Next(50, 200);
                     alertList.Add(alertTemp);
-                    ListOfYNButtons.ButtonList.Add(new YesButton(buttonTexture, position));
-                    ListOfYNButtons.ButtonList2.Add(new NoButton(buttonTexture2, position));
+                    ListOfYNButtons.ButtonList.Add(new YesButton(buttonTexture, position2, Color.CadetBlue));
+                    ListOfYNButtons.ButtonList2.Add(new NoButton(buttonTexture2, position2, Color.CornflowerBlue));
                     startTimer = true;
                     timer = 0;
                     //alertListv2.Add(new EngineEvent((double)tempD, "Engine event", clock, alertTemp));
@@ -198,10 +198,21 @@ namespace Squadron5missing
                 for (int i = 0; i < alertList.Count; i++)
                 {
                     s.DrawString(fs, alertList[i], new Vector2(400, 50 + (i * 20)), Color.White);
-                    s.Draw(ListOfYNButtons.ButtonList[i].Texture, new Vector2(358, 50 + (i * 20)), Color.White);
-                    s.Draw(ListOfYNButtons.ButtonList2[i].Texture,new Vector2(378, 50 +(i * 20)), Color.White);
+                
+                    ListOfYNButtons.ButtonList[i].Position = new Vector2(358, 50 + (i * 20));
+                    ListOfYNButtons.ButtonList2[i].Position = new Vector2(378, 50 + (i * 20));
                 }
             }
+            else
+            {
+                for (int i = 0; i < alertList.Count; i++)
+                {
+                    ListOfYNButtons.ButtonList[i].Position = new Vector2(-20, -20);
+                    ListOfYNButtons.ButtonList2[i].Position = new Vector2(-20, -20);
+                }
+                
+            }
+
 
             if (timer > 0)
             {
@@ -218,17 +229,17 @@ namespace Squadron5missing
             if (clock.Millisecond <= 30 && clock.Second == 0 && clock.Minute == 0 && clock.Hour == 0)
             {
                 alertList.Add(SMessage);
-                ListOfYNButtons.ButtonList.Add(new YesButton(buttonTexture, position));
-                ListOfYNButtons.ButtonList2.Add(new NoButton(buttonTexture2, position));
+                ListOfYNButtons.ButtonList.Add(new YesButton(buttonTexture, new Vector2(-20, -20), Color.CadetBlue));
+                ListOfYNButtons.ButtonList2.Add(new NoButton(buttonTexture2, new Vector2(-20, -20), Color.CornflowerBlue));
                 alertList.Add(SMessage2);
-                ListOfYNButtons.ButtonList.Add(new YesButton(buttonTexture, position));
-                ListOfYNButtons.ButtonList2.Add(new NoButton(buttonTexture2, position));
+                ListOfYNButtons.ButtonList.Add(new YesButton(buttonTexture, new Vector2(-20, -20), Color.CadetBlue));
+                ListOfYNButtons.ButtonList2.Add(new NoButton(buttonTexture2, new Vector2(-20, -20), Color.CornflowerBlue));
             }
             if (clock.DayOfWeek == DayOfWeek.Monday && clock.Millisecond <= 30 && clock.Second == 0 && clock.Minute == 0 && clock.Hour == 0)
             {
                 alertList.Add(SMessage3);
-                ListOfYNButtons.ButtonList.Add(new YesButton(buttonTexture, position));
-                ListOfYNButtons.ButtonList2.Add(new NoButton(buttonTexture2, position));
+                ListOfYNButtons.ButtonList.Add(new YesButton(buttonTexture, new Vector2(-20, -20), Color.CadetBlue));
+                ListOfYNButtons.ButtonList2.Add(new NoButton(buttonTexture2, new Vector2(-20, -20), Color.CornflowerBlue));
             }
         }
     }
