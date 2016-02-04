@@ -14,12 +14,14 @@ namespace Squadron5missing
 {
     class ErrorMessage
     {
+        //properties
         public SpriteBatch SpriteBatch{ get; set; }
         public SpriteFont SFont { get; set; }
         public Vector2 position { get; set; }
         public string EventAlert { get; set; }
         public int eventNumber { get; set; }
         
+        //variables for this class only
         Random rnd = new Random();
 
         List<string> alertList = new List<string>();
@@ -121,9 +123,18 @@ namespace Squadron5missing
                     return eErMessage6;
                 }
             }
-            return "WOW DUDE EMPTY STRING MUCH????";
+            return "";
         }
-
+        /// <summary>
+        /// Updates the ErrorMessages this also sends Yes and No buttons
+        /// to ListOfYNButtons lists
+        /// </summary>
+        /// <param name="s"></param>
+        /// <param name="f"></param>
+        /// <param name="position"></param>
+        /// <param name="buttonTexture"></param>
+        /// <param name="buttonTexture2"></param>
+        /// <param name="position2"></param>
         public void Update(SpriteBatch s, SpriteFont f, Vector2 position, Texture2D buttonTexture, Texture2D buttonTexture2, Vector2 position2)
         {
             temp = rnd.Next(1, 500);
@@ -136,46 +147,47 @@ namespace Squadron5missing
                 {
                     tempD = rnd.Next(60, 190);
                     alertList.Add(alertTemp);
+                    //this adds one button to each no and yes list button in the ListOfYNButtons.cs lists
                     ListOfYNButtons.ButtonList.Add(new YesButton(buttonTexture, position2, Color.CadetBlue));
                     ListOfYNButtons.ButtonList2.Add(new NoButton(buttonTexture2, position, Color.CornflowerBlue));
                     startTimer = true;
                     timer = 0;
-                    //alertListv2.Add(new PilotEvent((double)tempD, "Pilot event", clock, alertTemp));
                 }
                 else if (this.eventNumber == 2)
                 {
                     tempD = rnd.Next(20, 230);
                     alertList.Add(alertTemp);
+                    //this adds one button to each no and yes list button in the ListOfYNButtons.cs lists
                     ListOfYNButtons.ButtonList.Add(new YesButton(buttonTexture, position2, Color.CadetBlue));
                     ListOfYNButtons.ButtonList2.Add(new NoButton(buttonTexture2, position2, Color.CornflowerBlue));
                     startTimer = true;
                     timer = 0;
-                    //alertListv2.Add(new RadarEvent((double)tempD, "Radar event", clock, alertTemp));
                 }
                 else if (this.eventNumber == 3)
                 {
                     tempD = rnd.Next(90, 110);
                     alertList.Add(alertTemp);
+                    //this adds one button to each no and yes list button in the ListOfYNButtons.cs lists
                     ListOfYNButtons.ButtonList.Add(new YesButton(buttonTexture, position2, Color.CadetBlue));
                     ListOfYNButtons.ButtonList2.Add(new NoButton(buttonTexture2, position2, Color.CornflowerBlue));
 
                     startTimer = true;
                     timer = 0;
-                    //alertListv2.Add(new InfermaryEvent((double)tempD, "Infermary event", clock, alertTemp));
                 }
                 else if (this.eventNumber == 4)
                 {
                     tempD = rnd.Next(50, 200);
                     alertList.Add(alertTemp);
+                    //this adds one button to each no and yes list button in the ListOfYNButtons.cs lists
                     ListOfYNButtons.ButtonList.Add(new YesButton(buttonTexture, position2, Color.CadetBlue));
                     ListOfYNButtons.ButtonList2.Add(new NoButton(buttonTexture2, position2, Color.CornflowerBlue));
                     startTimer = true;
                     timer = 0;
-                    //alertListv2.Add(new EngineEvent((double)tempD, "Engine event", clock, alertTemp));
                 }
 
                 //we should create events based on what string it is + random numbers for duration and such
             }
+            //timer for how long the alerts are supposed to be drawn on screen
             if (startTimer == true)
             {
                 timer++;
@@ -191,14 +203,19 @@ namespace Squadron5missing
 
         public void Draw(SpriteBatch s, SpriteFont f, Texture2D square, Vector2 V2, SpriteFont fs)
         {
+            //change this to the buttons on the character for the finished (game)mechanic
             if (Keyboard.GetState(PlayerIndex.One).IsKeyDown(Keys.G))
             {
+                //adds a menu window behind the list of problems
+                //also writes it a title
                 s.Draw(square, V2, Color.White);
                 s.DrawString(f, "List of problems", new Vector2(365, 20), Color.White);
+                
                 for (int i = 0; i < alertList.Count; i++)
                 {
                     s.DrawString(fs, alertList[i], new Vector2(400, 50 + (i * 20)), Color.White);
-                
+                    //sets the position of yes and no buttons
+                    //they are then drawn out in the draw function of the individual yes and no button classes
                     ListOfYNButtons.ButtonList[i].Position = new Vector2(358, 50 + (i * 20));
                     ListOfYNButtons.ButtonList2[i].Position = new Vector2(378, 50 + (i * 20));
                 }
@@ -207,6 +224,7 @@ namespace Squadron5missing
             {
                 for (int i = 0; i < alertList.Count; i++)
                 {
+                    //moves the buttons of screen
                     ListOfYNButtons.ButtonList[i].Position = new Vector2(-20, -20);
                     ListOfYNButtons.ButtonList2[i].Position = new Vector2(-20, -20);
                 }
@@ -224,20 +242,31 @@ namespace Squadron5missing
                 s.DrawString(f, alertTemp, new Vector2(75, 800), Color.Red);
             }
         }
+        /// <summary>
+        /// adds schedueld messages that will 
+        /// always apear on scripted times
+        /// </summary>
+        /// <param name="clock"></param>
+        /// <param name="buttonTexture"></param>
+        /// <param name="position"></param>
+        /// <param name="buttonTexture2"></param>
         public void SchedueldAlertMessage(DateTime clock, Texture2D buttonTexture, Vector2 position, Texture2D buttonTexture2)
         {
             if (clock.Millisecond <= 30 && clock.Second == 0 && clock.Minute == 0 && clock.Hour == 0)
             {
                 alertList.Add(SMessage);
+                //moves it of the screen
                 ListOfYNButtons.ButtonList.Add(new YesButton(buttonTexture, new Vector2(-20, -20), Color.CadetBlue));
                 ListOfYNButtons.ButtonList2.Add(new NoButton(buttonTexture2, new Vector2(-20, -20), Color.CornflowerBlue));
                 alertList.Add(SMessage2);
+                //moves it of the screen
                 ListOfYNButtons.ButtonList.Add(new YesButton(buttonTexture, new Vector2(-20, -20), Color.CadetBlue));
                 ListOfYNButtons.ButtonList2.Add(new NoButton(buttonTexture2, new Vector2(-20, -20), Color.CornflowerBlue));
             }
             if (clock.DayOfWeek == DayOfWeek.Monday && clock.Millisecond <= 30 && clock.Second == 0 && clock.Minute == 0 && clock.Hour == 0)
             {
                 alertList.Add(SMessage3);
+                //moves it of the screen
                 ListOfYNButtons.ButtonList.Add(new YesButton(buttonTexture, new Vector2(-20, -20), Color.CadetBlue));
                 ListOfYNButtons.ButtonList2.Add(new NoButton(buttonTexture2, new Vector2(-20, -20), Color.CornflowerBlue));
             }

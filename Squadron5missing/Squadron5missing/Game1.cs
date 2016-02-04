@@ -119,6 +119,7 @@ namespace Squadron5missing
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
+            //loads all colors
             testFont = Content.Load<SpriteFont>("TestFont");
             fontSmall = Content.Load<SpriteFont>("CsFontSmall");
             matKnapp = Content.Load<Texture2D>("Mat knapp");
@@ -128,7 +129,7 @@ namespace Squadron5missing
             yesButton = Content.Load<Texture2D>("YesButton");
             noButton = Content.Load<Texture2D>("NoButton");
 
-
+            //loads rectangles
             repairKnappRectangle = new Rectangle(125, 3, 111, 83);
             sjukvårdsKnappRectangle = new Rectangle(125, 103, 111, 83);
             matKnappRectangle = new Rectangle(125, 203, 111, 83);
@@ -154,18 +155,19 @@ namespace Squadron5missing
             // Allows the game to exit
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState(PlayerIndex.One).IsKeyDown(Keys.Escape))
                 this.Exit();
+
+            //Updates diffrent game objects and adds the seconds to the clock
             mechanic.Update(gameTime);
             b.Scroll(GraphicsDevice);
-
-            foreach (Button but in buttonList)
-            {
-                but.Update(gameTime);
-            }
 
             chair.Update(gameTime);
             
             clock = clock.AddMilliseconds(16.6666666666667 * gameSpeed);
+            
             p.SchedueldAlertMessage(clock, yesButton, new Vector2(75, 75), noButton);
+            p.Update(spriteBatch, testFont, new Vector2(75, 75), yesButton, noButton, new Vector2());
+
+            //Update function for both the yes and the no buttons
             foreach (YesButton yes in ListOfYNButtons.ButtonList)
             {
                 yes.Update(gameTime);
@@ -174,11 +176,11 @@ namespace Squadron5missing
             {
                 no.Update(gameTime);
             }
-            //e.CurrentTime = clock;
-            //e.Update();
+            foreach (Button but in buttonList)
+            {
+                but.Update(gameTime);
+            }
 
-			p.Update(spriteBatch, testFont, new Vector2(75, 75), yesButton, noButton, new Vector2());
-            
             base.Update(gameTime);
         }
 
