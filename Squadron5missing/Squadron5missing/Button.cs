@@ -16,17 +16,22 @@ namespace Squadron5missing
         Resolve,
         Eat,
         Tweak,
-        Talk
+        Talk,
+        Default
     }
+
 
     class Button
     {
         Texture2D Texture { get; set; }
         Vector2 Position { get; set; }
         Color ButtonColorOverlay { get; set; }
-        ButtonName BName { get; set; }
+        public ButtonName BName { get; set; }
+        public bool Pressed { get; set; }
 
-        private int clickedDelay = 60;
+        
+
+        private int clickedDelay = 10;
 
         public Button(Texture2D texture, Vector2 position, Color btnColorOverlay, ButtonName bName)
         {
@@ -45,26 +50,11 @@ namespace Squadron5missing
                     if (Mouse.GetState().LeftButton == ButtonState.Pressed)
                     {
                         ButtonColorOverlay = Color.CornflowerBlue;
-                        if (BName == ButtonName.Eat)
-                        {
-
-                        }
-                        else if (BName == ButtonName.Resolve)
-                        {
-
-                        }
-                        else if (BName == ButtonName.Talk)
-                        {
-
-                        }
-                        else if (BName == ButtonName.Tweak)
-                        {
-
-                        }
+                        Pressed = true;
                     }
                     else
                     {
-                        ButtonColorOverlay = Color.White;
+                        Pressed = false;
                     }
                 }
             }
@@ -75,9 +65,9 @@ namespace Squadron5missing
                 if (clickedDelay <= 0)
                 {
                     ButtonColorOverlay = Color.White;
-                    clickedDelay = 60;
+                    clickedDelay = 10;
                 }
-            }
+            }     
             
         }
 
