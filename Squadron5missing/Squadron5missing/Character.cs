@@ -77,7 +77,7 @@ namespace Squadron5missing
                 {
                     if (Mouse.GetState().LeftButton == ButtonState.Pressed)
                     {
-                        Position = new Vector2(100,100);
+                        
                     }
                 }
             }

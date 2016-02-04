@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
@@ -20,7 +21,7 @@ namespace Squadron5missing
         int MaxFrames { get; set; }
 
         private int animationDelayTimer = 0;
-        private int animationDelay = 100;
+        private int animationDelay = 400;
         private int frame = 0;
 
         public ForegroundObject(Texture2D texture, Vector2 pos, int animWidth, int animHeight, int maxFrames)

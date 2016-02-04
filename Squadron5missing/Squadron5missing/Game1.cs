@@ -27,6 +27,8 @@ namespace Squadron5missing
         Mechanic mechanic;
         EngineEvent engineEvent;
 
+        ForegroundObject chair;
+
         Random rand;
         //List<string> alertList = new List<string>();
         List<Event> alertListv2 = new List<Event>();
@@ -65,6 +67,8 @@ namespace Squadron5missing
 
             b = new BackScroll(Content.Load<Texture2D>("space02"), Content.Load<Texture2D>("space03"), .2f);
             background = Content.Load<Texture2D>("background01");
+
+            chair = new ForegroundObject(Content.Load<Texture2D>("chair01"), new Vector2(687, 360), 300, 300, 2);
 
             this.IsMouseVisible = true;
             
@@ -132,6 +136,8 @@ namespace Squadron5missing
                 this.Exit();
             mechanic.Update(gameTime);
             b.Scroll(GraphicsDevice);
+
+            chair.Update(gameTime);
             
             clock = clock.AddMilliseconds(16.6666666666667 * gameSpeed);
             
@@ -151,10 +157,12 @@ namespace Squadron5missing
             spriteBatch.Begin();
             b.Draw(spriteBatch);
             spriteBatch.Draw(background, new Vector2(0, 0), Color.White);
+            chair.Draw(spriteBatch);
+
             //engineEvent.DrawText(spriteBatch, testFont, new Vector2(100, 700));
             mechanic.Draw(spriteBatch);
             spriteBatch.DrawString(testFont, clock.ToLongTimeString(), new Vector2(3, 2), Color.White);
-
+            
            
             p.Draw(spriteBatch,testFont,ProblemMenuBackground,new Vector2(332,5),fontSmall);
 
