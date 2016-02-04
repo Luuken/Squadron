@@ -17,6 +17,8 @@ namespace Squadron5missing
         Vector2 Position { get; set; }
         Color ButtonColorOverlay { get; set; }
 
+        private int clickedDelay = 60;
+
         public Button(Texture2D texture, Vector2 position, Color btnColorOverlay)
         {
             this.Texture = texture;
@@ -32,10 +34,25 @@ namespace Squadron5missing
                 {
                     if (Mouse.GetState().LeftButton == ButtonState.Pressed)
                     {
-                        ButtonColorOverlay = Color.DarkGray;
+                        ButtonColorOverlay = Color.CornflowerBlue;
+                    }
+                    else
+                    {
+                        ButtonColorOverlay = Color.White;
                     }
                 }
             }
+
+            if (ButtonColorOverlay == Color.CornflowerBlue)
+            {
+                clickedDelay--;
+                if (clickedDelay <= 0)
+                {
+                    ButtonColorOverlay = Color.White;
+                    clickedDelay = 60;
+                }
+            }
+            
         }
 
         public void Draw(SpriteBatch spriteBatch)
