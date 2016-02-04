@@ -163,10 +163,10 @@ namespace Squadron5missing
             chair.Update(gameTime);
             
             clock = clock.AddMilliseconds(16.6666666666667 * gameSpeed);
-            p.SchedueldAlertMessage(clock);
+            p.SchedueldAlertMessage(clock, yesButton, new Vector2(75, 75), noButton);
             //e.CurrentTime = clock;
             //e.Update();
-            p.Update(spriteBatch, testFont, new Vector2(75, 75));
+            p.Update(spriteBatch, testFont, new Vector2(75, 75), yesButton, noButton);
             base.Update(gameTime);
         }
 
@@ -192,6 +192,7 @@ namespace Squadron5missing
             foreach (Button but in buttonList)
             {
                 but.Draw(spriteBatch);
+
             }
 
             spriteBatch.End();
