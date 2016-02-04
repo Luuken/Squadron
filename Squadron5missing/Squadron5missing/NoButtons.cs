@@ -14,17 +14,23 @@ using Microsoft.Xna.Framework.Media;
 namespace Squadron5missing
 {
     class NoButton
-    {
+    {   
+        //properties
         public Texture2D Texture { get; set; }
         public Vector2 Position { get; set; }
         Color ButtonColorOverlay { get; set; }
 
+        //constructor(s)
         public NoButton(Texture2D texture, Vector2 position, Color btnColorOverlay)
         {
             this.Texture = texture;
             this.Position = position;
             this.ButtonColorOverlay = btnColorOverlay;
         }
+        /// <summary>
+        /// Changes the color for the buttons when your mouse is not over them
+        /// </summary>
+        /// <param name="gameTime"></param>
         public void Update(GameTime gameTime)
         {
             if (Mouse.GetState().X > Position.X && Mouse.GetState().X < (Position.X + Texture.Width))
@@ -41,6 +47,10 @@ namespace Squadron5missing
             }
 
         }
+        /// <summary>
+        /// draws out the buttons
+        /// </summary>
+        /// <param name="spriteBatch"></param>
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(Texture, Position, ButtonColorOverlay);
