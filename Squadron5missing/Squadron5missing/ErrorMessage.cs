@@ -185,7 +185,6 @@ namespace Squadron5missing
                     timer = 0;
                 }
 
-                //we should create events based on what string it is + random numbers for duration and such
             }
             //timer for how long the alerts are supposed to be drawn on screen
             if (startTimer == true)
@@ -193,7 +192,7 @@ namespace Squadron5missing
                 timer++;
             }
 
-            if (timer == 121)
+            if (timer == 230)
             {
                 timer = 0;
                 writeEvent = false;
@@ -218,23 +217,24 @@ namespace Squadron5missing
                     //they are then drawn out in the draw function of the individual yes and no button classes
                     ListOfYNButtons.ButtonList[i].Position = new Vector2(358, 50 + (i * 20));
                     ListOfYNButtons.ButtonList2[i].Position = new Vector2(378, 50 + (i * 20));
+
                     if (ListOfYNButtons.ButtonList[i].yesPressed == true)
                     {
                         if (this.eventNumber == 1)
                         {
-                            ListOfEvents.StatListEvents.Add(new PilotEvent((double)rnd.Next(70, 110), "Pilot Error", clock, ""));
+                            ListOfEvents.StatListEvents.Add(new PilotEvent((double)rnd.Next(70, 110), "Error", clock, ""));
                         }
                         if (this.eventNumber == 2)
                         {
-                            ListOfEvents.StatListEvents.Add(new RadarEvent((double)rnd.Next(70, 110), "Radar Error", clock, ""));
+                            ListOfEvents.StatListEvents.Add(new RadarEvent((double)rnd.Next(70, 110), "Error", clock, ""));
                         }
                         if (this.eventNumber == 3)
                         {
-                            ListOfEvents.StatListEvents.Add(new InfermaryEvent((double)rnd.Next(70, 110), "Infermary Error", clock, ""));
+                            ListOfEvents.StatListEvents.Add(new InfermaryEvent((double)rnd.Next(70, 110), "Error", clock, ""));
                         }
                         if (this.eventNumber == 4)
                         {
-                            ListOfEvents.StatListEvents.Add(new EngineEvent((double)rnd.Next(70, 110), "Engine Error", clock, ""));
+                            ListOfEvents.StatListEvents.Add(new EngineEvent((double)rnd.Next(70, 110), "Error", clock, ""));
                         }
                         ListOfYNButtons.ButtonList.RemoveAt(i);
                         ListOfYNButtons.ButtonList2.RemoveAt(i);
@@ -242,9 +242,9 @@ namespace Squadron5missing
                     }
                     else if (ListOfYNButtons.ButtonList2[i].noPressed == true)
                     {
-                            ListOfYNButtons.ButtonList.RemoveAt(i);
-                            ListOfYNButtons.ButtonList2.RemoveAt(i);
-                            alertList.RemoveAt(i);
+                        ListOfYNButtons.ButtonList.RemoveAt(i);
+                        ListOfYNButtons.ButtonList2.RemoveAt(i);
+                        alertList.RemoveAt(i);
                     } 
                     
                 }
@@ -266,9 +266,9 @@ namespace Squadron5missing
                 writeEvent = true;
                 //spriteBatch.DrawString(testFont, alertTemp, new Vector2(75, 800), Color.Red);
             }
-            if (writeEvent == true && timer < 120)
+            if (writeEvent == true && timer < 230)
             {
-                s.DrawString(f, alertTemp, new Vector2(75, 800), Color.Red);
+                s.DrawString(f, alertTemp, new Vector2(450, 630), Color.Red);
             }
         }
         /// <summary>
