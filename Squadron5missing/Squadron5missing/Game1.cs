@@ -101,7 +101,7 @@ namespace Squadron5missing
             //Setting graphics settings
             graphics.PreferredBackBufferWidth = 1600;
             graphics.PreferredBackBufferHeight = 900;
-            graphics.IsFullScreen = false;
+            graphics.IsFullScreen = true;
             graphics.ApplyChanges();
             rand = new Random();
             //Initializing characters
@@ -204,14 +204,9 @@ namespace Squadron5missing
             b.Draw(spriteBatch);
             spriteBatch.Draw(background, new Vector2(0, 0), Color.White);
             chair.Draw(spriteBatch);
-<<<<<<< HEAD
-            
-=======
 
             elevator.Draw(spriteBatch);
 
-
->>>>>>> origin/master
             for (int i = 0; i < ListOfEvents.StatListEvents.Count; i++)
             {
                 ListOfEvents.StatListEvents[i].Update();
