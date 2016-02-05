@@ -31,6 +31,7 @@ namespace Squadron5missing
 
         //Put all foreground objects here
         ForegroundObject chair;
+        ForegroundObject elevator;
 
         Random rand;
         //List<string> alertList = new List<string>();
@@ -81,7 +82,8 @@ namespace Squadron5missing
             background = Content.Load<Texture2D>("background01");
             menu = Content.Load<Texture2D>("menu_layout");
 
-            chair = new ForegroundObject(Content.Load<Texture2D>("chair01"), new Vector2(687, 360), 300, 300, 2);
+            chair = new ForegroundObject(Content.Load<Texture2D>("chair02"), new Vector2(762, 430), 150, 150, 2, 2, 400);
+            elevator = new ForegroundObject(Content.Load<Texture2D>("elevator_002"), new Vector2(352, 234), 500, 500, 13, 4, 100);
 
             this.IsMouseVisible = true;
             
@@ -99,11 +101,11 @@ namespace Squadron5missing
             //Setting graphics settings
             graphics.PreferredBackBufferWidth = 1600;
             graphics.PreferredBackBufferHeight = 900;
-            graphics.IsFullScreen = true;
+            graphics.IsFullScreen = false;
             graphics.ApplyChanges();
             rand = new Random();
             //Initializing characters
-            mechanic = new Mechanic(Content.Load<Texture2D>("Kitty Breath Blink"), new Vector2(1000, 450), RoomE.Bridge, "Morgan the Mechanic", 174, 300, 9, 5, new Button(Content.Load<Texture2D>("button"), new Vector2(520, 575), Color.White, ButtonName.Eat),
+            mechanic = new Mechanic(Content.Load<Texture2D>("Kitty Breath Blink"), new Vector2(1000, 450), RoomE.Bridge, resource, "Morgan the Mechanic", 174, 300, 9, 5, new Button(Content.Load<Texture2D>("button"), new Vector2(520, 575), Color.White, ButtonName.Eat),
                 new Button(Content.Load<Texture2D>("button"), new Vector2(850, 575), Color.White, ButtonName.Resolve), new Button(Content.Load<Texture2D>("button"), new Vector2(520, 750), Color.White, ButtonName.Talk), new Button(Content.Load<Texture2D>("button")
                     , new Vector2(850, 750), Color.White, ButtonName.Upgrade), Content.Load<Texture2D>("Kitty Walk Left"), Content.Load<Texture2D>("Kitty Walk Right"), 5, 5, 5, 5, 5, "Olaf");
 
@@ -168,6 +170,7 @@ namespace Squadron5missing
             b.Scroll(GraphicsDevice);
 
             chair.Update(gameTime);
+            elevator.Update(gameTime);
             
             clock = clock.AddMilliseconds(16.6666666666667 * gameSpeed);
             
@@ -202,6 +205,7 @@ namespace Squadron5missing
             b.Draw(spriteBatch);
             spriteBatch.Draw(background, new Vector2(0, 0), Color.White);
             chair.Draw(spriteBatch);
+            elevator.Draw(spriteBatch);
 
             resource.PrintInfo(testFont, spriteBatch);
 

@@ -23,13 +23,14 @@ namespace Squadron5missing
 
     class Button
     {
-        Texture2D Texture { get; set; }
-        Vector2 Position { get; set; }
-        Color ButtonColorOverlay { get; set; }
+        public Texture2D Texture { get; set; }
+        public Vector2 Position { get; set; }
+        public Color ButtonColorOverlay { get; set; }
         public ButtonName BName { get; set; }
+        
         public bool Pressed { get; set; }
 
-        
+        bool hasBeenPressed = false;
 
         private int clickedDelay = 10;
 
@@ -50,7 +51,13 @@ namespace Squadron5missing
                     if (Mouse.GetState().LeftButton == ButtonState.Pressed)
                     {
                         ButtonColorOverlay = Color.CornflowerBlue;
+                        hasBeenPressed = true;
+                    }
+                    if (Mouse.GetState().LeftButton == ButtonState.Released && hasBeenPressed == true)
+                    {
                         Pressed = true;
+                        ButtonColorOverlay = Color.White;
+                        hasBeenPressed = false;
                     }
                     else
                     {
@@ -59,7 +66,10 @@ namespace Squadron5missing
                 }
             }
 
-            if (ButtonColorOverlay == Color.CornflowerBlue)
+
+
+
+            /*if (ButtonColorOverlay == Color.CornflowerBlue)
             {
                 clickedDelay--;
                 if (clickedDelay <= 0)
@@ -67,7 +77,7 @@ namespace Squadron5missing
                     ButtonColorOverlay = Color.White;
                     clickedDelay = 10;
                 }
-            }     
+            }  */   
             
         }
 
