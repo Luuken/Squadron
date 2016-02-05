@@ -39,6 +39,7 @@ namespace Squadron5missing
 
         Texture2D ProblemMenuBackground;
         Texture2D background;
+        Texture2D menu;
 
         //Not in use remove when there is time
         Texture2D repairKnapp;
@@ -76,8 +77,9 @@ namespace Squadron5missing
             // TODO: Add your initialization logic here
             clock = new DateTime();
 
-            b = new BackScroll(Content.Load<Texture2D>("space02"), Content.Load<Texture2D>("space03"), .1f);
+            b = new BackScroll(Content.Load<Texture2D>("space02"), Content.Load<Texture2D>("space03"), .08f);
             background = Content.Load<Texture2D>("background01");
+            menu = Content.Load<Texture2D>("menu_layout");
 
             chair = new ForegroundObject(Content.Load<Texture2D>("chair01"), new Vector2(687, 360), 300, 300, 2);
 
@@ -101,8 +103,9 @@ namespace Squadron5missing
             graphics.ApplyChanges();
             rand = new Random();
             //Initializing characters
-            mechanic = new Mechanic(Content.Load<Texture2D>("Kitty Standing"), new Vector2(1000, 450), RoomE.Bridge, "Morgan the Mechanic", 174, 300, 1, 1, new Button(Content.Load<Texture2D>("button"), new Vector2(520, 575), Color.White, ButtonName.Eat),
-                new Button(Content.Load<Texture2D>("button"), new Vector2(850, 575), Color.White, ButtonName.Resolve), new Button(Content.Load<Texture2D>("button"), new Vector2(520, 750), Color.White, ButtonName.Talk), new Button(Content.Load<Texture2D>("button"), new Vector2(850, 750), Color.White, ButtonName.Upgrade), Content.Load<Texture2D>("Kitty Walk Left"), Content.Load<Texture2D>("Kitty Walk Right"), 5, 5, 5, 5, 5, "Olaf");
+            mechanic = new Mechanic(Content.Load<Texture2D>("Kitty Breath Blink"), new Vector2(1000, 450), RoomE.Bridge, "Morgan the Mechanic", 174, 300, 9, 5, new Button(Content.Load<Texture2D>("button"), new Vector2(520, 575), Color.White, ButtonName.Eat),
+                new Button(Content.Load<Texture2D>("button"), new Vector2(850, 575), Color.White, ButtonName.Resolve), new Button(Content.Load<Texture2D>("button"), new Vector2(520, 750), Color.White, ButtonName.Talk), new Button(Content.Load<Texture2D>("button")
+                    , new Vector2(850, 750), Color.White, ButtonName.Upgrade), Content.Load<Texture2D>("Kitty Walk Left"), Content.Load<Texture2D>("Kitty Walk Right"), 5, 5, 5, 5, 5, "Olaf");
 
             p = new ErrorMessage();
 
@@ -221,6 +224,7 @@ namespace Squadron5missing
             {
                 no.Draw(spriteBatch);
             }
+            spriteBatch.Draw(menu, new Vector2(-2, 538), Color.White);
             mechanic.DrawText(spriteBatch, testFont);
 
             spriteBatch.End();
