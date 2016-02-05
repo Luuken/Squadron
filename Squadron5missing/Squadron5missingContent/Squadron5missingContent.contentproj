@@ -93,11 +93,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="character 1.png">
-      <Name>character 1</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
     <Compile Include="CsFontSmall.spritefont">
       <Name>CsFontSmall</Name>
       <Importer>FontDescriptionImporter</Importer>
@@ -135,6 +130,27 @@
   <ItemGroup>
     <Compile Include="NoButton.png">
       <Name>NoButton</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Kitty Walk Left.png">
+      <Name>Kitty Walk Left</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Kitty Standing.png">
+      <Name>Kitty Standing</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Kitty Walk Right.png">
+      <Name>Kitty Walk Right</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

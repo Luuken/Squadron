@@ -27,7 +27,9 @@ namespace Squadron5missing
         Mechanic mechanic;
         EngineEvent engineEvent;
 
+        Resources resource;
 
+        //Put all foreground objects here
         ForegroundObject chair;
 
         Random rand;
@@ -83,6 +85,8 @@ namespace Squadron5missing
             
             base.Initialize();
 
+            resource = new Resources(200, 300, 100, 3000);
+
             buttonList = new List<Button>();
             /*
             buttonList.Add(new Button(Content.Load<Texture2D>("button"), new Vector2(520, 575), Color.White, ButtonName.Eat));
@@ -97,8 +101,8 @@ namespace Squadron5missing
             graphics.ApplyChanges();
             rand = new Random();
             //Initializing characters
-            mechanic = new Mechanic(Content.Load<Texture2D>("character 1"), new Vector2(1000, 250), RoomE.Bridge, "Morgan the Mechanic", 131, 500, 1, new Button(Content.Load<Texture2D>("button"), new Vector2(520, 575), Color.White, ButtonName.Eat),
-                new Button(Content.Load<Texture2D>("button"), new Vector2(850, 575), Color.White, ButtonName.Resolve), new Button(Content.Load<Texture2D>("button"), new Vector2(520, 750), Color.White, ButtonName.Talk), new Button(Content.Load<Texture2D>("button"), new Vector2(850, 750), Color.White, ButtonName.Upgrade), 5, 5, 5, 5, 5, "Olaf");
+            mechanic = new Mechanic(Content.Load<Texture2D>("Kitty Standing"), new Vector2(1000, 450), RoomE.Bridge, "Morgan the Mechanic", 174, 300, 1, 1, new Button(Content.Load<Texture2D>("button"), new Vector2(520, 575), Color.White, ButtonName.Eat),
+                new Button(Content.Load<Texture2D>("button"), new Vector2(850, 575), Color.White, ButtonName.Resolve), new Button(Content.Load<Texture2D>("button"), new Vector2(520, 750), Color.White, ButtonName.Talk), new Button(Content.Load<Texture2D>("button"), new Vector2(850, 750), Color.White, ButtonName.Upgrade), Content.Load<Texture2D>("Kitty Walk Left"), Content.Load<Texture2D>("Kitty Walk Right"), 5, 5, 5, 5, 5, "Olaf");
 
             p = new ErrorMessage();
 
@@ -195,6 +199,8 @@ namespace Squadron5missing
             b.Draw(spriteBatch);
             spriteBatch.Draw(background, new Vector2(0, 0), Color.White);
             chair.Draw(spriteBatch);
+
+            resource.PrintInfo(testFont, spriteBatch);
 
             //engineEvent.DrawText(spriteBatch, testFont, new Vector2(100, 700));
             mechanic.Draw(spriteBatch);

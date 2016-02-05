@@ -13,11 +13,22 @@ using System.Diagnostics;
 
 namespace Squadron5missing
 {
+    enum Direction
+    {
+        None,
+        Left,
+        Right,
+        Up,
+        Down
+    }
+
     class Mechanic : Character
     {
         //properties
         public string WrenchName { get; set; }
 
+
+        Direction direction = Direction.None;
         ButtonName selectedOption = ButtonName.Default;
         List<Button> buttonList = new List<Button>();
         
@@ -26,8 +37,8 @@ namespace Squadron5missing
 
 
         //contructor(s)
-        public Mechanic(Texture2D texture, Vector2 position, RoomE room, string name, int animWidth, int animHeight, int maxFrames, Button button1, Button button2, Button button3, Button button4, int intel, int perc, int stam, int con, int hand, string wName)
-            : base(texture, position, room, name, animWidth, animHeight, maxFrames, button1, button2, button3, button4, intel, perc, stam, con, hand)
+        public Mechanic(Texture2D texture, Vector2 position, RoomE room, string name, int animWidth, int animHeight, int maxFrames, int spritesPerRow, Button button1, Button button2, Button button3, Button button4, Texture2D textureLeft, Texture2D textureRight, int intel, int perc, int stam, int con, int hand, string wName)
+            : base(texture, position, room, name, animWidth, animHeight, maxFrames, spritesPerRow, button1, button2, button3, button4, textureLeft, textureRight, intel, perc, stam, con, hand)
         {
             this.WrenchName = wName;
         }
@@ -62,7 +73,8 @@ namespace Squadron5missing
 
             if (selectedOption == ButtonName.Resolve)
             {
-                Position = new Vector2((Position.X - 1), Position.Y);
+                Position = new Vector2((Position.X - 1.3f), Position.Y);
+                direction = Direction.Left;
             }
             else if (selectedOption == ButtonName.Eat)
             {
@@ -76,7 +88,21 @@ namespace Squadron5missing
             {
 
             }
+
+            if (direction == Direction.Left)
+            {
+                Texture = WalkLeft;
+                SpritesPerRow = 5;
+                MaxFrames = 8;
+            }
+            else if (direction == Direction.Right)
+            {
+                Texture = WalkRight;
+                SpritesPerRow = 5;
+                MaxFrames = 8;
+            }
         }
+
 
         public override void Draw(SpriteBatch spriteBatch)
         {
