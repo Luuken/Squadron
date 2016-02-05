@@ -202,18 +202,30 @@ namespace Squadron5missing
             b.Draw(spriteBatch);
             spriteBatch.Draw(background, new Vector2(0, 0), Color.White);
             chair.Draw(spriteBatch);
-
+            for (int i = 0; i < ListOfEvents.StatListEvents.Count; i++)
+            {
+                ListOfEvents.StatListEvents[i].Update();
+                ListOfEvents.StatListEvents[i].CurrentTime = clock;
+            }
             resource.PrintInfo(testFont, spriteBatch);
 
             //engineEvent.DrawText(spriteBatch, testFont, new Vector2(100, 700));
             mechanic.Draw(spriteBatch);
             spriteBatch.DrawString(testFont, clock.ToLongTimeString(), new Vector2(3, 2), Color.White);
             
-            p.Draw(spriteBatch,testFont,ProblemMenuBackground,new Vector2(332,5),fontSmall);
+            p.Draw(spriteBatch,testFont,ProblemMenuBackground,new Vector2(332,5),fontSmall, clock);
             
             foreach (Button but in buttonList)
             {
                 but.Draw(spriteBatch);
+            }
+            if (Keyboard.GetState().IsKeyDown(Keys.H))//replace Key with File capinet button instead or some other more imersive game mechanic
+            {
+                for (int i = 0; i < ListOfEvents.StatListEvents.Count; i++)
+                {
+                    spriteBatch.DrawString(testFont, ListOfEvents.StatListEvents[i].EventName, new Vector2(1200, 20 * i), Color.White);
+                    spriteBatch.DrawString(testFont, ListOfEvents.StatListEvents[i].ETC.ToLongTimeString(), new Vector2(1062, 20 * i), Color.White);
+                }
             }
 
             foreach (YesButton yes in ListOfYNButtons.ButtonList)

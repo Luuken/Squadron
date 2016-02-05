@@ -18,7 +18,7 @@ namespace Squadron5missing
         public Texture2D Texture { get; set; }
         public Vector2 Position { get; set; }
         Color ButtonColorOverlay { get; set; }
-
+        public bool yesPressed;
         //constructor(s)
         public YesButton(Texture2D texture, Vector2 position, Color btnColorOverlay)
         {
@@ -38,7 +38,14 @@ namespace Squadron5missing
                 if (Mouse.GetState().Y > Position.Y && Mouse.GetState().Y < (Position.Y + Texture.Height))
                 {
                     ButtonColorOverlay = Color.Blue;
-
+                    if (Mouse.GetState().LeftButton == ButtonState.Pressed)
+                    {
+                        yesPressed = true;
+                    }
+                    else
+                    {
+                        yesPressed = false;
+                    }
                 }
             }
             else

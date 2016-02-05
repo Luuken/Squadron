@@ -19,7 +19,7 @@ namespace Squadron5missing
         public Texture2D Texture { get; set; }
         public Vector2 Position { get; set; }
         Color ButtonColorOverlay { get; set; }
-
+        public bool noPressed;
         //constructor(s)
         public NoButton(Texture2D texture, Vector2 position, Color btnColorOverlay)
         {
@@ -39,6 +39,14 @@ namespace Squadron5missing
                 {
                     ButtonColorOverlay = Color.Blue;
                     //enter click logic here THIS IS WHERE WE CAN CREATE THE EVENTS MAN!!
+                    if (Mouse.GetState().LeftButton == ButtonState.Pressed)
+                    {
+                        noPressed = true;
+                    }
+                    else
+                    {
+                        noPressed = false;
+                    }
                 }
             }
             else

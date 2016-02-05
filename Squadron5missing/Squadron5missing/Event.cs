@@ -15,16 +15,16 @@ namespace Squadron5missing
     {
         //properties
 
-        protected DateTime ETC { get; set; }
-        protected double Timespan { get; set; }
-        protected DateTime CurrentTime { get; set; }
-        protected string EventName { get; set; }
-        protected string StartText { get; set; }
+        public DateTime ETC { get; set; }
+        public double Timespan { get; set; }
+        public DateTime CurrentTime { get; set; }
+        public string EventName { get; set; }
+        public string StartText { get; set; }
         //booleans
         public bool eventFinished = false;
 
         //constructor(s)
-        protected Event(double timespan, string eventName, DateTime currentTime, string startText)
+        public Event(double timespan, string eventName, DateTime currentTime, string startText)
         {
             this.Timespan = timespan;
             this.EventName = eventName;

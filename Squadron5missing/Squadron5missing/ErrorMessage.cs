@@ -201,7 +201,7 @@ namespace Squadron5missing
             }
         }
 
-        public void Draw(SpriteBatch s, SpriteFont f, Texture2D square, Vector2 V2, SpriteFont fs)
+        public void Draw(SpriteBatch s, SpriteFont f, Texture2D square, Vector2 V2, SpriteFont fs, DateTime clock)
         {
             //change this to the buttons on the character for the finished (game)mechanic
             if (Keyboard.GetState(PlayerIndex.One).IsKeyDown(Keys.G))
@@ -218,6 +218,35 @@ namespace Squadron5missing
                     //they are then drawn out in the draw function of the individual yes and no button classes
                     ListOfYNButtons.ButtonList[i].Position = new Vector2(358, 50 + (i * 20));
                     ListOfYNButtons.ButtonList2[i].Position = new Vector2(378, 50 + (i * 20));
+                    if (ListOfYNButtons.ButtonList[i].yesPressed == true)
+                    {
+                        if (this.eventNumber == 1)
+                        {
+                            ListOfEvents.StatListEvents.Add(new PilotEvent((double)rnd.Next(70, 110), "Pilot Error", clock, ""));
+                        }
+                        if (this.eventNumber == 2)
+                        {
+                            ListOfEvents.StatListEvents.Add(new RadarEvent((double)rnd.Next(70, 110), "Radar Error", clock, ""));
+                        }
+                        if (this.eventNumber == 3)
+                        {
+                            ListOfEvents.StatListEvents.Add(new InfermaryEvent((double)rnd.Next(70, 110), "Infermary Error", clock, ""));
+                        }
+                        if (this.eventNumber == 4)
+                        {
+                            ListOfEvents.StatListEvents.Add(new EngineEvent((double)rnd.Next(70, 110), "Engine Error", clock, ""));
+                        }
+                        ListOfYNButtons.ButtonList.RemoveAt(i);
+                        ListOfYNButtons.ButtonList2.RemoveAt(i);
+                        alertList.RemoveAt(i);
+                    }
+                    else if (ListOfYNButtons.ButtonList2[i].noPressed == true)
+                    {
+                            ListOfYNButtons.ButtonList.RemoveAt(i);
+                            ListOfYNButtons.ButtonList2.RemoveAt(i);
+                            alertList.RemoveAt(i);
+                    } 
+                    
                 }
             }
             else
