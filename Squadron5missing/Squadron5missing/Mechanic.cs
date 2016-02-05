@@ -26,7 +26,7 @@ namespace Squadron5missing
     {
         //properties
         public string WrenchName { get; set; }
-
+        public Resources Resource { get; set; }
 
         Direction direction = Direction.None;
         ButtonName selectedOption = ButtonName.Default;
@@ -37,10 +37,11 @@ namespace Squadron5missing
 
 
         //contructor(s)
-        public Mechanic(Texture2D texture, Vector2 position, RoomE room, string name, int animWidth, int animHeight, int maxFrames, int spritesPerRow, Button button1, Button button2, Button button3, Button button4, Texture2D textureLeft, Texture2D textureRight, int intel, int perc, int stam, int con, int hand, string wName)
+        public Mechanic(Texture2D texture, Vector2 position, RoomE room, Resources resource, string name, int animWidth, int animHeight, int maxFrames, int spritesPerRow, Button button1, Button button2, Button button3, Button button4, Texture2D textureLeft, Texture2D textureRight, int intel, int perc, int stam, int con, int hand, string wName)
             : base(texture, position, room, name, animWidth, animHeight, maxFrames, spritesPerRow, button1, button2, button3, button4, textureLeft, textureRight, intel, perc, stam, con, hand)
         {
             this.WrenchName = wName;
+            this.Resource = resource;
         }
 
         //method(s)
@@ -78,7 +79,8 @@ namespace Squadron5missing
             }
             else if (selectedOption == ButtonName.Eat)
             {
-                
+                Resource.Food -= 25;
+                selectedOption = ButtonName.Default;
             }
             else if (selectedOption == ButtonName.Talk)
             {

@@ -19,24 +19,27 @@ namespace Squadron5missing
         int AnimWidth { get; set; }
         int AnimHeight { get; set; }
         int MaxFrames { get; set; }
+        int SpritesPerRow { get; set; }
+        int AnimationDelay { get; set; }
 
         private int animationDelayTimer = 0;
-        private int animationDelay = 400;
         private int frame = 0;
 
-        public ForegroundObject(Texture2D texture, Vector2 pos, int animWidth, int animHeight, int maxFrames)
+        public ForegroundObject(Texture2D texture, Vector2 pos, int animWidth, int animHeight, int maxFrames, int spritesPerRow, int animationDelay)
         {
             this.Texture = texture;
             this.Position = pos;
             this.AnimWidth = animWidth;
             this.AnimHeight = animHeight;
             this.MaxFrames = maxFrames;
+            this.SpritesPerRow = spritesPerRow;
+            this.AnimationDelay = animationDelay;
         }
 
         public void Update(GameTime gameTime)
         {
             animationDelayTimer += gameTime.ElapsedGameTime.Milliseconds;
-            if (animationDelayTimer >= animationDelay)
+            if (animationDelayTimer >= AnimationDelay)
             {
                 animationDelayTimer = 0;
                 frame++;
@@ -49,7 +52,7 @@ namespace Squadron5missing
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-            Rectangle tmp = new Rectangle((frame % 2) * AnimWidth, (frame / 2) * AnimHeight, AnimWidth, AnimHeight);
+            Rectangle tmp = new Rectangle((frame % SpritesPerRow) * AnimWidth, (frame / SpritesPerRow) * AnimHeight, AnimWidth, AnimHeight);
             spriteBatch.Draw(this.Texture, this.Position, tmp, Color.White);
         }
     }
