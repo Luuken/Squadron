@@ -170,6 +170,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+
+    <Compile Include="evenMeny.png">
+      <Name>evenMeny</Name>
+    </Compile>
     <Compile Include="chair02.png">
       <Name>chair02</Name>
       <Importer>TextureImporter</Importer>
@@ -179,6 +183,7 @@
   <ItemGroup>
     <Compile Include="elevator_002.png">
       <Name>elevator_002</Name>
+
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

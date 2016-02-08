@@ -101,7 +101,7 @@ namespace Squadron5missing
             //Setting graphics settings
             graphics.PreferredBackBufferWidth = 1600;
             graphics.PreferredBackBufferHeight = 900;
-            graphics.IsFullScreen = false;
+            graphics.IsFullScreen = true;
             graphics.ApplyChanges();
             rand = new Random();
             //Initializing characters
@@ -176,7 +176,6 @@ namespace Squadron5missing
             
             p.SchedueldAlertMessage(clock, yesButton, new Vector2(75, 75), noButton);
             p.Update(spriteBatch, testFont, new Vector2(75, 75), yesButton, noButton, new Vector2());
-
             //Update function for both the yes and the no buttons
             foreach (YesButton yes in ListOfYNButtons.ButtonList)
             {
@@ -208,7 +207,6 @@ namespace Squadron5missing
 
             elevator.Draw(spriteBatch);
 
-
             for (int i = 0; i < ListOfEvents.StatListEvents.Count; i++)
             {
                 ListOfEvents.StatListEvents[i].Update();
@@ -229,6 +227,7 @@ namespace Squadron5missing
             }
             if (Keyboard.GetState().IsKeyDown(Keys.H))//replace Key with File capinet button instead or some other more imersive game mechanic
             {
+                
                 for (int i = 0; i < ListOfEvents.StatListEvents.Count; i++)
                 {
                     spriteBatch.DrawString(testFont, ListOfEvents.StatListEvents[i].EventName, new Vector2(1200, 20 * i), Color.White);
