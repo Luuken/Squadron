@@ -23,17 +23,18 @@ namespace Squadron5missing
 
     class Button
     {
+        //Properties
         public Texture2D Texture { get; set; }
         public Vector2 Position { get; set; }
         public Color ButtonColorOverlay { get; set; }
         public ButtonName BName { get; set; }
-        
         public bool Pressed { get; set; }
 
+        //Variables
         bool hasBeenPressed = false;
+        private int clickedDelay = 10; //onödig variabel?
 
-        private int clickedDelay = 10;
-
+        //Constructor(s)
         public Button(Texture2D texture, Vector2 position, Color btnColorOverlay, ButtonName bName)
         {
             this.Texture = texture;
@@ -42,6 +43,7 @@ namespace Squadron5missing
             this.BName = bName;
         }
 
+        //Method(s)
         public void Update(GameTime gameTime)
         {
             if (Mouse.GetState().X > Position.X && Mouse.GetState().X < (Position.X + Texture.Width))

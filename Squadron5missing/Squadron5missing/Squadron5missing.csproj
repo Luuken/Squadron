@@ -91,6 +91,7 @@
     <Compile Include="RadarEvent.cs" />
     <Compile Include="Resources.cs" />
     <Compile Include="Room.cs" />
+    <Compile Include="RoomTab.cs" />
     <Compile Include="YesButtons.cs" />
   </ItemGroup>
   <ItemGroup>
