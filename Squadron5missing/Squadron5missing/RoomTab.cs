@@ -27,5 +27,29 @@ namespace Squadron5missing
             this.Texture = texture;
         }
         //Method(s)
+        public void Update()
+        {
+            if (Mouse.GetState().X > Position.X && Mouse.GetState().X < (Position.X + Texture.Width))
+            {
+                if (Mouse.GetState().Y > Position.Y && Mouse.GetState().Y < (Position.Y + Texture.Height))
+                {
+                    if (Mouse.GetState().LeftButton == ButtonState.Pressed)
+                    {
+                        //rita ut rummet på kameran
+                    }
+                }
+            }
+        }
+        public void Draw(SpriteBatch s, SpriteFont testFont)
+        {
+            s.Draw(Texture, Position, Color.White);
+            s.DrawString(testFont, RoomName, Position, Color.White);
+        }
+        //använda rum enum?? eller rum string
+        public void DrawRoom()
+        {
+
+        }
+
     }
 }
