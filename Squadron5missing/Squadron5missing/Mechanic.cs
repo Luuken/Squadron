@@ -34,11 +34,11 @@ namespace Squadron5missing
         
         //boolean(s)
         bool hasCreatedButtons = false;
-
+        public bool resolvePressed = false;
 
         //contructor(s)
-        public Mechanic(Texture2D texture, Vector2 position, RoomE room, Resources resource, string name, int animWidth, int animHeight, int maxFrames, int spritesPerRow, Button button1, Button button2, Button button3, Button button4, Texture2D textureLeft, Texture2D textureRight, int intel, int perc, int stam, int con, int hand, string wName)
-            : base(texture, position, room, name, animWidth, animHeight, maxFrames, spritesPerRow, button1, button2, button3, button4, textureLeft, textureRight, intel, perc, stam, con, hand)
+        public Mechanic(Texture2D texture, Vector2 position, RoomE room, Resources resource, string name, int animWidth, int animHeight, int maxFrames, int spritesPerRow, Button button1, Button button2, Button button3, Button button4, Texture2D textureLeft, Texture2D textureRight, int intel, int perc, int stam, int con, int hand, int healthPoints, int hunger, string wName)
+            : base(texture, position, room, name, animWidth, animHeight, maxFrames, spritesPerRow, button1, button2, button3, button4, textureLeft, textureRight, intel, perc, stam, con, hand, healthPoints, hunger)
         {
             this.WrenchName = wName;
             this.Resource = resource;
@@ -74,15 +74,17 @@ namespace Squadron5missing
 
             if (selectedOption == ButtonName.Resolve)
             {
-                Position = new Vector2((Position.X - 1.3f), Position.Y);
-                direction = Direction.Left;
+                resolvePressed = true;
+                selectedOption = ButtonName.Default;
+                //Position = new Vector2((Position.X - 1.3f), Position.Y);
+                //direction = Direction.Left;
             }
             else if (selectedOption == ButtonName.Eat)
             {
                 Resource.Food -= 25;
                 selectedOption = ButtonName.Default;
             }
-            else if (selectedOption == ButtonName.Talk)
+            else if (selectedOption == ButtonName.Heal)
             {
 
             }
@@ -116,6 +118,12 @@ namespace Squadron5missing
         }
         public override void DrawText(SpriteBatch spriteBatch, SpriteFont font)
         {
+            if (characterSelected)
+            {
+                spriteBatch.DrawString(font, "Health: " + HealthPoints, new Vector2(Position.X + 10, Position.Y - 24), Color.White);
+                spriteBatch.DrawString(font, "Hunger: " + Hunger, new Vector2(Position.X + 10, Position.Y - 10), Color.White);
+            }
+
             base.DrawText(spriteBatch, font);
         }
     }

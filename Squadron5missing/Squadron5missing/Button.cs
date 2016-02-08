@@ -16,7 +16,7 @@ namespace Squadron5missing
         Resolve,
         Eat,
         Upgrade,
-        Talk,
+        Heal,
         Default
     }
 

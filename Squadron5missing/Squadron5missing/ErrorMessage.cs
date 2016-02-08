@@ -20,6 +20,7 @@ namespace Squadron5missing
         public Vector2 position { get; set; }
         public string EventAlert { get; set; }
         public int eventNumber { get; set; }
+        public Mechanic Mech { get; set; }
         
         //variables for this class only
         Random rnd = new Random();
@@ -53,6 +54,11 @@ namespace Squadron5missing
         private string SMessage = "Select your pilot for the day";
         private string SMessage2 = "Select radar technichan for the day";
         private string SMessage3 = "Someone needs to make food for the week";
+
+        public ErrorMessage(Mechanic m)
+        {
+            this.Mech = m;
+        }
 
         public string DrawText(SpriteBatch spriteBatch, SpriteFont sFont, Vector2 position)
         {
@@ -203,7 +209,7 @@ namespace Squadron5missing
         public void Draw(SpriteBatch s, SpriteFont f, Texture2D square, Vector2 V2, SpriteFont fs, DateTime clock)
         {
             //change this to the buttons on the character for the finished (game)mechanic
-            if (Keyboard.GetState(PlayerIndex.One).IsKeyDown(Keys.G))
+            if (Mech.resolvePressed == true)
             {
                 //adds a menu window behind the list of problems
                 //also writes it a title
@@ -239,12 +245,15 @@ namespace Squadron5missing
                         ListOfYNButtons.ButtonList.RemoveAt(i);
                         ListOfYNButtons.ButtonList2.RemoveAt(i);
                         alertList.RemoveAt(i);
+                        Mech.resolvePressed = false;
                     }
                     else if (ListOfYNButtons.ButtonList2[i].noPressed == true)
                     {
                         ListOfYNButtons.ButtonList.RemoveAt(i);
                         ListOfYNButtons.ButtonList2.RemoveAt(i);
                         alertList.RemoveAt(i);
+                        Mech.resolvePressed = false;
+
                     } 
                     
                 }
