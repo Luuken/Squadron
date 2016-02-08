@@ -34,7 +34,7 @@ namespace Squadron5missing
         
         //boolean(s)
         bool hasCreatedButtons = false;
-
+        public bool resolvePressed = false;
 
         //contructor(s)
         public Mechanic(Texture2D texture, Vector2 position, RoomE room, Resources resource, string name, int animWidth, int animHeight, int maxFrames, int spritesPerRow, Button button1, Button button2, Button button3, Button button4, Texture2D textureLeft, Texture2D textureRight, int intel, int perc, int stam, int con, int hand, string wName)
@@ -74,15 +74,17 @@ namespace Squadron5missing
 
             if (selectedOption == ButtonName.Resolve)
             {
-                Position = new Vector2((Position.X - 1.3f), Position.Y);
-                direction = Direction.Left;
+                resolvePressed = true;
+                selectedOption = ButtonName.Default;
+                //Position = new Vector2((Position.X - 1.3f), Position.Y);
+                //direction = Direction.Left;
             }
             else if (selectedOption == ButtonName.Eat)
             {
                 Resource.Food -= 25;
                 selectedOption = ButtonName.Default;
             }
-            else if (selectedOption == ButtonName.Talk)
+            else if (selectedOption == ButtonName.Heal)
             {
 
             }
