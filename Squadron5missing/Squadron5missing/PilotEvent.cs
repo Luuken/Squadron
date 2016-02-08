@@ -21,11 +21,6 @@ namespace Squadron5missing
             
         }
         //methods
-        /*public override void DrawText(SpriteBatch spriteBatch, SpriteFont sFont, Vector2 position)
-        {
-            base.DrawText(spriteBatch, sFont, position);
-        }*/
-
         public override void Draw(SpriteBatch spriteB, SpriteFont Font)
         {
             base.Draw(spriteB, Font);
