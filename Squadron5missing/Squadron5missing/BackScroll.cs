@@ -32,19 +32,21 @@ namespace Squadron5missing
 
         public void Scroll(GraphicsDevice graphicsDevice)
         {
-            if (positionA.X >= graphicsDevice.Viewport.Width)
+            positionB.X += Speed;
+            positionA.X += Speed;
+
+
+            if (positionA.X > graphicsDevice.Viewport.Width)
             {
-                positionA.X -= TextureA.Width * 2;
+                positionA.X -= 1600 * 2;
                 positionA.X += Speed;
             }
-            if (positionB.X >= graphicsDevice.Viewport.Width)
+            if (positionB.X > graphicsDevice.Viewport.Width)
             {
-                positionB.X -= TextureB.Width * 2;
+                positionB.X -= 1600 * 2;
                 positionB.X += Speed;
             }
 
-            positionA.X += Speed;
-            positionB.X += Speed;
         }
 
         public void Draw(SpriteBatch spriteBatch)

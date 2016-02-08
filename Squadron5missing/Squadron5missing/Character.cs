@@ -46,6 +46,8 @@ namespace Squadron5missing
         protected int Stamina { get; set; } //rapairs and fights
         protected int Constitution { get; set; } //not getting sick
         protected int Handyness { get; set; } //general handyness and workspeed also repairs
+        protected int HealthPoints { get; set; }
+        protected int Hunger { get; set; }
 
         //private members
         private int frame = 0;
@@ -58,7 +60,8 @@ namespace Squadron5missing
         protected bool characterSelected = false;
 
         //constructor(s)
-        protected Character(Texture2D texture, Vector2 position, RoomE room, string name, int animWidth, int animHeight, int maxFrames, int spritesPerRow, Button button1, Button button2, Button button3, Button button4, Texture2D walkLeft, Texture2D walkRight, int intel, int perc, int stam, int con, int hand)
+        protected Character(Texture2D texture, Vector2 position, RoomE room, string name, int animWidth, int animHeight, int maxFrames, int spritesPerRow,
+            Button button1, Button button2, Button button3, Button button4, Texture2D walkLeft, Texture2D walkRight, int intel, int perc, int stam, int con, int hand, int hp, int hunger)
         {
             this.Texture = texture;
             this.Position = position;
@@ -80,6 +83,8 @@ namespace Squadron5missing
             this.Stamina = stam;
             this.Constitution = con;
             this.Handyness = hand;
+            this.HealthPoints = hp;
+            this.Hunger = hunger;
         }
 
         //method(s) add Update and Draw functions!

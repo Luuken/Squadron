@@ -252,10 +252,8 @@ namespace Squadron5missing
                         ListOfYNButtons.ButtonList.RemoveAt(i);
                         ListOfYNButtons.ButtonList2.RemoveAt(i);
                         alertList.RemoveAt(i);
-<<<<<<< HEAD
                         Mech.resolvePressed = false;
-=======
->>>>>>> origin/master
+
                     } 
                     
                 }
