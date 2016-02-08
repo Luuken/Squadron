@@ -58,7 +58,7 @@ namespace Squadron5missing
                 buttonList.Add(CharButton4);
             }
 
-            if (hasCreatedButtons == true)
+            if (hasCreatedButtons == true && characterSelected)
             {
                 foreach (Button b in buttonList)
                 {
@@ -82,6 +82,7 @@ namespace Squadron5missing
             else if (selectedOption == ButtonName.Eat)
             {
                 Resource.Food -= 25;
+                Hunger += 10;
                 selectedOption = ButtonName.Default;
             }
             else if (selectedOption == ButtonName.Heal)
@@ -111,9 +112,12 @@ namespace Squadron5missing
         public override void Draw(SpriteBatch spriteBatch)
         {
             base.Draw(spriteBatch);
-            foreach (Button b in buttonList)
+            if (characterSelected)
             {
-                b.Draw(spriteBatch);
+                foreach (Button b in buttonList)
+                {
+                    b.Draw(spriteBatch);
+                }
             }
         }
         public override void DrawText(SpriteBatch spriteBatch, SpriteFont font)
@@ -121,7 +125,7 @@ namespace Squadron5missing
             if (characterSelected)
             {
                 spriteBatch.DrawString(font, "Health: " + HealthPoints, new Vector2(Position.X + 10, Position.Y - 24), Color.White);
-                spriteBatch.DrawString(font, "Hunger: " + Hunger, new Vector2(Position.X + 10, Position.Y - 10), Color.White);
+                spriteBatch.DrawString(font, "Hunger: " + Math.Round(Hunger), new Vector2(Position.X + 10, Position.Y - 10), Color.White);
             }
 
             base.DrawText(spriteBatch, font);

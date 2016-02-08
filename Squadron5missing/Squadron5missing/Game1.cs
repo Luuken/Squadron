@@ -25,6 +25,7 @@ namespace Squadron5missing
         SpriteFont fontSmall;
         Event e;
         Mechanic mechanic;
+        Mechanic mechanic2;
         EngineEvent engineEvent;
 
         Resources resource;
@@ -78,7 +79,7 @@ namespace Squadron5missing
             // TODO: Add your initialization logic here
             clock = new DateTime();
 
-            b = new BackScroll(Content.Load<Texture2D>("space02"), Content.Load<Texture2D>("space03"), .08f);
+            b = new BackScroll(Content.Load<Texture2D>("space02"), Content.Load<Texture2D>("space03"), .03f);
             background = Content.Load<Texture2D>("background01");
             menu = Content.Load<Texture2D>("menu_layout");
 
@@ -101,6 +102,10 @@ namespace Squadron5missing
             rand = new Random();
             //Initializing characters
             mechanic = new Mechanic(Content.Load<Texture2D>("Kitty Breath Blink"), new Vector2(1000, 450), RoomE.Bridge, resource, "Morgan the Mechanic", 174, 300, 9, 5, new Button(Content.Load<Texture2D>("button"), new Vector2(520, 575), Color.White, ButtonName.Eat),
+                new Button(Content.Load<Texture2D>("button"), new Vector2(850, 575), Color.White, ButtonName.Resolve), new Button(Content.Load<Texture2D>("button"), new Vector2(520, 750), Color.White, ButtonName.Heal), new Button(Content.Load<Texture2D>("button")
+                    , new Vector2(850, 750), Color.White, ButtonName.Upgrade), Content.Load<Texture2D>("Kitty Walk Left"), Content.Load<Texture2D>("Kitty Walk Right"), 5, 5, 5, 5, 5, 100, 100, "Olaf");
+
+            mechanic2 = new Mechanic(Content.Load<Texture2D>("Kitty Breath Blink"), new Vector2(300, 450), RoomE.Bridge, resource, "Morgan the Mechanic", 174, 300, 9, 5, new Button(Content.Load<Texture2D>("button"), new Vector2(520, 575), Color.White, ButtonName.Eat),
                 new Button(Content.Load<Texture2D>("button"), new Vector2(850, 575), Color.White, ButtonName.Resolve), new Button(Content.Load<Texture2D>("button"), new Vector2(520, 750), Color.White, ButtonName.Heal), new Button(Content.Load<Texture2D>("button")
                     , new Vector2(850, 750), Color.White, ButtonName.Upgrade), Content.Load<Texture2D>("Kitty Walk Left"), Content.Load<Texture2D>("Kitty Walk Right"), 5, 5, 5, 5, 5, 100, 100, "Olaf");
 
@@ -162,6 +167,8 @@ namespace Squadron5missing
 
             //Updates diffrent game objects and adds the seconds to the clock
             mechanic.Update(gameTime);
+            mechanic2.Update(gameTime);
+
             b.Scroll(GraphicsDevice);
 
             chair.Update(gameTime);
@@ -212,6 +219,8 @@ namespace Squadron5missing
 
             //engineEvent.DrawText(spriteBatch, testFont, new Vector2(100, 700));
             mechanic.Draw(spriteBatch);
+            mechanic2.Draw(spriteBatch);
+
             spriteBatch.DrawString(testFont, clock.ToLongTimeString(), new Vector2(3, 2), Color.White);
             
             p.Draw(spriteBatch,testFont,ProblemMenuBackground,new Vector2(332,5),fontSmall, clock);
@@ -240,6 +249,7 @@ namespace Squadron5missing
             }
             spriteBatch.Draw(menu, new Vector2(-2, 538), Color.White);
             mechanic.DrawText(spriteBatch, testFont);
+            mechanic2.DrawText(spriteBatch, testFont);
 
             spriteBatch.End();
             // TODO: Add your drawing code here

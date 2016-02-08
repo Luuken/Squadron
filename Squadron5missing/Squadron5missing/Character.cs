@@ -47,7 +47,7 @@ namespace Squadron5missing
         protected int Constitution { get; set; } //not getting sick
         protected int Handyness { get; set; } //general handyness and workspeed also repairs
         protected int HealthPoints { get; set; }
-        protected int Hunger { get; set; }
+        protected float Hunger { get; set; }
 
         //private members
         private int frame = 0;
@@ -61,7 +61,7 @@ namespace Squadron5missing
 
         //constructor(s)
         protected Character(Texture2D texture, Vector2 position, RoomE room, string name, int animWidth, int animHeight, int maxFrames, int spritesPerRow,
-            Button button1, Button button2, Button button3, Button button4, Texture2D walkLeft, Texture2D walkRight, int intel, int perc, int stam, int con, int hand, int hp, int hunger)
+            Button button1, Button button2, Button button3, Button button4, Texture2D walkLeft, Texture2D walkRight, int intel, int perc, int stam, int con, int hand, int hp, float hunger)
         {
             this.Texture = texture;
             this.Position = position;
@@ -99,6 +99,17 @@ namespace Squadron5missing
                         characterSelected = true;
                     }
                 }
+            }
+
+            Hunger -= 0.01f;
+            if (Hunger > 100)
+            {
+                Hunger = 100;
+            }
+
+            if (Keyboard.GetState().IsKeyDown(Keys.LeftShift))
+            {
+                characterSelected = false;
             }
 
             
