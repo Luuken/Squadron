@@ -19,6 +19,10 @@ namespace Squadron5missing
         public Vector2 Position { get; set; }
         public string RoomName { get; set; }
 
+        //members
+        Texture2D roomTexture;
+        Vector2 roomPositon;
+
         //constructor(s)
         public RoomTab(Texture2D texture, Vector2 position, string roomName)
         {
@@ -35,7 +39,7 @@ namespace Squadron5missing
                 {
                     if (Mouse.GetState().LeftButton == ButtonState.Pressed)
                     {
-                        //rita ut rummet på kameran
+                        DrawRoom();
                     }
                 }
             }
