@@ -90,7 +90,7 @@ namespace Squadron5missing
             
             base.Initialize();
 
-            resource = new Resources(200, 300, 100, 3000);
+            resource = new Resources(Content.Load<Texture2D>("resource_button"), new Vector2(2, 18), testFont, spriteBatch, 200, 300, 100, 3000, 100);
 
             buttonList = new List<Button>();
             
@@ -171,6 +171,8 @@ namespace Squadron5missing
 
             b.Scroll(GraphicsDevice);
 
+            resource.MaxAndMinResource();
+
             chair.Update(gameTime);
             elevator.Update(gameTime);
 
@@ -228,8 +230,7 @@ namespace Squadron5missing
                 ListOfEvents.StatListEvents[i].CurrentTime = clock;
             }
 
-            resource.PrintInfo(testFont, spriteBatch);
-
+            resource.Draw(spriteBatch, fontSmall);
             //engineEvent.DrawText(spriteBatch, testFont, new Vector2(100, 700));
             mechanic.Draw(spriteBatch);
             mechanic2.Draw(spriteBatch);
