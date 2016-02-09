@@ -27,6 +27,8 @@ namespace Squadron5missing
         //properties
         public string WrenchName { get; set; }
         public Resources Resource { get; set; }
+        public Vector2 OldPos { get; set; }
+        public Texture2D OldTexture { get; set; }
 
         Direction direction = Direction.None;
         ButtonName selectedOption = ButtonName.Default;
@@ -47,6 +49,8 @@ namespace Squadron5missing
             this.WrenchName = wName;
             this.Resource = resource;
             this.healthPoints = (con * 2) * 10;
+            this.OldPos = position;
+            this.OldTexture = texture;
         }
 
         //method(s)
@@ -75,6 +79,7 @@ namespace Squadron5missing
                 }
             }
 
+
             if (healSelected)
             {
                 if (Position == new Vector2(400, 350))
@@ -101,7 +106,16 @@ namespace Squadron5missing
 
             if (yesIsSelected)
             {
-                if (Position == new Vector2(400, 350))
+                if (Position == new Vector2(-500, -500))
+                {
+                    direction = Direction.None;
+                    if (Keyboard.GetState().IsKeyDown(Keys.A))
+                    {
+                        yesIsSelected = false;
+                        Position = OldPos;
+                    }
+                }
+                else if (Position == new Vector2(400, 350))
                 {
                     direction = Direction.None;
                     Position = new Vector2(-500, -500);
@@ -179,6 +193,15 @@ namespace Squadron5missing
                 SpritesPerRow = 5;
                 MaxFrames = 9;
             }
+            else if (direction == Direction.None)
+            {
+                Texture = OldTexture;
+                SpritesPerRow = 5;
+                MaxFrames = 9;
+            }
+
+
+            
         }
 
 

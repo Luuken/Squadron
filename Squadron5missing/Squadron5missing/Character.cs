@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using System.Diagnostics;
 
 
 namespace Squadron5missing
@@ -135,7 +136,7 @@ namespace Squadron5missing
             {
                 animationDelayTimer = 0;
                 frame++;
-                if (frame == MaxFrames)
+                if (frame >= MaxFrames)
                 {
                     frame = 0;
                 }

@@ -3,7 +3,6 @@ Content\placeHolder.xnb
 Content\Repair_knapp.xnb
 Content\Mat knapp.xnb
 Content\Sjukvårds knapp.xnb
-Content\background01.xnb
 Content\space.xnb
 Content\space02.xnb
 Content\space03.xnb
@@ -24,3 +23,4 @@ Content\evenMeny.xnb
 Content\Kitty Walk Back.xnb
 Content\Kitty Walk Front.xnb
 Content\resource_button.xnb
+Content\room_02.xnb

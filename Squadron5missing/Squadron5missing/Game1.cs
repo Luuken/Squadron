@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using System.Diagnostics;
 
 namespace Squadron5missing
 {
@@ -80,11 +81,11 @@ namespace Squadron5missing
             clock = new DateTime();
 
             b = new BackScroll(Content.Load<Texture2D>("space02"), Content.Load<Texture2D>("space03"), .03f);
-            background = Content.Load<Texture2D>("background01");
+            background = Content.Load<Texture2D>("room_02");
             menu = Content.Load<Texture2D>("menu_layout");
 
             chair = new ForegroundObject(Content.Load<Texture2D>("chair02"), new Vector2(762, 430), 150, 150, 2, 2, 400);
-            elevator = new ForegroundObject(Content.Load<Texture2D>("elevator_002"), new Vector2(352, 234), 500, 500, 13, 4, 100);
+            elevator = new ForegroundObject(Content.Load<Texture2D>("elevator_002"), new Vector2(352, 264), 500, 500, 13, 4, 100);
 
             this.IsMouseVisible = true;
             
@@ -97,7 +98,7 @@ namespace Squadron5missing
             //Setting graphics settings
             graphics.PreferredBackBufferWidth = 1600;
             graphics.PreferredBackBufferHeight = 900;
-            graphics.IsFullScreen = true;
+            graphics.IsFullScreen = false;
             graphics.ApplyChanges();
             rand = new Random();
             //Initializing characters
@@ -207,6 +208,9 @@ namespace Squadron5missing
                 but.Update(gameTime);
             }
 
+            
+            
+
             base.Update(gameTime);
         }
 
@@ -230,7 +234,7 @@ namespace Squadron5missing
                 ListOfEvents.StatListEvents[i].CurrentTime = clock;
             }
 
-            resource.Draw(spriteBatch, fontSmall);
+            resource.Draw(spriteBatch, testFont);
             //engineEvent.DrawText(spriteBatch, testFont, new Vector2(100, 700));
             mechanic.Draw(spriteBatch);
             mechanic2.Draw(spriteBatch);
