@@ -34,7 +34,7 @@ namespace Squadron5missing
         }
 
         //method(s)
-        public virtual void Draw(SpriteBatch spriteB,SpriteFont Font)
+        public virtual void Draw(SpriteBatch spriteB,SpriteFont Font) //kanske onödig
         {
             spriteB.DrawString(Font, this.ETC.ToLongTimeString(), new Vector2(3, 62), Color.White);
             spriteB.DrawString(Font, this.CurrentTime.ToLongTimeString(), new Vector2(3, 42), Color.White);
