@@ -40,6 +40,7 @@ namespace Squadron5missing
         protected Texture2D WalkLeft { get; set; }
         protected Texture2D WalkRight { get; set; }
         protected Texture2D WalkUp { get; set; }
+        protected Texture2D WalkDown { get; set; }
 
         //stats(properties)
         protected int Intellect { get; set; } //medics and ship tweaking
@@ -47,13 +48,13 @@ namespace Squadron5missing
         protected int Stamina { get; set; } //rapairs and fights
         protected int Constitution { get; set; } //not getting sick
         protected int Handyness { get; set; } //general handyness and workspeed also repairs
-        protected int HealthPoints { get; set; }
         protected float Hunger { get; set; }
 
         //private members
         private int frame = 0;
         private int animationDelayTimer = 0;
         private int animationDelay = 200;
+        protected int gameSpeed = 1;
         
         
 
@@ -62,7 +63,7 @@ namespace Squadron5missing
 
         //constructor(s)
         protected Character(Texture2D texture, Vector2 position, RoomE room, string name, int animWidth, int animHeight, int maxFrames, int spritesPerRow,
-            Button button1, Button button2, Button button3, Button button4, Texture2D walkLeft, Texture2D walkRight, Texture2D walkUp, int intel, int perc, int stam, int con, int hand, int hp, float hunger)
+            Button button1, Button button2, Button button3, Button button4, Texture2D walkLeft, Texture2D walkRight, Texture2D walkUp, Texture2D walkDown, int intel, int perc, int stam, int con, int hand, float hunger)
         {
             this.Texture = texture;
             this.Position = position;
@@ -79,13 +80,13 @@ namespace Squadron5missing
             this.WalkLeft = walkLeft;
             this.WalkRight = walkRight;
             this.WalkUp = walkUp;
+            this.WalkDown = walkDown;
 
             this.Intellect = intel;
             this.Perception = perc;
             this.Stamina = stam;
             this.Constitution = con;
             this.Handyness = hand;
-            this.HealthPoints = hp;
             this.Hunger = hunger;
         }
 
@@ -103,7 +104,20 @@ namespace Squadron5missing
                 }
             }
 
-            Hunger -= 0.005f;
+            if (Keyboard.GetState().IsKeyDown(Keys.D1))
+            {
+                gameSpeed = 1;
+            }
+            if (Keyboard.GetState().IsKeyDown(Keys.D2))
+            {
+                gameSpeed = 3;
+            }
+            if (Keyboard.GetState().IsKeyDown(Keys.D3))
+            {
+                gameSpeed = 10;
+            }
+
+            Hunger -= 0.005f * gameSpeed;
             if (Hunger > 100)
             {
                 Hunger = 100;

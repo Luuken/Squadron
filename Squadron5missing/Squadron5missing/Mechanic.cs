@@ -31,18 +31,22 @@ namespace Squadron5missing
         Direction direction = Direction.None;
         ButtonName selectedOption = ButtonName.Default;
         List<Button> buttonList = new List<Button>();
+
+        int healthPoints;
         
         //boolean(s)
         bool hasCreatedButtons = false;
         public bool resolvePressed = false;
         public bool yesIsSelected = false;
+        bool healSelected = false;
 
         //contructor(s)
-        public Mechanic(Texture2D texture, Vector2 position, RoomE room, Resources resource, string name, int animWidth, int animHeight, int maxFrames, int spritesPerRow, Button button1, Button button2, Button button3, Button button4, Texture2D textureLeft, Texture2D textureRight, Texture2D textureUp, int intel, int perc, int stam, int con, int hand, int healthPoints, int hunger, string wName)
-            : base(texture, position, room, name, animWidth, animHeight, maxFrames, spritesPerRow, button1, button2, button3, button4, textureLeft, textureRight, textureUp, intel, perc, stam, con, hand, healthPoints, hunger)
+        public Mechanic(Texture2D texture, Vector2 position, RoomE room, Resources resource, string name, int animWidth, int animHeight, int maxFrames, int spritesPerRow, Button button1, Button button2, Button button3, Button button4, Texture2D textureLeft, Texture2D textureRight, Texture2D textureUp, Texture2D textureDown, int intel, int perc, int stam, int con, int hand, int hunger, string wName)
+            : base(texture, position, room, name, animWidth, animHeight, maxFrames, spritesPerRow, button1, button2, button3, button4, textureLeft, textureRight, textureUp, textureDown, intel, perc, stam, con, hand, hunger)
         {
             this.WrenchName = wName;
             this.Resource = resource;
+            this.healthPoints = (con * 2) * 10;
         }
 
         //method(s)
@@ -71,6 +75,30 @@ namespace Squadron5missing
                 }
             }
 
+            if (healSelected)
+            {
+                if (Position == new Vector2(400, 350))
+                {
+                    direction = Direction.None;
+                    Position = new Vector2(-500, -500);
+                }
+                else if (Position.X > 400)
+                {
+                    Position = new Vector2(Position.X - 1, Position.Y);
+                    direction = Direction.Left;
+                }
+                else if (Position.X < 400)
+                {
+                    Position = new Vector2(Position.X + 1, Position.Y);
+                    direction = Direction.Right;
+                }
+                else if (Position.X == 400 && Position.Y > 350)
+                {
+                    Position = new Vector2(Position.X, Position.Y - 1);
+                    direction = Direction.Up;
+                }
+            }
+
             if (yesIsSelected)
             {
                 if (Position == new Vector2(400, 350))
@@ -95,7 +123,6 @@ namespace Squadron5missing
                 }
             }
 
-            Debug.WriteLine(selectedOption.ToString());
 
             if (selectedOption == ButtonName.Resolve)
             {
@@ -112,7 +139,8 @@ namespace Squadron5missing
             }
             else if (selectedOption == ButtonName.Heal)
             {
-
+                healSelected = true;
+                selectedOption = ButtonName.Default;
             }
             else if (selectedOption == ButtonName.Upgrade)
             {
@@ -137,6 +165,12 @@ namespace Squadron5missing
                 SpritesPerRow = 5;
                 MaxFrames = 9;
             }
+            else if (direction == Direction.Down)
+            {
+                Texture = WalkDown;
+                SpritesPerRow = 5;
+                MaxFrames = 9;
+            }
         }
 
 
@@ -155,7 +189,7 @@ namespace Squadron5missing
         {
             if (characterSelected)
             {
-                spriteBatch.DrawString(font, "Health: " + HealthPoints, new Vector2(Position.X + 10, Position.Y - 24), Color.White);
+                spriteBatch.DrawString(font, "Health: " + healthPoints, new Vector2(Position.X + 10, Position.Y - 24), Color.White);
                 spriteBatch.DrawString(font, "Hunger: " + Math.Round(Hunger), new Vector2(Position.X + 10, Position.Y - 10), Color.White);
             }
 
