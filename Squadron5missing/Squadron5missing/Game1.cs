@@ -103,13 +103,13 @@ namespace Squadron5missing
             //Initializing characters
             mechanic = new Mechanic(Content.Load<Texture2D>("Kitty Breath Blink"), new Vector2(1000, 450), RoomE.Bridge, resource, "Morgan the Mechanic", 174, 300, 9, 5, new Button(Content.Load<Texture2D>("button"), new Vector2(520, 575), Color.White, ButtonName.Eat),
                 new Button(Content.Load<Texture2D>("button"), new Vector2(850, 575), Color.White, ButtonName.Resolve), new Button(Content.Load<Texture2D>("button"), new Vector2(520, 750), Color.White, ButtonName.Heal), new Button(Content.Load<Texture2D>("button")
-                    , new Vector2(850, 750), Color.White, ButtonName.Upgrade), Content.Load<Texture2D>("Kitty Walk Left"), Content.Load<Texture2D>("Kitty Walk Right"), 5, 5, 5, 5, 5, 100, 100, "Olaf");
+                    , new Vector2(850, 750), Color.White, ButtonName.Upgrade), Content.Load<Texture2D>("Kitty Walk Left"), Content.Load<Texture2D>("Kitty Walk Right"), Content.Load<Texture2D>("Kitty Walk Back"), 5, 5, 5, 5, 5, 100, 100, "Olaf");
 
             mechanic2 = new Mechanic(Content.Load<Texture2D>("Kitty Breath Blink"), new Vector2(300, 450), RoomE.Bridge, resource, "Morgan the Mechanic", 174, 300, 9, 5, new Button(Content.Load<Texture2D>("button"), new Vector2(520, 575), Color.White, ButtonName.Eat),
                 new Button(Content.Load<Texture2D>("button"), new Vector2(850, 575), Color.White, ButtonName.Resolve), new Button(Content.Load<Texture2D>("button"), new Vector2(520, 750), Color.White, ButtonName.Heal), new Button(Content.Load<Texture2D>("button")
-                    , new Vector2(850, 750), Color.White, ButtonName.Upgrade), Content.Load<Texture2D>("Kitty Walk Left"), Content.Load<Texture2D>("Kitty Walk Right"), 5, 5, 5, 5, 5, 100, 100, "Olaf");
+                    , new Vector2(850, 750), Color.White, ButtonName.Upgrade), Content.Load<Texture2D>("Kitty Walk Left"), Content.Load<Texture2D>("Kitty Walk Right"), Content.Load<Texture2D>("Kitty Walk Back"), 5, 5, 5, 5, 5, 100, 100, "Olaf");
 
-            p = new ErrorMessage(mechanic);
+            p = new ErrorMessage(mechanic, mechanic2);
 
             //Initializing events
             engineEvent = new EngineEvent(200, "Engine broke down", clock, "The engines Fluxual Accelerate Perperator has been damaged and needs repair");
@@ -173,6 +173,19 @@ namespace Squadron5missing
 
             chair.Update(gameTime);
             elevator.Update(gameTime);
+
+            if (Keyboard.GetState().IsKeyDown(Keys.D1))
+            {
+                gameSpeed = 1;
+            }
+            if (Keyboard.GetState().IsKeyDown(Keys.D2))
+            {
+                gameSpeed = 3;
+            }
+            if (Keyboard.GetState().IsKeyDown(Keys.D3))
+            {
+                gameSpeed = 10;
+            }
             
             clock = clock.AddMilliseconds(16.6666666666667 * gameSpeed);
             
@@ -206,8 +219,8 @@ namespace Squadron5missing
             b.Draw(spriteBatch);
             spriteBatch.Draw(background, new Vector2(0, 0), Color.White);
             chair.Draw(spriteBatch);
-
             elevator.Draw(spriteBatch);
+
 
             for (int i = 0; i < ListOfEvents.StatListEvents.Count; i++)
             {

@@ -35,10 +35,11 @@ namespace Squadron5missing
         //boolean(s)
         bool hasCreatedButtons = false;
         public bool resolvePressed = false;
+        public bool yesIsSelected = false;
 
         //contructor(s)
-        public Mechanic(Texture2D texture, Vector2 position, RoomE room, Resources resource, string name, int animWidth, int animHeight, int maxFrames, int spritesPerRow, Button button1, Button button2, Button button3, Button button4, Texture2D textureLeft, Texture2D textureRight, int intel, int perc, int stam, int con, int hand, int healthPoints, int hunger, string wName)
-            : base(texture, position, room, name, animWidth, animHeight, maxFrames, spritesPerRow, button1, button2, button3, button4, textureLeft, textureRight, intel, perc, stam, con, hand, healthPoints, hunger)
+        public Mechanic(Texture2D texture, Vector2 position, RoomE room, Resources resource, string name, int animWidth, int animHeight, int maxFrames, int spritesPerRow, Button button1, Button button2, Button button3, Button button4, Texture2D textureLeft, Texture2D textureRight, Texture2D textureUp, int intel, int perc, int stam, int con, int hand, int healthPoints, int hunger, string wName)
+            : base(texture, position, room, name, animWidth, animHeight, maxFrames, spritesPerRow, button1, button2, button3, button4, textureLeft, textureRight, textureUp, intel, perc, stam, con, hand, healthPoints, hunger)
         {
             this.WrenchName = wName;
             this.Resource = resource;
@@ -67,6 +68,30 @@ namespace Squadron5missing
                     {
                         selectedOption = b.BName;
                     }
+                }
+            }
+
+            if (yesIsSelected)
+            {
+                if (Position == new Vector2(400, 350))
+                {
+                    direction = Direction.None;
+                    Position = new Vector2(-500, -500);
+                }
+                else if (Position.X > 400)
+                {
+                    Position = new Vector2(Position.X - 1, Position.Y);
+                    direction = Direction.Left;
+                }
+                else if (Position.X < 400)
+                {
+                    Position = new Vector2(Position.X + 1, Position.Y);
+                    direction = Direction.Right;
+                }
+                else if (Position.X == 400 && Position.Y > 350)
+                {
+                    Position = new Vector2(Position.X, Position.Y - 1);
+                    direction = Direction.Up;
                 }
             }
 
@@ -105,6 +130,12 @@ namespace Squadron5missing
                 Texture = WalkRight;
                 SpritesPerRow = 5;
                 MaxFrames = 8;
+            }
+            else if (direction == Direction.Up)
+            {
+                Texture = WalkUp;
+                SpritesPerRow = 5;
+                MaxFrames = 9;
             }
         }
 

@@ -20,7 +20,8 @@ namespace Squadron5missing
         public Vector2 position { get; set; }
         public string EventAlert { get; set; }
         public int eventNumber { get; set; }
-        public Mechanic Mech { get; set; }
+        public Mechanic Mech1 { get; set; }
+        public Mechanic Mech2 { get; set; }
         
         //variables for this class only
         Random rnd = new Random();
@@ -55,9 +56,10 @@ namespace Squadron5missing
         private string SMessage2 = "Select radar technichan for the day";
         private string SMessage3 = "Someone needs to make food for the week";
 
-        public ErrorMessage(Mechanic m)
+        public ErrorMessage(Mechanic m, Mechanic m2)
         {
-            this.Mech = m;
+            this.Mech1 = m;
+            this.Mech2 = m2;
         }
 
         public string DrawText(SpriteBatch spriteBatch, SpriteFont sFont, Vector2 position)
@@ -209,7 +211,7 @@ namespace Squadron5missing
         public void Draw(SpriteBatch s, SpriteFont f, Texture2D square, Vector2 V2, SpriteFont fs, DateTime clock)
         {
             //change this to the buttons on the character for the finished (game)mechanic
-            if (Mech.resolvePressed == true)
+            if (Mech1.resolvePressed == true)
             {
                 //adds a menu window behind the list of problems
                 //also writes it a title
@@ -245,17 +247,68 @@ namespace Squadron5missing
                         ListOfYNButtons.ButtonList.RemoveAt(i);
                         ListOfYNButtons.ButtonList2.RemoveAt(i);
                         alertList.RemoveAt(i);
-                        Mech.resolvePressed = false;
+                        Mech1.resolvePressed = false;
+                        Mech1.yesIsSelected = true;
                     }
                     else if (ListOfYNButtons.ButtonList2[i].noPressed == true)
                     {
                         ListOfYNButtons.ButtonList.RemoveAt(i);
                         ListOfYNButtons.ButtonList2.RemoveAt(i);
                         alertList.RemoveAt(i);
-                        Mech.resolvePressed = false;
+                        Mech1.resolvePressed = false;
 
                     } 
                     
+                }
+            }
+            else if (Mech2.resolvePressed == true)
+            {
+                //adds a menu window behind the list of problems
+                //also writes it a title
+                s.Draw(square, V2, Color.White);
+                s.DrawString(f, "List of problems", new Vector2(365, 20), Color.White);
+
+                for (int i = 0; i < alertList.Count; i++)
+                {
+                    s.DrawString(fs, alertList[i], new Vector2(400, 50 + (i * 20)), Color.White);
+                    //sets the position of yes and no buttons
+                    //they are then drawn out in the draw function of the individual yes and no button classes
+                    ListOfYNButtons.ButtonList[i].Position = new Vector2(358, 50 + (i * 20));
+                    ListOfYNButtons.ButtonList2[i].Position = new Vector2(378, 50 + (i * 20));
+
+                    if (ListOfYNButtons.ButtonList[i].yesPressed == true)
+                    {
+                        if (this.eventNumber == 1)
+                        {
+                            ListOfEvents.StatListEvents.Add(new PilotEvent((double)rnd.Next(70, 110), "Error", clock, ""));
+                        }
+                        if (this.eventNumber == 2)
+                        {
+                            ListOfEvents.StatListEvents.Add(new RadarEvent((double)rnd.Next(70, 110), "Error", clock, ""));
+                        }
+                        if (this.eventNumber == 3)
+                        {
+                            ListOfEvents.StatListEvents.Add(new InfermaryEvent((double)rnd.Next(70, 110), "Error", clock, ""));
+                        }
+                        if (this.eventNumber == 4)
+                        {
+                            ListOfEvents.StatListEvents.Add(new EngineEvent((double)rnd.Next(70, 110), "Error", clock, ""));
+                        }
+                        ListOfYNButtons.ButtonList.RemoveAt(i);
+                        ListOfYNButtons.ButtonList2.RemoveAt(i);
+                        alertList.RemoveAt(i);
+                        Mech2.resolvePressed = false;
+                        Mech2.yesIsSelected = true;
+                    }
+                    else if (ListOfYNButtons.ButtonList2[i].noPressed == true)
+                    {
+                        ListOfYNButtons.ButtonList.RemoveAt(i);
+                        ListOfYNButtons.ButtonList2.RemoveAt(i);
+                        alertList.RemoveAt(i);
+                        Mech2.resolvePressed = false;
+
+                    }
+
                 }
             }
             else

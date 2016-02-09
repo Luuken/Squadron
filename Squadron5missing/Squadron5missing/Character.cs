@@ -39,6 +39,7 @@ namespace Squadron5missing
         protected Button CharButton4 { get; set; }
         protected Texture2D WalkLeft { get; set; }
         protected Texture2D WalkRight { get; set; }
+        protected Texture2D WalkUp { get; set; }
 
         //stats(properties)
         protected int Intellect { get; set; } //medics and ship tweaking
@@ -61,7 +62,7 @@ namespace Squadron5missing
 
         //constructor(s)
         protected Character(Texture2D texture, Vector2 position, RoomE room, string name, int animWidth, int animHeight, int maxFrames, int spritesPerRow,
-            Button button1, Button button2, Button button3, Button button4, Texture2D walkLeft, Texture2D walkRight, int intel, int perc, int stam, int con, int hand, int hp, float hunger)
+            Button button1, Button button2, Button button3, Button button4, Texture2D walkLeft, Texture2D walkRight, Texture2D walkUp, int intel, int perc, int stam, int con, int hand, int hp, float hunger)
         {
             this.Texture = texture;
             this.Position = position;
@@ -77,6 +78,7 @@ namespace Squadron5missing
             this.CharButton4 = button4;
             this.WalkLeft = walkLeft;
             this.WalkRight = walkRight;
+            this.WalkUp = walkUp;
 
             this.Intellect = intel;
             this.Perception = perc;
@@ -90,9 +92,9 @@ namespace Squadron5missing
         //method(s) add Update and Draw functions!
         public virtual void Update(GameTime gameTime)
         {
-            if (Mouse.GetState().X > Position.X && Mouse.GetState().X < (Position.X + Texture.Width))
+            if (Mouse.GetState().X > Position.X && Mouse.GetState().X < (Position.X + AnimWidth))
             {
-                if (Mouse.GetState().Y > Position.Y && Mouse.GetState().Y < (Position.Y + Texture.Height))
+                if (Mouse.GetState().Y > Position.Y && Mouse.GetState().Y < (Position.Y + AnimHeight))
                 {
                     if (Mouse.GetState().LeftButton == ButtonState.Pressed)
                     {
@@ -101,7 +103,7 @@ namespace Squadron5missing
                 }
             }
 
-            Hunger -= 0.01f;
+            Hunger -= 0.005f;
             if (Hunger > 100)
             {
                 Hunger = 100;
