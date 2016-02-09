@@ -133,9 +133,12 @@ namespace Squadron5missing
             }
             else if (selectedOption == ButtonName.Eat)
             {
-                Resource.Food -= 25;
-                Hunger += 10;
-                selectedOption = ButtonName.Default;
+                if (Resource.Food - 25 >= 0)
+                {
+                    Resource.Food -= 25;
+                    Hunger += 10;
+                    selectedOption = ButtonName.Default;
+                }
             }
             else if (selectedOption == ButtonName.Heal)
             {
@@ -144,7 +147,12 @@ namespace Squadron5missing
             }
             else if (selectedOption == ButtonName.Upgrade)
             {
-
+                if (Resource.ScrapMetal - 35 >= 0)
+                {
+                Resource.Hull += 10;
+                Resource.ScrapMetal -= 35;
+                selectedOption = ButtonName.Default;
+                }
             }
 
             if (direction == Direction.Left)
