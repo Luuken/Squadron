@@ -177,13 +177,13 @@ namespace Squadron5missing
         public override void Draw(SpriteBatch spriteBatch)
         {
             base.Draw(spriteBatch);
-            if (characterSelected)
+            /*if (characterSelected)
             {
                 foreach (Button b in buttonList)
                 {
                     b.Draw(spriteBatch);
                 }
-            }
+            }*/
         }
         public override void DrawText(SpriteBatch spriteBatch, SpriteFont font)
         {

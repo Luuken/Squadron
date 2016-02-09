@@ -152,10 +152,10 @@ namespace Squadron5missing
         {
             if (characterSelected == true)
             {
-            spriteBatch.DrawString(font, ButtonName.Eat.ToString(), new Vector2(575, 600), Color.White);
-            spriteBatch.DrawString(font, ButtonName.Resolve.ToString(), new Vector2(900, 600), Color.White);
-            spriteBatch.DrawString(font, ButtonName.Heal.ToString(), new Vector2(575, 775), Color.White);
-            spriteBatch.DrawString(font, ButtonName.Upgrade.ToString(), new Vector2(900, 775), Color.White);
+            spriteBatch.DrawString(font, ButtonName.Eat.ToString(), new Vector2(575, 680), Color.White);
+            spriteBatch.DrawString(font, ButtonName.Resolve.ToString(), new Vector2(970, 680), Color.White);
+            spriteBatch.DrawString(font, ButtonName.Heal.ToString(), new Vector2(575, 810), Color.White);
+            spriteBatch.DrawString(font, ButtonName.Upgrade.ToString(), new Vector2(970, 810), Color.White);
             }
         }
 
