@@ -44,6 +44,22 @@ namespace Squadron5missing
         Texture2D background;
         Texture2D menu;
 
+        RoomTab roomTab1;
+        RoomTab roomTab2;
+        RoomTab roomTab3;
+        RoomTab roomTab4;
+        RoomTab roomTab5;
+        RoomTab roomTab6;
+
+        Texture2D RoomCamera1;
+        Texture2D RoomCamera2;
+        Texture2D RoomCamera3;
+        Texture2D RoomCamera4;
+        Texture2D RoomCamera5;
+        Texture2D RoomCamera6;
+        List<Texture2D> RoomTextures;
+        List<RoomTab> RoomTabs;
+
         //Not in use remove when there is time
         Texture2D repairKnapp;
         Texture2D matKnapp;
@@ -91,6 +107,9 @@ namespace Squadron5missing
             
             base.Initialize();
 
+            RoomTabs = new List<RoomTab>();
+            RoomTextures = new List<Texture2D>();
+
             resource = new Resources(Content.Load<Texture2D>("resource_button"), new Vector2(2, 18), testFont, spriteBatch, 200, 300, 100, 3000, 100);
 
             buttonList = new List<Button>();
@@ -115,6 +134,30 @@ namespace Squadron5missing
             //Initializing events
             engineEvent = new EngineEvent(200, "Engine broke down", clock, "The engines Fluxual Accelerate Perperator has been damaged and needs repair");
 
+            RoomCamera1 = Content.Load<Texture2D>("button");
+            RoomCamera2 = Content.Load<Texture2D>("button");
+            RoomCamera3 = Content.Load<Texture2D>("button");
+            RoomCamera4 = Content.Load<Texture2D>("button");
+            RoomCamera5 = Content.Load<Texture2D>("button");
+            RoomCamera6 = Content.Load<Texture2D>("button");
+            RoomTextures.Add(RoomCamera1);
+            RoomTextures.Add(RoomCamera2);
+            RoomTextures.Add(RoomCamera3);
+            RoomTextures.Add(RoomCamera4);
+            RoomTextures.Add(RoomCamera5);
+            RoomTextures.Add(RoomCamera6);
+            roomTab1 = new RoomTab(sjukvårdsKnapp, new Vector2(1500, 50), "bridge", RoomE.Bridge, RoomTextures);
+            roomTab2 = new RoomTab(repairKnapp, new Vector2(1500, 500), "engineRoom", RoomE.EngineRoom, RoomTextures);
+            roomTab3 = new RoomTab(sjukvårdsKnapp, new Vector2(1500, 150), "cockpit", RoomE.Cockpit, RoomTextures);
+            roomTab4 = new RoomTab(sjukvårdsKnapp, new Vector2(1500, 200), "infermary", RoomE.Infirmary, RoomTextures);
+            roomTab5 = new RoomTab(sjukvårdsKnapp, new Vector2(1500, 250), "kitchen", RoomE.Kitchen, RoomTextures);
+            roomTab6 = new RoomTab(sjukvårdsKnapp, new Vector2(1500, 300), "battlestation", RoomE.Battlestation, RoomTextures);
+            RoomTabs.Add(roomTab1);
+            RoomTabs.Add(roomTab2);
+            RoomTabs.Add(roomTab3);
+            RoomTabs.Add(roomTab4);
+            RoomTabs.Add(roomTab5);
+            RoomTabs.Add(roomTab6);
             //Initializing variables
 
             maxEvents = 5;
@@ -128,6 +171,7 @@ namespace Squadron5missing
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+
 
             //loads all colors
             testFont = Content.Load<SpriteFont>("TestFont");
@@ -169,6 +213,14 @@ namespace Squadron5missing
             //Updates diffrent game objects and adds the seconds to the clock
             mechanic.Update(gameTime);
             mechanic2.Update(gameTime);
+
+
+            roomTab1.Update();
+            roomTab2.Update();
+            roomTab3.Update();
+            roomTab4.Update();
+            roomTab5.Update();
+            roomTab6.Update();
 
             b.Scroll(GraphicsDevice);
 
@@ -268,6 +320,11 @@ namespace Squadron5missing
             spriteBatch.Draw(menu, new Vector2(-2, 538), Color.White);
             mechanic.DrawText(spriteBatch, testFont);
             mechanic2.DrawText(spriteBatch, testFont);
+
+            foreach (RoomTab r in RoomTabs)
+            {
+                r.Draw(spriteBatch);
+            }
 
             spriteBatch.End();
             // TODO: Add your drawing code here

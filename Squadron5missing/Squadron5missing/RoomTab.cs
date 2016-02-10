@@ -18,17 +18,23 @@ namespace Squadron5missing
         public Texture2D Texture { get; set; }
         public Vector2 Position { get; set; }
         public string RoomName { get; set; }
+        public RoomE RoomCam { get; set; }
+        public List<Texture2D> RoomTextures { get; set; }
+
+        bool drawRoom = false;
 
         //members
         Texture2D roomTexture;
         Vector2 roomPositon;
 
         //constructor(s)
-        public RoomTab(Texture2D texture, Vector2 position, string roomName)
+        public RoomTab(Texture2D texture, Vector2 position, string roomName, RoomE roomCam, List<Texture2D> roomTextures)
         {
             this.Position = position;
             this.RoomName = roomName;
             this.Texture = texture;
+            this.RoomCam = roomCam;
+            this.RoomTextures = roomTextures;
         }
         //Method(s)
         public void Update()
@@ -39,20 +45,30 @@ namespace Squadron5missing
                 {
                     if (Mouse.GetState().LeftButton == ButtonState.Pressed)
                     {
-                        DrawRoom();
+                        drawRoom = true;
                     }
                 }
             }
         }
-        public void Draw(SpriteBatch s, SpriteFont testFont)
+        public void Draw(SpriteBatch s)
         {
             s.Draw(Texture, Position, Color.White);
-            s.DrawString(testFont, RoomName, Position, Color.White);
+            //s.DrawString(testFont, RoomName, Position, Color.White);
+            if (drawRoom == true)
+            {
+                DrawRoom(s);
+            }
         }
         //använda rum enum?? eller rum string
-        public void DrawRoom()
+        public void DrawRoom(SpriteBatch s)
         {
-
+            for (int i = 0; i < RoomTextures.Count; i++)
+            {
+                if (i == (int)RoomCam)
+                {
+                    s.Draw(RoomTextures[i], new Vector2(1385, 725), Color.White);
+                }
+            }
         }
 
     }
