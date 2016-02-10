@@ -39,9 +39,17 @@ namespace Squadron5missing
         protected Button CharButton3 { get; set; }
         protected Button CharButton4 { get; set; }
         protected Texture2D WalkLeft { get; set; }
+        protected int WalkLeftFrames { get; set; }
+        protected int WalkLeftSpritesPerRow { get; set; }
         protected Texture2D WalkRight { get; set; }
+        protected int WalkRightFrames { get; set; }
+        protected int WalkRightSpritesPerRow { get; set; }
         protected Texture2D WalkUp { get; set; }
+        protected int WalkUpFrames { get; set; }
+        protected int WalkUpSpritesPerRow { get; set; }
         protected Texture2D WalkDown { get; set; }
+        protected int WalkDownFrames { get; set; }
+        protected int WalkDownSpritesPerRow { get; set; }
 
         //stats(properties)
         protected int Intellect { get; set; } //medics and ship tweaking
@@ -60,11 +68,12 @@ namespace Squadron5missing
         
 
         //boolean(s)
-        protected bool characterSelected = false;
+        public bool characterSelected = false;
 
         //constructor(s)
         protected Character(Texture2D texture, Vector2 position, RoomE room, string name, int animWidth, int animHeight, int maxFrames, int spritesPerRow,
-            Button button1, Button button2, Button button3, Button button4, Texture2D walkLeft, Texture2D walkRight, Texture2D walkUp, Texture2D walkDown, int intel, int perc, int stam, int con, int hand, float hunger)
+            Button button1, Button button2, Button button3, Button button4, Texture2D walkLeft, int walkLeftFrames, int walkLeftSPR, Texture2D walkRight, int walkRightFrames, int walkRightSPR,
+            Texture2D walkUp, int walkUpFrames, int walkUpSPR, Texture2D walkDown, int walkDownFrames, int walkDownSPR, int intel, int perc, int stam, int con, int hand, float hunger)
         {
             this.Texture = texture;
             this.Position = position;
@@ -79,9 +88,17 @@ namespace Squadron5missing
             this.CharButton3 = button3;
             this.CharButton4 = button4;
             this.WalkLeft = walkLeft;
+            this.WalkLeftFrames = walkLeftFrames;
+            this.WalkLeftSpritesPerRow = walkLeftSPR;
             this.WalkRight = walkRight;
+            this.WalkRightFrames = walkRightFrames;
+            this.WalkRightSpritesPerRow = walkRightSPR;
             this.WalkUp = walkUp;
+            this.WalkUpFrames = walkUpFrames;
+            this.WalkUpSpritesPerRow = walkUpSPR;
             this.WalkDown = walkDown;
+            this.WalkDownFrames = walkDownFrames;
+            this.WalkDownSpritesPerRow = walkDownSPR;
 
             this.Intellect = intel;
             this.Perception = perc;
@@ -141,6 +158,8 @@ namespace Squadron5missing
                     frame = 0;
                 }
             }
+
+            Debug.WriteLine(frame);
         }
 
         public virtual void Draw(SpriteBatch spriteBatch)
