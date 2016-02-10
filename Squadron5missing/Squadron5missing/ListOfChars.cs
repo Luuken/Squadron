@@ -7,7 +7,6 @@ namespace Squadron5missing
 {
     static class ListOfChars
     {
-        static List<Character> statListChar = new List<Character>();
+        public static List<Character> statListChar = new List<Character>();
     }
 }
-<

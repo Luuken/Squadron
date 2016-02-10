@@ -21,6 +21,7 @@ namespace Squadron5missing
         public RoomE RoomCam { get; set; }
         public List<Texture2D> RoomTextures { get; set; }
 
+
         bool buttonPressed1 = false;
         bool buttonRealeased1 = true;
         bool drawRoom = false;
@@ -28,6 +29,7 @@ namespace Squadron5missing
         //members
         Texture2D roomTexture;
         Vector2 roomPositon;
+
 
         //constructor(s)
         public RoomTab(Texture2D texture, Vector2 position, string roomName, RoomE roomCam, List<Texture2D> roomTextures)
@@ -70,6 +72,13 @@ namespace Squadron5missing
                 if (i == (int)RoomCam)
                 {
                     s.Draw(RoomTextures[i], new Vector2(1385, 725), Color.White);
+                }
+            }
+            for (int i = 0; i < ListOfChars.statListChar.Count; i++)
+            {
+                if ((int)RoomCam == (int)ListOfChars.statListChar[i].RoomV)
+                {
+                    //s.Draw(ListOfChars.statListChar[i].Texture)
                 }
             }
         }
