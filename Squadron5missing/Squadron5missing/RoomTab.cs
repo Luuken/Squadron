@@ -21,8 +21,10 @@ namespace Squadron5missing
         public RoomE RoomCam { get; set; }
         public List<Texture2D> RoomTextures { get; set; }
 
+        bool buttonPressed1 = false;
+        bool buttonRealeased1 = true;
         bool drawRoom = false;
-
+        private MouseState prevMouse;
         //members
         Texture2D roomTexture;
         Vector2 roomPositon;
@@ -43,12 +45,13 @@ namespace Squadron5missing
             {
                 if (Mouse.GetState().Y > Position.Y && Mouse.GetState().Y < (Position.Y + Texture.Height))
                 {
-                    if (Mouse.GetState().LeftButton == ButtonState.Pressed)
+                    if (Mouse.GetState().LeftButton == ButtonState.Pressed && prevMouse.LeftButton == ButtonState.Released)
                     {
-                        drawRoom = true;
+                        drawRoom = !drawRoom;
                     }
                 }
             }
+            prevMouse = Mouse.GetState();
         }
         public void Draw(SpriteBatch s)
         {
