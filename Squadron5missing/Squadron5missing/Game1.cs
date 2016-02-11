@@ -143,11 +143,9 @@ namespace Squadron5missing
             p = new ErrorMessage(mechanic, mechanic2, dora, resource);
 
             //Initializing events
-<<<<<<< HEAD
-=======
+
             //engineEvent = new EngineEvent(200, "Engine broke down", clock, "The engines Fluxual Accelerate Perperator has been damaged and needs repair");
 
->>>>>>> origin/master
             RoomCamera1 = Content.Load<Texture2D>("button");
             RoomCamera2 = Content.Load<Texture2D>("button");
             RoomCamera3 = Content.Load<Texture2D>("button");
