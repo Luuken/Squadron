@@ -23,7 +23,11 @@ namespace Squadron5missing
         public int Food { get; set; }
         public int ScrapMetal { get; set; }
         public float Oxygen { get; set; }
+<<<<<<< HEAD
         public float Fuel { get; set; }
+=======
+        public int Fuel { get; set; }
+>>>>>>> origin/master
         public int Hull { get; set; }
 
         bool hasBeenPressed = false;
@@ -62,6 +66,10 @@ namespace Squadron5missing
             if (Hull < 0)
             {
                 Hull = 0;
+            }
+            if (Hull < 30)
+            {
+                Oxygen -= 0.01f;
             }
             if (Food > 1000)
             {

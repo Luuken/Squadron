@@ -28,6 +28,7 @@ namespace Squadron5missing
         Mechanic mechanic;
         Mechanic mechanic2;
         Mechanic dora;
+        Mechanic spencer;
         EngineEvent engineEvent;
 
         Resources resource;
@@ -45,6 +46,12 @@ namespace Squadron5missing
         Texture2D ProblemMenuBackground;
         Texture2D background;
         Texture2D menu;
+        Texture2D spaceBackground;
+
+        Button startButton;
+        Button quitButton;
+        Button creditsButton;
+        Button preStartScreen;
 
         RoomTab roomTab1;
         RoomTab roomTab2;
@@ -73,7 +80,8 @@ namespace Squadron5missing
         //in use
         Texture2D yesButton;
         Texture2D noButton;
-        
+
+        GameState gameState = GameState.PreStart;
 
         ErrorMessage p;
         bool gameLost = false;
@@ -103,12 +111,19 @@ namespace Squadron5missing
             b = new BackScroll(Content.Load<Texture2D>("space02"), Content.Load<Texture2D>("space03"), .03f);
             background = Content.Load<Texture2D>("room_02");
             menu = Content.Load<Texture2D>("menu_layout");
+            preStartScreen = new Button(Content.Load<Texture2D>("start00"), new Vector2(0,0), Color.White, ButtonName.Default);
+
+            startButton = new Button(Content.Load<Texture2D>("Start Button"), new Vector2(GraphicsDevice.Viewport.Width - 300, 50), Color.White, ButtonName.Start);
+            creditsButton = new Button(Content.Load<Texture2D>("Start Button"), new Vector2(GraphicsDevice.Viewport.Width - 300, 350), Color.White, ButtonName.Credits);
+            quitButton = new Button(Content.Load<Texture2D>("Start Button"), new Vector2(GraphicsDevice.Viewport.Width - 300, 650), Color.White, ButtonName.Quit);
 
             chair = new ForegroundObject(Content.Load<Texture2D>("chair02"), new Vector2(762, 430), 150, 150, 2, 2, 400);
             elevator = new ForegroundObject(Content.Load<Texture2D>("elevator_002"), new Vector2(352, 264), 500, 500, 13, 4, 100);
             alarm = new ForegroundObject(Content.Load<Texture2D>("Larm"), new Vector2(GraphicsDevice.Viewport.Width - 107, 46), 300, 300, 1, 1, 10000);
 
             this.IsMouseVisible = true;
+
+            spaceBackground = Content.Load<Texture2D>("Space BG");
             
             base.Initialize();
 
@@ -122,10 +137,14 @@ namespace Squadron5missing
             //Setting graphics settings
             graphics.PreferredBackBufferWidth = 1600;
             graphics.PreferredBackBufferHeight = 900;
-            graphics.IsFullScreen = false;
+            graphics.IsFullScreen = true;
             graphics.ApplyChanges();
             rand = new Random();
             //Initializing characters
+            /*spencer = new Mechanic(Content.Load<Texture2D>("spencer_idle_02"), new Vector2(600, 500), RoomE.Bridge, resource, "Spencer Bara", 300, 300, 3, 2, new Button(Content.Load<Texture2D>("button"), new Vector2(400, 665), Color.White, ButtonName.Eat),
+                new Button(Content.Load<Texture2D>("button"), new Vector2(850, 665), Color.White, ButtonName.Resolve), new Button(Content.Load<Texture2D>("button"), new Vector2(400, 790), Color.White, ButtonName.Heal), new Button(Content.Load<Texture2D>("button")
+                    , new Vector2(850, 790), Color.White, ButtonName.Upgrade), Content.Load<Texture2D>("spencer_idle_02"), 8, 3, Content.Load<Texture2D>("spencer_idle_02"), 8, 3, Content.Load<Texture2D>("spencer_walk_up_03"), 8, 3, Content.Load<Texture2D>("spencer_walk_up_03"), 8, 3, 5, 5, 5, 5, 5, 100, "");*/
+
             dora = new Mechanic(Content.Load<Texture2D>("Dora Hairflip"), new Vector2(700, 400), RoomE.Bridge, resource, "Dora the Explorah", 174, 300, 13, 5, new Button(Content.Load<Texture2D>("button"), new Vector2(400, 665), Color.White, ButtonName.Eat),
                 new Button(Content.Load<Texture2D>("button"), new Vector2(850, 665), Color.White, ButtonName.Resolve), new Button(Content.Load<Texture2D>("button"), new Vector2(400, 790), Color.White, ButtonName.Heal), new Button(Content.Load<Texture2D>("button")
                     , new Vector2(850, 790), Color.White, ButtonName.Upgrade), Content.Load<Texture2D>("Dora Walk Left"), 8, 5, Content.Load<Texture2D>("Dora Walk Right"), 8, 5, Content.Load<Texture2D>("Dora Walk Back"), 8, 5, Content.Load<Texture2D>("Dora Walk Front"), 8, 5, 5, 5, 5, 5, 5, 100, "");
@@ -221,6 +240,7 @@ namespace Squadron5missing
             // Allows the game to exit
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState(PlayerIndex.One).IsKeyDown(Keys.Escape))
                 this.Exit();
+<<<<<<< HEAD
             
             if (resource.Hull < 50)
             {
@@ -242,10 +262,44 @@ namespace Squadron5missing
             {
                 gameLost = true;
             }
+=======
+
+            if (gameState == GameState.PreStart)
+            {
+                preStartScreen.Update(gameTime);
+
+                if (preStartScreen.Pressed == true)
+                {
+                    gameState = GameState.StartMenu;
+                }
+            }
+
+            if (gameState == GameState.StartMenu)
+            {
+                startButton.Update(gameTime);
+                creditsButton.Update(gameTime);
+                quitButton.Update(gameTime);
+
+                if (startButton.Pressed == true)
+                {
+                    gameState = GameState.Game;
+                }
+                if (quitButton.Pressed == true)
+                {
+                    this.Exit();
+                }
+            }
+
+            if (gameState == GameState.Game)
+            {
+
+
+>>>>>>> origin/master
             //Updates diffrent game objects and adds the seconds to the clock
             mechanic.Update(gameTime);
             mechanic2.Update(gameTime);
             dora.Update(gameTime);
+            //spencer.Update(gameTime);
 
             roomTab1.Update();
             roomTab2.Update();
@@ -302,13 +356,15 @@ namespace Squadron5missing
                 but.Update(gameTime);
             }
 
-            if (mechanic.characterSelected) { mechanic2.characterSelected = false; dora.characterSelected = false; }
-            if (mechanic2.characterSelected) { mechanic.characterSelected = false; dora.characterSelected = false; }
-            if (dora.characterSelected) { mechanic.characterSelected = false; mechanic2.characterSelected = false; }
+            if (mechanic.characterSelected) { mechanic2.characterSelected = false; dora.characterSelected = false; spencer.characterSelected = false; }
+            if (mechanic2.characterSelected) { mechanic.characterSelected = false; dora.characterSelected = false; spencer.characterSelected = false; }
+            if (dora.characterSelected) { mechanic.characterSelected = false; mechanic2.characterSelected = false; spencer.characterSelected = false; }
+            //if (spencer.characterSelected) { mechanic.characterSelected = false; mechanic2.characterSelected = false; dora.characterSelected = false; }
             
             
 
             base.Update(gameTime);
+            }
         }
 
         /// <summary>
@@ -319,65 +375,99 @@ namespace Squadron5missing
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
             spriteBatch.Begin();
-            b.Draw(spriteBatch);
-            spriteBatch.Draw(background, new Vector2(0, 0), Color.White);
-            chair.Draw(spriteBatch);
-            elevator.Draw(spriteBatch);
-            alarm.Draw(spriteBatch);
 
-            for (int i = 0; i < ListOfEvents.StatListEvents.Count; i++)
+            if (gameState == GameState.PreStart)
             {
-                ListOfEvents.StatListEvents[i].CurrentTime = clock;
-                ListOfEvents.StatListEvents[i].Update();
+                spriteBatch.Draw(preStartScreen.Texture, preStartScreen.Position, Color.White);
+            }
+            if (gameState == GameState.StartMenu)
+            {
+                spriteBatch.Draw(spaceBackground, new Vector2(0, 0), Color.White);
+                startButton.Draw(spriteBatch);
+                quitButton.Draw(spriteBatch);
+                creditsButton.Draw(spriteBatch);
             }
 
-            resource.Draw(spriteBatch, testFont);
-            //engineEvent.DrawText(spriteBatch, testFont, new Vector2(100, 700));
-            mechanic.Draw(spriteBatch);
-            mechanic2.Draw(spriteBatch);
-            dora.Draw(spriteBatch);
+            if (gameState == GameState.Game)
+            {
 
-            spriteBatch.DrawString(testFont, clock.ToLongTimeString(), new Vector2(3, 2), Color.White);
-            
-            p.Draw(spriteBatch,testFont,ProblemMenuBackground,new Vector2(332,5),fontSmall, clock);
-            
-            foreach (Button but in buttonList)
-            {
-                but.Draw(spriteBatch);
-            }
-            if (Keyboard.GetState().IsKeyDown(Keys.H))//replace Key with File capinet button instead or some other more imersive game mechanic
-            {
-                
+                b.Draw(spriteBatch);
+                spriteBatch.Draw(background, new Vector2(0, 0), Color.White);
+                chair.Draw(spriteBatch);
+                elevator.Draw(spriteBatch);
+                alarm.Draw(spriteBatch);
+
                 for (int i = 0; i < ListOfEvents.StatListEvents.Count; i++)
                 {
-                    spriteBatch.DrawString(testFont, ListOfEvents.StatListEvents[i].EventName, new Vector2(1200, 20 * i), Color.White);
-                    spriteBatch.DrawString(testFont, ListOfEvents.StatListEvents[i].ETC.ToLongTimeString(), new Vector2(1062, 20 * i), Color.White);
+                    ListOfEvents.StatListEvents[i].CurrentTime = clock;
+                    ListOfEvents.StatListEvents[i].Update();
                 }
-            }
 
+                resource.Draw(spriteBatch, testFont);
+                //engineEvent.DrawText(spriteBatch, testFont, new Vector2(100, 700));
+                mechanic.Draw(spriteBatch);
+                mechanic2.Draw(spriteBatch);
+                dora.Draw(spriteBatch);
 
-            foreach (YesButton yes in ListOfYNButtons.ButtonList)
-            {
-                yes.Draw(spriteBatch);
-            }
-            foreach (NoButton no in ListOfYNButtons.ButtonList2)
-            {
-                no.Draw(spriteBatch);
-            }
-            spriteBatch.Draw(menu, new Vector2(-2, 538), Color.White);
-            mechanic.DrawText(spriteBatch, testFont);
-            mechanic2.DrawText(spriteBatch, testFont);
-            dora.DrawText(spriteBatch, testFont);
+                spriteBatch.DrawString(testFont, clock.ToLongTimeString(), new Vector2(3, 2), Color.White);
+            
+                p.Draw(spriteBatch,testFont,ProblemMenuBackground,new Vector2(332,5),fontSmall, clock);
+            
+                foreach (Button but in buttonList)
+                {
+                    but.Draw(spriteBatch);
+                }
+                if (Keyboard.GetState().IsKeyDown(Keys.H))//replace Key with File capinet button instead or some other more imersive game mechanic
+                {
+                
+                    for (int i = 0; i < ListOfEvents.StatListEvents.Count; i++)
+                    {
+                        spriteBatch.DrawString(testFont, ListOfEvents.StatListEvents[i].EventName, new Vector2(1200, 20 * i), Color.White);
+                        spriteBatch.DrawString(testFont, ListOfEvents.StatListEvents[i].ETC.ToLongTimeString(), new Vector2(1062, 20 * i), Color.White);
+                    }
+                }
 
+<<<<<<< HEAD
             foreach (RoomTab r in RoomTabs)
             {
                 r.Draw(spriteBatch);
             }
             spriteBatch.DrawString(testFont, distance.ToString(), new Vector2(1500, 0), Color.White);
+=======
+
+                foreach (YesButton yes in ListOfYNButtons.ButtonList)
+                {
+                    yes.Draw(spriteBatch);
+                }
+                foreach (NoButton no in ListOfYNButtons.ButtonList2)
+                {
+                    no.Draw(spriteBatch);
+                }
+                spriteBatch.Draw(menu, new Vector2(-2, 538), Color.White);
+                mechanic.DrawText(spriteBatch, testFont);
+                mechanic2.DrawText(spriteBatch, testFont);
+                dora.DrawText(spriteBatch, testFont);
+
+                foreach (RoomTab r in RoomTabs)
+                {
+                    r.Draw(spriteBatch);
+                }
+
+            }
+>>>>>>> origin/master
             spriteBatch.End();
             // TODO: Add your drawing code here
 
             base.Draw(gameTime);
         }
+    }
+
+    enum GameState
+    {
+        PreStart,
+        StartMenu,
+        Game,
+        End,
+        Credits
     }
 }

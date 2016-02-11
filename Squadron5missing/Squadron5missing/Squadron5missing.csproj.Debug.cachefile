@@ -24,10 +24,6 @@ Content\Kitty Walk Back.xnb
 Content\Kitty Walk Front.xnb
 Content\resource_button.xnb
 Content\room_02.xnb
-<<<<<<< HEAD
-Content\evenMeny.xnb
-=======
->>>>>>> origin/master
 Content\Larm.xnb
 Content\walk_up_02.xnb
 Content\walk_right_03.xnb
@@ -37,3 +33,6 @@ Content\Dora Walk Back.xnb
 Content\Dora Walk Front.xnb
 Content\Dora Walk Left.xnb
 Content\Dora Walk Right.xnb
+Content\Start Button.xnb
+Content\start00.xnb
+Content\Space BG.xnb
