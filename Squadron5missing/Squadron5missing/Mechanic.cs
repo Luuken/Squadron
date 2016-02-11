@@ -115,10 +115,13 @@ namespace Squadron5missing
                 if (Position == new Vector2(-500, -500))
                 {
                     direction = Direction.None;
-                    if (Keyboard.GetState().IsKeyDown(Keys.A))
+                    for (int i = 0; i < ListOfEvents.StatListEvents.Count; i++)
                     {
-                        yesIsSelected = false;
-                        Position = OldPos;
+                        if (ListOfEvents.StatListEvents[i].eventFinished == true)
+                        {
+                            yesIsSelected = false;
+                            Position = OldPos;
+                        }
                     }
                 }
                 else if (Position == new Vector2(400, 350))

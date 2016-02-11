@@ -20,17 +20,19 @@ namespace Squadron5missing
         public DateTime CurrentTime { get; set; }
         public string EventName { get; set; }
         public string StartText { get; set; }
+        public Mechanic Chara { get; set; }
         //booleans
         public bool eventFinished = false;
 
         //constructor(s)
-        public Event(double timespan, string eventName, DateTime currentTime, string startText)
+        public Event(double timespan, string eventName, DateTime currentTime, string startText, Mechanic chara)
         {
             this.Timespan = timespan;
             this.EventName = eventName;
             this.CurrentTime = currentTime;
             this.ETC = CurrentTime.AddSeconds(timespan);
             this.StartText = startText;
+            this.Chara = chara;
         }
 
         //method(s)
