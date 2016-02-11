@@ -135,6 +135,9 @@ namespace Squadron5missing
             mechanic2 = new Mechanic(Content.Load<Texture2D>("idle_pose02"), new Vector2(300, 450), RoomE.Bridge, resource, "Morgan the Mechanic", 300, 300, 8, 3, new Button(Content.Load<Texture2D>("button"), new Vector2(400, 665), Color.White, ButtonName.Eat),
                 new Button(Content.Load<Texture2D>("button"), new Vector2(850, 665), Color.White, ButtonName.Resolve), new Button(Content.Load<Texture2D>("button"), new Vector2(400, 790), Color.White, ButtonName.Heal), new Button(Content.Load<Texture2D>("button")
                     , new Vector2(850, 790), Color.White, ButtonName.Upgrade), Content.Load<Texture2D>("walk_right_03"), 8, 3, Content.Load<Texture2D>("walk_right_03"), 8, 3, Content.Load<Texture2D>("walk_up_02"), 8, 3, Content.Load<Texture2D>("walk_up_02"), 8, 3, 5, 5, 5, 5, 5, 100, "Olaf");
+            ListOfChars.statListChar.Add(dora);
+            ListOfChars.statListChar.Add(mechanic);
+            ListOfChars.statListChar.Add(mechanic2);
 
             p = new ErrorMessage(mechanic, mechanic2, dora);
 
@@ -292,8 +295,8 @@ namespace Squadron5missing
 
             for (int i = 0; i < ListOfEvents.StatListEvents.Count; i++)
             {
-                ListOfEvents.StatListEvents[i].Update();
                 ListOfEvents.StatListEvents[i].CurrentTime = clock;
+                ListOfEvents.StatListEvents[i].Update();
             }
 
             resource.Draw(spriteBatch, testFont);

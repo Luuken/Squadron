@@ -78,7 +78,7 @@ namespace Squadron5missing
             {
                 if ((int)RoomCam == (int)ListOfChars.statListChar[i].RoomV)
                 {
-                    //s.Draw(ListOfChars.statListChar[i].Texture)
+                    //s.Draw(ListOfChars.statListChar[i].Texture, )
                 }
             }
         }
