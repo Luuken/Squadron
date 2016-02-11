@@ -22,7 +22,7 @@ namespace Squadron5missing
         
         public int Food { get; set; }
         public int ScrapMetal { get; set; }
-        public int Oxygen { get; set; }
+        public float Oxygen { get; set; }
         public int Fuel { get; set; }
         public int Hull { get; set; }
 
@@ -62,6 +62,10 @@ namespace Squadron5missing
             if (Hull < 0)
             {
                 Hull = 0;
+            }
+            if (Hull < 30)
+            {
+                Oxygen -= 0.01f;
             }
             if (Food > 1000)
             {

@@ -17,6 +17,9 @@ namespace Squadron5missing
         Eat,
         Upgrade,
         Heal,
+        Start,
+        Quit,
+        Credits,
         Default
     }
 
