@@ -16,8 +16,8 @@ namespace Squadron5missing
     class EngineEvent : Event
     {
         //constructor(s)
-        public EngineEvent(double timespan, string eventName, DateTime currentTime, string startText)
-            : base(timespan, eventName, currentTime, startText)
+        public EngineEvent(double timespan, string eventName, DateTime currentTime, string startText, Mechanic chara)
+            : base(timespan, eventName, currentTime, startText, chara)
         {
             
         }

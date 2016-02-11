@@ -22,6 +22,7 @@ namespace Squadron5missing
         public int eventNumber { get; set; }
         public Mechanic Mech1 { get; set; }
         public Mechanic Mech2 { get; set; }
+        public Mechanic Mech3 { get; set; }
         
         //variables for this class only
         Random rnd = new Random();
@@ -56,10 +57,11 @@ namespace Squadron5missing
         private string SMessage2 = "Select radar technichan for the day";
         private string SMessage3 = "Someone needs to make food for the week";
 
-        public ErrorMessage(Mechanic m, Mechanic m2)
+        public ErrorMessage(Mechanic m, Mechanic m2, Mechanic m3)
         {
             this.Mech1 = m;
             this.Mech2 = m2;
+            this.Mech3 = m3;
         }
 
         public string DrawText(SpriteBatch spriteBatch, SpriteFont sFont, Vector2 position)
@@ -230,19 +232,19 @@ namespace Squadron5missing
                     {
                         if (this.eventNumber == 1)
                         {
-                            ListOfEvents.StatListEvents.Add(new PilotEvent((double)rnd.Next(70, 110), "Error", clock, ""));
+                            ListOfEvents.StatListEvents.Add(new PilotEvent((double)rnd.Next(70, 110), "Error", clock, "", Mech1));
                         }
                         if (this.eventNumber == 2)
                         {
-                            ListOfEvents.StatListEvents.Add(new RadarEvent((double)rnd.Next(70, 110), "Error", clock, ""));
+                            ListOfEvents.StatListEvents.Add(new RadarEvent((double)rnd.Next(70, 110), "Error", clock, "", Mech1));
                         }
                         if (this.eventNumber == 3)
                         {
-                            ListOfEvents.StatListEvents.Add(new InfermaryEvent((double)rnd.Next(70, 110), "Error", clock, ""));
+                            ListOfEvents.StatListEvents.Add(new InfermaryEvent((double)rnd.Next(70, 110), "Error", clock, "", Mech1));
                         }
                         if (this.eventNumber == 4)
                         {
-                            ListOfEvents.StatListEvents.Add(new EngineEvent((double)rnd.Next(70, 110), "Error", clock, ""));
+                            ListOfEvents.StatListEvents.Add(new EngineEvent((double)rnd.Next(70, 110), "Error", clock, "", Mech1));
                         }
                         ListOfYNButtons.ButtonList.RemoveAt(i);
                         ListOfYNButtons.ButtonList2.RemoveAt(i);
@@ -280,19 +282,19 @@ namespace Squadron5missing
                     {
                         if (this.eventNumber == 1)
                         {
-                            ListOfEvents.StatListEvents.Add(new PilotEvent((double)rnd.Next(70, 110), "Error", clock, ""));
+                            ListOfEvents.StatListEvents.Add(new PilotEvent((double)rnd.Next(70, 110), "Error", clock, "", Mech2));
                         }
                         if (this.eventNumber == 2)
                         {
-                            ListOfEvents.StatListEvents.Add(new RadarEvent((double)rnd.Next(70, 110), "Error", clock, ""));
+                            ListOfEvents.StatListEvents.Add(new RadarEvent((double)rnd.Next(70, 110), "Error", clock, "", Mech2));
                         }
                         if (this.eventNumber == 3)
                         {
-                            ListOfEvents.StatListEvents.Add(new InfermaryEvent((double)rnd.Next(70, 110), "Error", clock, ""));
+                            ListOfEvents.StatListEvents.Add(new InfermaryEvent((double)rnd.Next(70, 110), "Error", clock, "", Mech2));
                         }
                         if (this.eventNumber == 4)
                         {
-                            ListOfEvents.StatListEvents.Add(new EngineEvent((double)rnd.Next(70, 110), "Error", clock, ""));
+                            ListOfEvents.StatListEvents.Add(new EngineEvent((double)rnd.Next(70, 110), "Error", clock, "", Mech2));
                         }
                         ListOfYNButtons.ButtonList.RemoveAt(i);
                         ListOfYNButtons.ButtonList2.RemoveAt(i);

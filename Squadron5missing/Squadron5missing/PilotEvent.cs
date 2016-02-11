@@ -15,8 +15,8 @@ namespace Squadron5missing
     class PilotEvent : Event
     {
         //constructor(s)
-        public PilotEvent(double timespan, string eventName, DateTime currentTime, string startText)
-            : base(timespan, eventName, currentTime, startText)
+        public PilotEvent(double timespan, string eventName, DateTime currentTime, string startText, Mechanic chara)
+            : base(timespan, eventName, currentTime, startText, chara)
         {
             
         }

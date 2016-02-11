@@ -14,8 +14,8 @@ namespace Squadron5missing
 {
     class RadarEvent : Event
     {
-        public RadarEvent(double timespan, string eventName, DateTime currentTime, string startText)
-            : base(timespan, eventName, currentTime, startText)
+        public RadarEvent(double timespan, string eventName, DateTime currentTime, string startText, Mechanic chara)
+            : base(timespan, eventName, currentTime, startText, chara)
         {
             
         }

@@ -62,7 +62,8 @@ namespace Squadron5missing
         //private members
         private int frame = 0;
         private int animationDelayTimer = 0;
-        private int animationDelay = 100;
+        private int animationDelay = 200;
+        Random r = new Random();
         protected int gameSpeed = 1;
         
         
@@ -93,8 +94,8 @@ namespace Squadron5missing
             this.WalkRight = walkRight;
             this.WalkRightFrames = walkRightFrames;
             this.WalkRightSpritesPerRow = walkRightSPR;
-            this.WalkUp = walkUp;
             this.WalkUpFrames = walkUpFrames;
+            this.WalkUp = walkUp;
             this.WalkUpSpritesPerRow = walkUpSPR;
             this.WalkDown = walkDown;
             this.WalkDownFrames = walkDownFrames;
