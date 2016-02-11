@@ -76,6 +76,7 @@ namespace Squadron5missing
         
 
         ErrorMessage p;
+        bool gameLost = false;
         public int gameSpeed = 1;
         public double distance = 0;
         int temp;
@@ -220,7 +221,27 @@ namespace Squadron5missing
             // Allows the game to exit
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState(PlayerIndex.One).IsKeyDown(Keys.Escape))
                 this.Exit();
-
+            
+            if (resource.Hull < 50)
+            {
+                resource.Oxygen -= 0.02f;
+            }
+            if (resource.Hull < 25)
+            {
+                resource.Oxygen -= 0.03f;
+            }
+            if (resource.Hull < 10)
+            {
+                resource.Oxygen -= 0.03f;
+            }
+            if (resource.Hull <= 0)
+	        {
+                resource.Oxygen -= 5f;
+	        }
+            if (resource.Oxygen <= 0)
+            {
+                gameLost = true;
+            }
             //Updates diffrent game objects and adds the seconds to the clock
             mechanic.Update(gameTime);
             mechanic2.Update(gameTime);
@@ -257,6 +278,16 @@ namespace Squadron5missing
             
             p.SchedueldAlertMessage(clock, yesButton, new Vector2(75, 75), noButton);
             p.Update(spriteBatch, testFont, new Vector2(75, 75), yesButton, noButton, new Vector2());
+            if (resource.Fuel != 0)
+            {
+                Debug.WriteLine("Size of list: " + ListOfEvents.StatListEvents.Count);
+                Debug.WriteLine("Number of SE: " + ListOfEvents.StatListEvents.Where(x => x.GetType() == typeof(SchedueldEvent)).ToList().Count.ToString());
+                foreach (SchedueldEvent e in ListOfEvents.StatListEvents.Where(x => x.GetType() == typeof(SchedueldEvent)))
+                {
+                    distance = e.Piloting(distance, resource);
+                    resource.Fuel -= 0.2398f;
+                }
+            }
             //Update function for both the yes and the no buttons
             foreach (YesButton yes in ListOfYNButtons.ButtonList)
             {
@@ -342,7 +373,7 @@ namespace Squadron5missing
             {
                 r.Draw(spriteBatch);
             }
-
+            spriteBatch.DrawString(testFont, distance.ToString(), new Vector2(1500, 0), Color.White);
             spriteBatch.End();
             // TODO: Add your drawing code here
 

@@ -12,16 +12,28 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Squadron5missing
 {
+    public enum EventType
+    {
+        PilotEvent,
+        RadarEvent,
+        InfermaryEvent,
+        EngineEvent,
+        PilotingEvent,
+        ScanningEvent,
+        CookingEvent
+    }
     class YesButton
     {
         //properties
+        public EventType EventType { get; set; }
         public Texture2D Texture { get; set; }
         public Vector2 Position { get; set; }
         Color ButtonColorOverlay { get; set; }
         public bool yesPressed;
         //constructor(s)
-        public YesButton(Texture2D texture, Vector2 position, Color btnColorOverlay)
+        public YesButton(EventType typeOfEvent, Texture2D texture, Vector2 position, Color btnColorOverlay)
         {
+            this.EventType = typeOfEvent;
             this.Position = position;
             this.Texture = texture;
             this.ButtonColorOverlay = btnColorOverlay;
