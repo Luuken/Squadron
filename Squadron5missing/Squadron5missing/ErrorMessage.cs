@@ -332,19 +332,19 @@ namespace Squadron5missing
                     {
                         if (this.eventNumber == 1)
                         {
-                            ListOfEvents.StatListEvents.Add(new PilotEvent((double)rnd.Next(70, 110), "Error", clock, ""));
+                            ListOfEvents.StatListEvents.Add(new PilotEvent((double)rnd.Next(70, 110), "Error", clock, "", Mech3));
                         }
                         if (this.eventNumber == 2)
                         {
-                            ListOfEvents.StatListEvents.Add(new RadarEvent((double)rnd.Next(70, 110), "Error", clock, ""));
+                            ListOfEvents.StatListEvents.Add(new RadarEvent((double)rnd.Next(70, 110), "Error", clock, "", Mech3));
                         }
                         if (this.eventNumber == 3)
                         {
-                            ListOfEvents.StatListEvents.Add(new InfermaryEvent((double)rnd.Next(70, 110), "Error", clock, ""));
+                            ListOfEvents.StatListEvents.Add(new InfermaryEvent((double)rnd.Next(70, 110), "Error", clock, "", Mech3));
                         }
                         if (this.eventNumber == 4)
                         {
-                            ListOfEvents.StatListEvents.Add(new EngineEvent((double)rnd.Next(70, 110), "Error", clock, ""));
+                            ListOfEvents.StatListEvents.Add(new EngineEvent((double)rnd.Next(70, 110), "Error", clock, "", Mech3));
                         }
                         ListOfYNButtons.ButtonList.RemoveAt(i);
                         ListOfYNButtons.ButtonList2.RemoveAt(i);

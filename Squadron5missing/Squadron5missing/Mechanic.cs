@@ -183,30 +183,35 @@ namespace Squadron5missing
                 Texture = WalkLeft;
                 SpritesPerRow = WalkLeftSpritesPerRow;
                 MaxFrames = WalkLeftFrames;
+                characterIdle = false;
             }
             else if (direction == Direction.Right)
             {
                 Texture = WalkRight;
                 SpritesPerRow = WalkRightSpritesPerRow;
                 MaxFrames = WalkRightFrames;
+                characterIdle = false;
             }
             else if (direction == Direction.Up)
             {
                 Texture = WalkUp;
                 SpritesPerRow = WalkUpSpritesPerRow;
                 MaxFrames = WalkUpFrames;
+                characterIdle = false;
             }
             else if (direction == Direction.Down)
             {
                 Texture = WalkDown;
                 SpritesPerRow = WalkDownSpritesPerRow;
                 MaxFrames = WalkDownFrames;
+                characterIdle = false;
             }
             else if (direction == Direction.None)
             {
                 Texture = OldTexture;
                 SpritesPerRow = OldSPR;
                 MaxFrames = OldFrames;
+                characterIdle = true;
             }
 
 

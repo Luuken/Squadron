@@ -27,7 +27,7 @@ namespace Squadron5missing
     {
         //properties
         protected Texture2D Texture { get; set; }
-        protected Vector2 Position { get; set; }
+        public Vector2 Position { get; set; }
         public RoomE RoomV { get; set; }
         protected string CharName { get; set; }
         protected int AnimWidth { get; set; }
@@ -65,11 +65,13 @@ namespace Squadron5missing
         private int animationDelay = 200;
         Random r = new Random();
         protected int gameSpeed = 1;
+        private int willAnimate;
         
         
 
         //boolean(s)
         public bool characterSelected = false;
+        public bool characterIdle = true;
 
         //constructor(s)
         protected Character(Texture2D texture, Vector2 position, RoomE room, string name, int animWidth, int animHeight, int maxFrames, int spritesPerRow,
@@ -147,18 +149,26 @@ namespace Squadron5missing
                 characterSelected = false;
             }
 
-            
-            //AnimationUpdate
-            animationDelayTimer += gameTime.ElapsedGameTime.Milliseconds;
-            if (animationDelayTimer >= animationDelay)
+            if (characterIdle == false || willAnimate == 0)
             {
-                animationDelayTimer = 0;
-                frame++;
-                if (frame >= MaxFrames)
+                animationDelayTimer += gameTime.ElapsedGameTime.Milliseconds;
+                if (animationDelayTimer >= animationDelay)
                 {
-                    frame = 0;
+                    animationDelayTimer = 0;
+                    frame++;
+                    if (frame >= MaxFrames)
+                    {
+                        frame = 0;
+                        willAnimate = 2;
+                    }
                 }
+
             }
+            if (willAnimate != 0)
+            {
+                willAnimate = r.Next(0, 100);
+            }
+            //AnimationUpdate
 
             Debug.WriteLine(frame);
         }
