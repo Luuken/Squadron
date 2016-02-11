@@ -23,13 +23,20 @@ namespace Squadron5missing
         public Mechanic Mech1 { get; set; }
         public Mechanic Mech2 { get; set; }
         public Mechanic Mech3 { get; set; }
-        
+        public Resources Resoure { get; set; }
+        //variables
+        public float healthTimeOffsetValue = 1;
+        public float pilotingErrorOffsetValue = 1;
+        public int scrapFindingChance = 200;
         //variables for this class only
         Random rnd = new Random();
 
         List<string> alertList = new List<string>();
+
+        
         
         int temp = 0;
+        
         string alertTemp = "";
         bool writeEvent = false;
         bool startTimer = false;
@@ -57,11 +64,12 @@ namespace Squadron5missing
         private string SMessage2 = "Select radar technichan for the day";
         private string SMessage3 = "Someone needs to make food for the week";
 
-        public ErrorMessage(Mechanic m, Mechanic m2, Mechanic m3)
+        public ErrorMessage(Mechanic m, Mechanic m2, Mechanic m3, Resources resoure)
         {
             this.Mech1 = m;
             this.Mech2 = m2;
             this.Mech3 = m3;
+            this.Resoure = resoure;
         }
 
         public string DrawText(SpriteBatch spriteBatch, SpriteFont sFont, Vector2 position)
@@ -147,6 +155,7 @@ namespace Squadron5missing
         /// <param name="position2"></param>
         public void Update(SpriteBatch s, SpriteFont f, Vector2 position, Texture2D buttonTexture, Texture2D buttonTexture2, Vector2 position2)
         {
+            
             temp = rnd.Next(1, 500);
             if (temp == 2)
             {
@@ -155,8 +164,10 @@ namespace Squadron5missing
                 int tempD;
                 if (this.eventNumber == 1)
                 {
+                    pilotingErrorOffsetValue += 0.087f;
                     tempD = rnd.Next(60, 190);
                     alertList.Add(alertTemp);
+                    pilotingErrorOffsetValue += 0.2f;
                     //this adds one button to each no and yes list button in the ListOfYNButtons.cs lists
                     ListOfYNButtons.ButtonList.Add(new YesButton(buttonTexture, position2, Color.CadetBlue));
                     ListOfYNButtons.ButtonList2.Add(new NoButton(buttonTexture2, position, Color.CornflowerBlue));
@@ -165,8 +176,10 @@ namespace Squadron5missing
                 }
                 else if (this.eventNumber == 2)
                 {
+
                     tempD = rnd.Next(20, 230);
                     alertList.Add(alertTemp);
+                    scrapFindingChance -= 35;
                     //this adds one button to each no and yes list button in the ListOfYNButtons.cs lists
                     ListOfYNButtons.ButtonList.Add(new YesButton(buttonTexture, position2, Color.CadetBlue));
                     ListOfYNButtons.ButtonList2.Add(new NoButton(buttonTexture2, position2, Color.CornflowerBlue));
@@ -175,6 +188,7 @@ namespace Squadron5missing
                 }
                 else if (this.eventNumber == 3)
                 {
+                    healthTimeOffsetValue -= 0.05f;
                     tempD = rnd.Next(90, 110);
                     alertList.Add(alertTemp);
                     //this adds one button to each no and yes list button in the ListOfYNButtons.cs lists
@@ -186,6 +200,7 @@ namespace Squadron5missing
                 }
                 else if (this.eventNumber == 4)
                 {
+                    Resoure.Hull -= 10;
                     tempD = rnd.Next(50, 200);
                     alertList.Add(alertTemp);
                     //this adds one button to each no and yes list button in the ListOfYNButtons.cs lists
@@ -244,12 +259,22 @@ namespace Squadron5missing
                         }
                         if (this.eventNumber == 4)
                         {
+                            Resoure.Hull -= 2;
                             ListOfEvents.StatListEvents.Add(new EngineEvent((double)rnd.Next(70, 110), "Error", clock, "", Mech1));
                         }
                         if (this.eventNumber == 5)
                         {
-                            ListOfEvents.StatListEvents.Add(new PilotEvent(((double)86400), "Error", clock, ""));
+                            ListOfEvents.StatListEvents.Add(new PilotEvent(((double)86400 * (double)1.000001f * (double)pilotingErrorOffsetValue), "Error", clock, "", Mech1));
                         }
+                        if (this.eventNumber == 6)
+                        {
+                            ListOfEvents.StatListEvents.Add(new RadarEvent(((double)86400), "Error", clock, "", Mech1));
+                        }
+                        if (this.eventNumber == 7)
+                        {
+                            ListOfEvents.StatListEvents.Add(new Event(((double)86499), "Error", clock, "", Mech1));
+                        }
+
                         ListOfYNButtons.ButtonList.RemoveAt(i);
                         ListOfYNButtons.ButtonList2.RemoveAt(i);
                         alertList.RemoveAt(i);
@@ -298,11 +323,20 @@ namespace Squadron5missing
                         }
                         if (this.eventNumber == 4)
                         {
+                            Resoure.Hull -= 2;
                             ListOfEvents.StatListEvents.Add(new EngineEvent((double)rnd.Next(70, 110), "Error", clock, "", Mech2));
                         }
                         if (this.eventNumber == 5)
                         {
-                            ListOfEvents.StatListEvents.Add(new PilotEvent(((double)86400), "Error", clock, ""));
+                            ListOfEvents.StatListEvents.Add(new PilotEvent(((double)86400 * (double)1.000001f * (double)pilotingErrorOffsetValue), "Error", clock, "", Mech2));
+                        }
+                        if (this.eventNumber == 6)
+                        {
+                            ListOfEvents.StatListEvents.Add(new RadarEvent(((double)86400), "Error", clock, "", Mech2));
+                        }
+                        if (this.eventNumber == 7)
+                        {
+                            ListOfEvents.StatListEvents.Add(new Event(((double)86499), "Error", clock, "", Mech2));
                         }
                         ListOfYNButtons.ButtonList.RemoveAt(i);
                         ListOfYNButtons.ButtonList2.RemoveAt(i);
@@ -340,23 +374,32 @@ namespace Squadron5missing
                     {
                         if (this.eventNumber == 1)
                         {
-                            ListOfEvents.StatListEvents.Add(new PilotEvent((double)rnd.Next(70, 110), "Error", clock, ""));
+                            ListOfEvents.StatListEvents.Add(new PilotEvent((double)rnd.Next(70, 110), "Error", clock, "", Mech3));
                         }
                         if (this.eventNumber == 2)
                         {
-                            ListOfEvents.StatListEvents.Add(new RadarEvent((double)rnd.Next(70, 110), "Error", clock, ""));
+                            ListOfEvents.StatListEvents.Add(new RadarEvent((double)rnd.Next(70, 110), "Error", clock, "", Mech3));
                         }
                         if (this.eventNumber == 3)
                         {
-                            ListOfEvents.StatListEvents.Add(new InfermaryEvent((double)rnd.Next(70, 110), "Error", clock, ""));
+                            ListOfEvents.StatListEvents.Add(new InfermaryEvent((double)rnd.Next(70, 110), "Error", clock, "", Mech3));
                         }
                         if (this.eventNumber == 4)
                         {
-                            ListOfEvents.StatListEvents.Add(new EngineEvent((double)rnd.Next(70, 110), "Error", clock, ""));
+                            Resoure.Hull -= 2;
+                            ListOfEvents.StatListEvents.Add(new EngineEvent((double)rnd.Next(70, 110), "Error", clock, "", Mech3));
                         }
                         if (this.eventNumber == 5)
                         {
-                            ListOfEvents.StatListEvents.Add(new PilotEvent(((double)86400), "Error", clock, ""));
+                            ListOfEvents.StatListEvents.Add(new PilotEvent(((double)86400 * (double)1.000001f * (double)pilotingErrorOffsetValue), "Error", clock, "", Mech3));
+                        }
+                        if (this.eventNumber == 6)
+                        {
+                            ListOfEvents.StatListEvents.Add(new RadarEvent(((double)86400), "Error", clock, "", Mech3));
+                        }
+                        if (this.eventNumber == 7)
+                        {
+                            ListOfEvents.StatListEvents.Add(new Event(((double)86499), "Error", clock, "", Mech3));
                         }
                         ListOfYNButtons.ButtonList.RemoveAt(i);
                         ListOfYNButtons.ButtonList2.RemoveAt(i);
@@ -414,6 +457,10 @@ namespace Squadron5missing
                 //moves it of the screen
                 ListOfYNButtons.ButtonList.Add(new YesButton(buttonTexture, new Vector2(-20, -20), Color.CadetBlue));
                 ListOfYNButtons.ButtonList2.Add(new NoButton(buttonTexture2, new Vector2(-20, -20), Color.CornflowerBlue));
+            }
+            if (clock.Millisecond <= 30 && clock.Second == 0 && clock.Minute == 0 && clock.Hour == 0)
+            {
+                eventNumber = 6;
                 alertList.Add(SMessage2);
                 //moves it of the screen
                 ListOfYNButtons.ButtonList.Add(new YesButton(buttonTexture, new Vector2(-20, -20), Color.CadetBlue));
@@ -421,7 +468,7 @@ namespace Squadron5missing
             }
             if (clock.DayOfWeek == DayOfWeek.Monday && clock.Millisecond <= 30 && clock.Second == 0 && clock.Minute == 0 && clock.Hour == 0)
             {
-                eventNumber = 5;
+                eventNumber = 7;
                 alertList.Add(SMessage3);
                 //moves it of the screen
                 ListOfYNButtons.ButtonList.Add(new YesButton(buttonTexture, new Vector2(-20, -20), Color.CadetBlue));

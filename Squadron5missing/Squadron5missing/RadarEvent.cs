@@ -33,7 +33,7 @@ namespace Squadron5missing
 
         public void MoveTooPosition()
         {
-            //moves too corect position(x,y) in the hub room at the radar
+            
         }
     }
 }

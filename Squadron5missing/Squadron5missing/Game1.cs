@@ -77,6 +77,7 @@ namespace Squadron5missing
 
         ErrorMessage p;
         public int gameSpeed = 1;
+        public double distance = 0;
         int temp;
         int maxEvents;
         
@@ -139,11 +140,9 @@ namespace Squadron5missing
             ListOfChars.statListChar.Add(mechanic);
             ListOfChars.statListChar.Add(mechanic2);
 
-            p = new ErrorMessage(mechanic, mechanic2, dora);
+            p = new ErrorMessage(mechanic, mechanic2, dora, resource);
 
             //Initializing events
-            engineEvent = new EngineEvent(200, "Engine broke down", clock, "The engines Fluxual Accelerate Perperator has been damaged and needs repair");
-
             RoomCamera1 = Content.Load<Texture2D>("button");
             RoomCamera2 = Content.Load<Texture2D>("button");
             RoomCamera3 = Content.Load<Texture2D>("button");
@@ -169,7 +168,6 @@ namespace Squadron5missing
             RoomTabs.Add(roomTab5);
             RoomTabs.Add(roomTab6);
             //Initializing variables
-
             maxEvents = 5;
         }
 
