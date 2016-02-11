@@ -259,11 +259,11 @@ namespace Squadron5missing
                         }
                         if (this.eventNumber == 5)
                         {
-                            ListOfEvents.StatListEvents.Add(new PilotEvent(((double)86400 * (double)1.000001f * (double)pilotingErrorOffsetValue), "Error", clock, "", Mech1));
+                            ListOfEvents.StatListEvents.Add(new Event(((double)86400), "Error", clock, "", Mech1));
                         }
                         if (this.eventNumber == 6)
                         {
-                            ListOfEvents.StatListEvents.Add(new RadarEvent(((double)86400), "Error", clock, "", Mech1));
+                            ListOfEvents.StatListEvents.Add(new Event(((double)86400), "Error", clock, "", Mech1));
                         }
                         if (this.eventNumber == 7)
                         {
@@ -323,11 +323,11 @@ namespace Squadron5missing
                         }
                         if (this.eventNumber == 5)
                         {
-                            ListOfEvents.StatListEvents.Add(new PilotEvent(((double)86400 * (double)1.000001f * (double)pilotingErrorOffsetValue), "Error", clock, "", Mech2));
+                            ListOfEvents.StatListEvents.Add(new Event(((double)86400), "Error", clock, "", Mech2));
                         }
                         if (this.eventNumber == 6)
                         {
-                            ListOfEvents.StatListEvents.Add(new RadarEvent(((double)86400), "Error", clock, "", Mech2));
+                            ListOfEvents.StatListEvents.Add(new Event(((double)86400), "Error", clock, "", Mech2));
                         }
                         if (this.eventNumber == 7)
                         {
@@ -386,11 +386,11 @@ namespace Squadron5missing
                         }
                         if (this.eventNumber == 5)
                         {
-                            ListOfEvents.StatListEvents.Add(new PilotEvent(((double)86400 * (double)1.000001f * (double)pilotingErrorOffsetValue), "Error", clock, "", Mech3));
+                            ListOfEvents.StatListEvents.Add(new Event(((double)86400), "Error", clock, "", Mech3));
                         }
                         if (this.eventNumber == 6)
                         {
-                            ListOfEvents.StatListEvents.Add(new RadarEvent(((double)86400), "Error", clock, "", Mech3));
+                            ListOfEvents.StatListEvents.Add(new Event(((double)86400), "Error", clock, "", Mech3));
                         }
                         if (this.eventNumber == 7)
                         {
