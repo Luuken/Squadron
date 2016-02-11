@@ -27,6 +27,7 @@ namespace Squadron5missing
         Event e;
         Mechanic mechanic;
         Mechanic mechanic2;
+        Mechanic dora;
         EngineEvent engineEvent;
 
         Resources resource;
@@ -123,6 +124,10 @@ namespace Squadron5missing
             graphics.ApplyChanges();
             rand = new Random();
             //Initializing characters
+            dora = new Mechanic(Content.Load<Texture2D>("Dora Hairflip"), new Vector2(700, 400), RoomE.Bridge, resource, "Dora the Explorah", 174, 300, 13, 5, new Button(Content.Load<Texture2D>("button"), new Vector2(400, 665), Color.White, ButtonName.Eat),
+                new Button(Content.Load<Texture2D>("button"), new Vector2(850, 665), Color.White, ButtonName.Resolve), new Button(Content.Load<Texture2D>("button"), new Vector2(400, 790), Color.White, ButtonName.Heal), new Button(Content.Load<Texture2D>("button")
+                    , new Vector2(850, 790), Color.White, ButtonName.Upgrade), Content.Load<Texture2D>("Dora Walk Left"), 8, 5, Content.Load<Texture2D>("Dora Walk Right"), 8, 5, Content.Load<Texture2D>("Dora Walk Back"), 8, 5, Content.Load<Texture2D>("Dora Walk Front"), 8, 5, 5, 5, 5, 5, 5, 100, "");
+
             mechanic = new Mechanic(Content.Load<Texture2D>("Kitty Breath Blink"), new Vector2(1000, 450), RoomE.Bridge, resource, "Morgan the Mechanic", 174, 300, 9, 5, new Button(Content.Load<Texture2D>("button"), new Vector2(400, 665), Color.White, ButtonName.Eat),
                 new Button(Content.Load<Texture2D>("button"), new Vector2(850, 665), Color.White, ButtonName.Resolve), new Button(Content.Load<Texture2D>("button"), new Vector2(400, 790), Color.White, ButtonName.Heal), new Button(Content.Load<Texture2D>("button")
                     , new Vector2(850, 790), Color.White, ButtonName.Upgrade), Content.Load<Texture2D>("Kitty Walk Left"), 8, 5, Content.Load<Texture2D>("Kitty Walk Right"), 8, 5, Content.Load<Texture2D>("Kitty Walk Back"), 9, 5, Content.Load<Texture2D>("Kitty Walk Front"), 9, 5, 5, 5, 5, 8, 5, 100, "Olaf");
@@ -215,7 +220,7 @@ namespace Squadron5missing
             //Updates diffrent game objects and adds the seconds to the clock
             mechanic.Update(gameTime);
             mechanic2.Update(gameTime);
-
+            dora.Update(gameTime);
 
             roomTab1.Update();
             roomTab2.Update();
@@ -262,8 +267,9 @@ namespace Squadron5missing
                 but.Update(gameTime);
             }
 
-            if (mechanic.characterSelected) { mechanic2.characterSelected = false; }
-            if (mechanic2.characterSelected) { mechanic.characterSelected = false; }
+            if (mechanic.characterSelected) { mechanic2.characterSelected = false; dora.characterSelected = false; }
+            if (mechanic2.characterSelected) { mechanic.characterSelected = false; dora.characterSelected = false; }
+            if (dora.characterSelected) { mechanic.characterSelected = false; mechanic2.characterSelected = false; }
             
             
 
@@ -294,6 +300,7 @@ namespace Squadron5missing
             //engineEvent.DrawText(spriteBatch, testFont, new Vector2(100, 700));
             mechanic.Draw(spriteBatch);
             mechanic2.Draw(spriteBatch);
+            dora.Draw(spriteBatch);
 
             spriteBatch.DrawString(testFont, clock.ToLongTimeString(), new Vector2(3, 2), Color.White);
             

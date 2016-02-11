@@ -62,7 +62,7 @@ namespace Squadron5missing
         //private members
         private int frame = 0;
         private int animationDelayTimer = 0;
-        private int animationDelay = 200;
+        private int animationDelay = 100;
         protected int gameSpeed = 1;
         
         
