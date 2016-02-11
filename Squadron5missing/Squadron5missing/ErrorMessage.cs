@@ -313,6 +313,56 @@ namespace Squadron5missing
 
                 }
             }
+            else if (Mech3.resolvePressed == true)
+            {
+                //adds a menu window behind the list of problems
+                //also writes it a title
+                s.Draw(square, V2, Color.White);
+                s.DrawString(f, "List of problems", new Vector2(365, 20), Color.White);
+
+                for (int i = 0; i < alertList.Count; i++)
+                {
+                    s.DrawString(fs, alertList[i], new Vector2(400, 50 + (i * 20)), Color.White);
+                    //sets the position of yes and no buttons
+                    //they are then drawn out in the draw function of the individual yes and no button classes
+                    ListOfYNButtons.ButtonList[i].Position = new Vector2(358, 50 + (i * 20));
+                    ListOfYNButtons.ButtonList2[i].Position = new Vector2(378, 50 + (i * 20));
+
+                    if (ListOfYNButtons.ButtonList[i].yesPressed == true)
+                    {
+                        if (this.eventNumber == 1)
+                        {
+                            ListOfEvents.StatListEvents.Add(new PilotEvent((double)rnd.Next(70, 110), "Error", clock, ""));
+                        }
+                        if (this.eventNumber == 2)
+                        {
+                            ListOfEvents.StatListEvents.Add(new RadarEvent((double)rnd.Next(70, 110), "Error", clock, ""));
+                        }
+                        if (this.eventNumber == 3)
+                        {
+                            ListOfEvents.StatListEvents.Add(new InfermaryEvent((double)rnd.Next(70, 110), "Error", clock, ""));
+                        }
+                        if (this.eventNumber == 4)
+                        {
+                            ListOfEvents.StatListEvents.Add(new EngineEvent((double)rnd.Next(70, 110), "Error", clock, ""));
+                        }
+                        ListOfYNButtons.ButtonList.RemoveAt(i);
+                        ListOfYNButtons.ButtonList2.RemoveAt(i);
+                        alertList.RemoveAt(i);
+                        Mech3.resolvePressed = false;
+                        Mech3.yesIsSelected = true;
+                    }
+                    else if (ListOfYNButtons.ButtonList2[i].noPressed == true)
+                    {
+                        ListOfYNButtons.ButtonList.RemoveAt(i);
+                        ListOfYNButtons.ButtonList2.RemoveAt(i);
+                        alertList.RemoveAt(i);
+                        Mech3.resolvePressed = false;
+
+                    }
+
+                }
+            }
             else
             {
                 for (int i = 0; i < alertList.Count; i++)

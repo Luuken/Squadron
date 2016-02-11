@@ -295,8 +295,8 @@ namespace Squadron5missing
 
             for (int i = 0; i < ListOfEvents.StatListEvents.Count; i++)
             {
-                ListOfEvents.StatListEvents[i].Update();
                 ListOfEvents.StatListEvents[i].CurrentTime = clock;
+                ListOfEvents.StatListEvents[i].Update();
             }
 
             resource.Draw(spriteBatch, testFont);

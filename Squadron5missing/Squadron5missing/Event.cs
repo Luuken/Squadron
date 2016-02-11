@@ -53,6 +53,13 @@ namespace Squadron5missing
             {
                 eventFinished = true;
             }
+            for (int i = 0; i < ListOfEvents.StatListEvents.Count; i++)
+            {
+                if (ListOfEvents.StatListEvents[i].eventFinished == true)
+                {
+                    ListOfEvents.StatListEvents.RemoveAt(i);
+                }
+            }
         }
     }
 }
