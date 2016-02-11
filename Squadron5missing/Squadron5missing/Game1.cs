@@ -332,6 +332,7 @@ namespace Squadron5missing
             spriteBatch.Draw(menu, new Vector2(-2, 538), Color.White);
             mechanic.DrawText(spriteBatch, testFont);
             mechanic2.DrawText(spriteBatch, testFont);
+            dora.DrawText(spriteBatch, testFont);
 
             foreach (RoomTab r in RoomTabs)
             {

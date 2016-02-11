@@ -1,14 +1,15 @@
 Content\TestFont.xnb
-Content\CsFontSmall.xnb
+Content\placeHolder.xnb
 Content\Repair_knapp.xnb
 Content\Mat knapp.xnb
 Content\Sjukvårds knapp.xnb
-Content\placeHolder.xnb
 Content\space.xnb
 Content\space02.xnb
 Content\space03.xnb
+Content\CsFontSmall.xnb
 Content\ProblemMenu.xnb
 Content\chair01.xnb
+Content\button.xnb
 Content\YesButton.xnb
 Content\NoButton.xnb
 Content\Kitty Walk Left.xnb
@@ -18,24 +19,17 @@ Content\menu_layout.xnb
 Content\Kitty Breath Blink.xnb
 Content\chair02.xnb
 Content\elevator_002.xnb
+Content\evenMeny.xnb
 Content\Kitty Walk Back.xnb
 Content\Kitty Walk Front.xnb
-Content\button.xnb
 Content\resource_button.xnb
 Content\room_02.xnb
-<<<<<<< HEAD
-Content\evenMeny.xnb
-=======
 Content\Larm.xnb
 Content\walk_up_02.xnb
 Content\walk_right_03.xnb
 Content\idle_pose02.xnb
-<<<<<<< HEAD
 Content\Dora Hairflip.xnb
 Content\Dora Walk Back.xnb
 Content\Dora Walk Front.xnb
 Content\Dora Walk Left.xnb
 Content\Dora Walk Right.xnb
-=======
->>>>>>> origin/master
->>>>>>> origin/master
