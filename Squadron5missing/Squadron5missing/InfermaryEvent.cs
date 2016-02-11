@@ -34,6 +34,14 @@ namespace Squadron5missing
         public override void Update()
         {
             base.Update();
+            for (int i = 0; i < ListOfEvents.StatListEvents.Count; i++)
+            {
+                if (ListOfEvents.StatListEvents[i].eventFinished == true)
+                {
+                    StaticGameHelper.healthTimeOffsetValue += 0.05f;
+                    ListOfEvents.StatListEvents.RemoveAt(i);
+                }
+            }
         }
 
         public void MoveTooRoom()

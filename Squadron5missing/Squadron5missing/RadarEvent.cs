@@ -29,6 +29,14 @@ namespace Squadron5missing
         public override void Update()
         {
             base.Update();
+            for (int i = 0; i < ListOfEvents.StatListEvents.Count; i++)
+            {
+                if (ListOfEvents.StatListEvents[i].eventFinished == true)
+                {
+                    StaticGameHelper.scrapFindingChance += 30;
+                    ListOfEvents.StatListEvents.RemoveAt(i);
+                }
+            }
         }
 
         public void MoveTooPosition()

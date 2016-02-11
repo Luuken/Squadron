@@ -24,10 +24,6 @@ namespace Squadron5missing
         public Mechanic Mech2 { get; set; }
         public Mechanic Mech3 { get; set; }
         public Resources Resoure { get; set; }
-        //variables
-        public float healthTimeOffsetValue = 1;
-        public float pilotingErrorOffsetValue = 1;
-        public int scrapFindingChance = 200;
         //variables for this class only
         Random rnd = new Random();
 
@@ -164,10 +160,9 @@ namespace Squadron5missing
                 int tempD;
                 if (this.eventNumber == 1)
                 {
-                    pilotingErrorOffsetValue += 0.087f;
+                    StaticGameHelper.pilotingErrorOffsetValue += 0.087f;
                     tempD = rnd.Next(60, 190);
                     alertList.Add(alertTemp);
-                    pilotingErrorOffsetValue += 0.2f;
                     //this adds one button to each no and yes list button in the ListOfYNButtons.cs lists
                     ListOfYNButtons.ButtonList.Add(new YesButton(buttonTexture, position2, Color.CadetBlue));
                     ListOfYNButtons.ButtonList2.Add(new NoButton(buttonTexture2, position, Color.CornflowerBlue));
@@ -179,7 +174,7 @@ namespace Squadron5missing
 
                     tempD = rnd.Next(20, 230);
                     alertList.Add(alertTemp);
-                    scrapFindingChance -= 35;
+                    StaticGameHelper.scrapFindingChance -= 35;
                     //this adds one button to each no and yes list button in the ListOfYNButtons.cs lists
                     ListOfYNButtons.ButtonList.Add(new YesButton(buttonTexture, position2, Color.CadetBlue));
                     ListOfYNButtons.ButtonList2.Add(new NoButton(buttonTexture2, position2, Color.CornflowerBlue));
@@ -188,7 +183,7 @@ namespace Squadron5missing
                 }
                 else if (this.eventNumber == 3)
                 {
-                    healthTimeOffsetValue -= 0.05f;
+                    StaticGameHelper.healthTimeOffsetValue -= 0.05f;
                     tempD = rnd.Next(90, 110);
                     alertList.Add(alertTemp);
                     //this adds one button to each no and yes list button in the ListOfYNButtons.cs lists

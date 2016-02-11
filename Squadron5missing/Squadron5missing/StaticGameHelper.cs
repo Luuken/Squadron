@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Squadron5missing
 {
-    class StaticGameHelper
+    static class StaticGameHelper
     {
         public static float healthTimeOffsetValue = 1;
         public static float pilotingErrorOffsetValue = 1;
