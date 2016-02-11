@@ -31,6 +31,7 @@ namespace Squadron5missing
         public Texture2D OldTexture { get; set; }
         public int OldFrames { get; set; }
         public int OldSPR { get; set; }
+        public int ID { get; set; }
 
         Direction direction = Direction.None;
         ButtonName selectedOption = ButtonName.Default;
@@ -117,10 +118,14 @@ namespace Squadron5missing
                     direction = Direction.None;
                     for (int i = 0; i < ListOfEvents.StatListEvents.Count; i++)
                     {
-                        if (ListOfEvents.StatListEvents[i].eventFinished == true)
+                        if (ListOfEvents.StatListEvents[i].eventFinished == true)                  
                         {
-                            yesIsSelected = false;
-                            Position = OldPos;
+                            if(ListOfEvents.StatListEvents[i].Chara.ID == this.ID)
+                            {
+                                yesIsSelected = false;
+                                Position = OldPos;
+                                ListOfEvents.StatListEvents.RemoveAt(i);
+                            }
                         }
                     }
                 }

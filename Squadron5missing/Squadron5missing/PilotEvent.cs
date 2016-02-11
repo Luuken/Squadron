@@ -29,14 +29,6 @@ namespace Squadron5missing
         public override void Update()
         {
             base.Update();
-            for (int i = 0; i < ListOfEvents.StatListEvents.Count; i++)
-            {
-                if (ListOfEvents.StatListEvents[i].eventFinished == true)
-                {
-                    StaticGameHelper.pilotingErrorOffsetValue -= 0.087f;
-                    ListOfEvents.StatListEvents.RemoveAt(i);
-                }
-            }
         }
 
         public void MoveTooPosition()

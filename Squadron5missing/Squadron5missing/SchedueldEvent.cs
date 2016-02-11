@@ -35,13 +35,6 @@ namespace Squadron5missing
         public override void Update()
         {
             base.Update();
-            for (int i = 0; i < ListOfEvents.StatListEvents.Count; i++)
-            {
-                if (ListOfEvents.StatListEvents[i].eventFinished == true)
-                {
-                    ListOfEvents.StatListEvents.RemoveAt(i);
-                }
-            }
         }
         public double Piloting(double dist, Resources r)
         {
