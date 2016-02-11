@@ -246,6 +246,10 @@ namespace Squadron5missing
                         {
                             ListOfEvents.StatListEvents.Add(new EngineEvent((double)rnd.Next(70, 110), "Error", clock, ""));
                         }
+                        if (this.eventNumber == 5)
+                        {
+                            ListOfEvents.StatListEvents.Add(new PilotEvent(((double)86400), "Error", clock, ""));
+                        }
                         ListOfYNButtons.ButtonList.RemoveAt(i);
                         ListOfYNButtons.ButtonList2.RemoveAt(i);
                         alertList.RemoveAt(i);
@@ -296,6 +300,10 @@ namespace Squadron5missing
                         {
                             ListOfEvents.StatListEvents.Add(new EngineEvent((double)rnd.Next(70, 110), "Error", clock, ""));
                         }
+                        if (this.eventNumber == 5)
+                        {
+                            ListOfEvents.StatListEvents.Add(new PilotEvent(((double)86400), "Error", clock, ""));
+                        }
                         ListOfYNButtons.ButtonList.RemoveAt(i);
                         ListOfYNButtons.ButtonList2.RemoveAt(i);
                         alertList.RemoveAt(i);
@@ -345,6 +353,10 @@ namespace Squadron5missing
                         if (this.eventNumber == 4)
                         {
                             ListOfEvents.StatListEvents.Add(new EngineEvent((double)rnd.Next(70, 110), "Error", clock, ""));
+                        }
+                        if (this.eventNumber == 5)
+                        {
+                            ListOfEvents.StatListEvents.Add(new PilotEvent(((double)86400), "Error", clock, ""));
                         }
                         ListOfYNButtons.ButtonList.RemoveAt(i);
                         ListOfYNButtons.ButtonList2.RemoveAt(i);
@@ -397,6 +409,7 @@ namespace Squadron5missing
         {
             if (clock.Millisecond <= 30 && clock.Second == 0 && clock.Minute == 0 && clock.Hour == 0)
             {
+                eventNumber = 5;
                 alertList.Add(SMessage);
                 //moves it of the screen
                 ListOfYNButtons.ButtonList.Add(new YesButton(buttonTexture, new Vector2(-20, -20), Color.CadetBlue));
@@ -408,6 +421,7 @@ namespace Squadron5missing
             }
             if (clock.DayOfWeek == DayOfWeek.Monday && clock.Millisecond <= 30 && clock.Second == 0 && clock.Minute == 0 && clock.Hour == 0)
             {
+                eventNumber = 5;
                 alertList.Add(SMessage3);
                 //moves it of the screen
                 ListOfYNButtons.ButtonList.Add(new YesButton(buttonTexture, new Vector2(-20, -20), Color.CadetBlue));
