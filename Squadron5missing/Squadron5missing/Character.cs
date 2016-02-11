@@ -28,7 +28,7 @@ namespace Squadron5missing
         //properties
         protected Texture2D Texture { get; set; }
         protected Vector2 Position { get; set; }
-        protected RoomE RoomV { get; set; }
+        public RoomE RoomV { get; set; }
         protected string CharName { get; set; }
         protected int AnimWidth { get; set; }
         protected int AnimHeight { get; set; }

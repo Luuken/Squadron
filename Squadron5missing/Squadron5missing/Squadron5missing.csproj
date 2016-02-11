@@ -80,6 +80,7 @@
     <Compile Include="Event.cs" />
     <Compile Include="ForegroundObject.cs" />
     <Compile Include="InfermaryEvent.cs" />
+    <Compile Include="ListOfChars.cs" />
     <Compile Include="ListOfEvents.cs" />
     <Compile Include="ListOfYNButtons.cs" />
     <Compile Include="Mechanic.cs" />

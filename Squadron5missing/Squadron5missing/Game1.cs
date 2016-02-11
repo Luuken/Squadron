@@ -154,11 +154,11 @@ namespace Squadron5missing
             RoomTextures.Add(RoomCamera5);
             RoomTextures.Add(RoomCamera6);
             roomTab1 = new RoomTab(sjukvårdsKnapp, new Vector2(1500, 50), "bridge", RoomE.Bridge, RoomTextures);
-            roomTab2 = new RoomTab(repairKnapp, new Vector2(1500, 500), "engineRoom", RoomE.EngineRoom, RoomTextures);
-            roomTab3 = new RoomTab(sjukvårdsKnapp, new Vector2(1500, 150), "cockpit", RoomE.Cockpit, RoomTextures);
-            roomTab4 = new RoomTab(sjukvårdsKnapp, new Vector2(1500, 200), "infermary", RoomE.Infirmary, RoomTextures);
-            roomTab5 = new RoomTab(sjukvårdsKnapp, new Vector2(1500, 250), "kitchen", RoomE.Kitchen, RoomTextures);
-            roomTab6 = new RoomTab(sjukvårdsKnapp, new Vector2(1500, 300), "battlestation", RoomE.Battlestation, RoomTextures);
+            roomTab2 = new RoomTab(repairKnapp, new Vector2(1500, 150), "engineRoom", RoomE.EngineRoom, RoomTextures);
+            roomTab3 = new RoomTab(sjukvårdsKnapp, new Vector2(1500, 250), "cockpit", RoomE.Cockpit, RoomTextures);
+            roomTab4 = new RoomTab(sjukvårdsKnapp, new Vector2(1500, 350), "infermary", RoomE.Infirmary, RoomTextures);
+            roomTab5 = new RoomTab(sjukvårdsKnapp, new Vector2(1500, 450), "kitchen", RoomE.Kitchen, RoomTextures);
+            roomTab6 = new RoomTab(sjukvårdsKnapp, new Vector2(1500, 550), "battlestation", RoomE.Battlestation, RoomTextures);
             RoomTabs.Add(roomTab1);
             RoomTabs.Add(roomTab2);
             RoomTabs.Add(roomTab3);
