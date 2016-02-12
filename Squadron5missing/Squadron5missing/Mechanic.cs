@@ -19,7 +19,8 @@ namespace Squadron5missing
         Left,
         Right,
         Up,
-        Down
+        Down,
+        Dead
     }
 
     class Mechanic : Character
@@ -30,9 +31,11 @@ namespace Squadron5missing
         public Vector2 OldPos { get; set; }
         public Texture2D OldTexture { get; set; }
         public Texture2D Portrait { get; set; }
+        public Texture2D DeathAnim { get; set; }
         public int OldFrames { get; set; }
         public int OldSPR { get; set; }
         public int ID { get; set; }
+        public Texture2D DeadTexture { get; set; }
 
         Direction direction = Direction.None;
         ButtonName selectedOption = ButtonName.Default;
@@ -45,12 +48,15 @@ namespace Squadron5missing
         public bool resolvePressed = false;
         public bool yesIsSelected = false;
         bool healSelected = false;
+        bool hasDiedAnimated = false;
+
+        int deathTimer = 0;
         int timer;
         string heyytext;
 
         //contructor(s)
         public Mechanic(Texture2D texture, Vector2 position, RoomE room, Resources resource, string name, int animWidth, int animHeight, int maxFrames, int spritesPerRow, Button button1, Button button2, Button button3, Button button4, Texture2D walkLeft, int walkLeftFrames, int walkLeftSPR, Texture2D walkRight, int walkRightFrames, int walkRightSPR,
-            Texture2D walkUp, int walkUpFrames, int walkUpSPR, Texture2D walkDown, int walkDownFrames, int walkDownSPR, int intel, int perc, int stam, int con, int hand, int hunger, string wName, Texture2D portrait)
+            Texture2D walkUp, int walkUpFrames, int walkUpSPR, Texture2D walkDown, int walkDownFrames, int walkDownSPR, int intel, int perc, int stam, int con, int hand, int hunger, string wName, Texture2D portrait, Texture2D deathAnim, Texture2D deadTexture)
             : base(texture, position, room, name, animWidth, animHeight, maxFrames, spritesPerRow, button1, button2, button3, button4, walkLeft, walkLeftFrames, walkLeftSPR, walkRight, walkRightFrames, walkRightSPR, walkUp, walkUpFrames, walkUpSPR, walkDown, walkDownFrames, walkDownSPR, intel, perc, stam, con, hand, hunger)
         {
             this.WrenchName = wName;
@@ -61,6 +67,8 @@ namespace Squadron5missing
             this.OldSPR = spritesPerRow;
             this.OldFrames = maxFrames;
             this.Portrait = portrait;
+            this.DeathAnim = deathAnim;
+            this.DeadTexture = deadTexture;
         }
 
         //method(s)
@@ -70,7 +78,25 @@ namespace Squadron5missing
             if (IsDead == true)
             {
                 characterSelected = false;
-
+                if (hasDiedAnimated == false)
+                {
+                    Texture = DeathAnim;
+                    direction = Direction.Dead;
+                    AnimWidth = 300;
+                    AnimHeight = 301;
+                    MaxFrames = 8;
+                    SpritesPerRow = 3;
+                    deathTimer++;
+                    if (deathTimer == MaxFrames)
+                    {
+                        hasDiedAnimated = true;
+                    }
+                }
+                if (hasDiedAnimated == true)
+                {
+                    Texture = DeadTexture;
+                    MaxFrames = 1;
+                }
             }
 
             if (characterSelected == true && hasCreatedButtons == false)
@@ -292,7 +318,7 @@ namespace Squadron5missing
                 if (timer == 0)
                 {
                     timer = 240;
-                    heyytext = heyyy[rnd.Next(1, 23)];
+                    heyytext = heyyy[rnd.Next(1, 22)];
                 }
             }
             if (timer > 0)

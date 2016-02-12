@@ -140,6 +140,7 @@ namespace Squadron5missing
                 gameSpeed = 10;
             }
 
+
             Hunger -= 0.005f * gameSpeed;
             if (Hunger > 100)
             {
@@ -170,9 +171,9 @@ namespace Squadron5missing
             {
                 willAnimate = r.Next(0, 100);
             }
+
             //AnimationUpdate
 
-            Debug.WriteLine(frame);
         }
 
         public virtual void Draw(SpriteBatch spriteBatch)

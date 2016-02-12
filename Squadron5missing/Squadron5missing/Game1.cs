@@ -38,6 +38,7 @@ namespace Squadron5missing
         ForegroundObject elevator;
         ForegroundObject radar;
         ForegroundObject screen;
+        ForegroundObject loseScreen;
 
         Random rand;
         //List<string> alertList = new List<string>();
@@ -100,6 +101,7 @@ namespace Squadron5missing
         int temp;
         int maxEvents;
         int HealthLossTimer;
+        int lel = 0;
         
 
         public Game1()
@@ -136,6 +138,7 @@ namespace Squadron5missing
             elevator = new ForegroundObject(Content.Load<Texture2D>("elevator_002"), new Vector2(352, 264), 500, 500, 13, 4, 100);
             radar = new ForegroundObject(Content.Load<Texture2D>("radartech01"), new Vector2(1010, 420), 350, 100, 4, 2, 100);
             screen = new ForegroundObject(Content.Load<Texture2D>("screen01"), new Vector2(990, 140), 350, 300, 2, 2, 100);
+            loseScreen = new ForegroundObject(Content.Load<Texture2D>("end_screen02"), new Vector2(0, 0), 1600, 900, 2, 2, 100);
 
             Characters = new List<Character>();
 
@@ -164,30 +167,35 @@ namespace Squadron5missing
             //Initializing characters
             spencer = new Mechanic(Content.Load<Texture2D>("spencer_idle_04"), new Vector2(1100, 400), RoomE.Bridge, resource, "Spencer Bara", 300, 300, 3, 2, new Button(Content.Load<Texture2D>("button"), new Vector2(400, 665), Color.White, ButtonName.Eat),
                 new Button(Content.Load<Texture2D>("button"), new Vector2(850, 665), Color.White, ButtonName.Resolve), new Button(Content.Load<Texture2D>("button"), new Vector2(400, 790), Color.White, ButtonName.Heal), new Button(Content.Load<Texture2D>("button")
-                    , new Vector2(850, 790), Color.White, ButtonName.Upgrade), Content.Load<Texture2D>("spencer_walk_left_00"), 8, 3, Content.Load<Texture2D>("spencer_walk_right_01"), 8, 3, Content.Load<Texture2D>("spencer_walk_up_04"), 8, 3, Content.Load<Texture2D>("spencer_walk_down_05"), 8, 3, 5, 5, 5, 5, 5, 100, "", Content.Load<Texture2D>("Portrait Spencer"));
+                    , new Vector2(850, 790), Color.White, ButtonName.Upgrade), Content.Load<Texture2D>("spencer_walk_left_00"), 8, 3, Content.Load<Texture2D>("spencer_walk_right_01"), 8, 3, Content.Load<Texture2D>("spencer_walk_up_04"), 8, 3, Content.Load<Texture2D>("spencer_walk_down_05"), 8, 3,
+                    5, 5, 5, 5, 5, 100, "", Content.Load<Texture2D>("Portrait Spencer"), Content.Load<Texture2D>("Spencer Dead"), Content.Load<Texture2D>("Spencer dead still"));
 
             spencer.ID = 4;
 
             lavender = new Mechanic(Content.Load<Texture2D>("Lavender_Idle"), new Vector2(500, 400), RoomE.Bridge, resource, "Lavender Flowers", 174, 300, 10, 5, new Button(Content.Load<Texture2D>("button"), new Vector2(400, 665), Color.White, ButtonName.Eat),
                 new Button(Content.Load<Texture2D>("button"), new Vector2(850, 665), Color.White, ButtonName.Resolve), new Button(Content.Load<Texture2D>("button"), new Vector2(400, 790), Color.White, ButtonName.Heal), new Button(Content.Load<Texture2D>("button")
-                    , new Vector2(850, 790), Color.White, ButtonName.Upgrade), Content.Load<Texture2D>("lavender walk left"), 8, 5, Content.Load<Texture2D>("lavender walk right"), 8, 5, Content.Load<Texture2D>("Lavender Walk Back"), 8, 5, Content.Load<Texture2D>("Lavender Walk Front"), 8, 5, 5, 5, 5, 5, 5, 100, "", Content.Load<Texture2D>("Portrait Lavender"));
+                    , new Vector2(850, 790), Color.White, ButtonName.Upgrade), Content.Load<Texture2D>("lavender walk left"), 8, 5, Content.Load<Texture2D>("lavender walk right"), 8, 5, Content.Load<Texture2D>("Lavender Walk Back"), 8, 5, Content.Load<Texture2D>("Lavender Walk Front"), 8, 5,
+                    5, 5, 5, 5, 5, 100, "", Content.Load<Texture2D>("Portrait Lavender"), Content.Load<Texture2D>("Lavender Dead"), Content.Load<Texture2D>("Lavender dead still"));
             lavender.ID = 5;
 
             dora = new Mechanic(Content.Load<Texture2D>("Dora Hairflip"), new Vector2(700, 400), RoomE.Bridge, resource, "Dora \"the Explorah\" Dandy", 174, 300, 13, 5, new Button(Content.Load<Texture2D>("button"), new Vector2(400, 665), Color.White, ButtonName.Eat),
                 new Button(Content.Load<Texture2D>("button"), new Vector2(850, 665), Color.White, ButtonName.Resolve), new Button(Content.Load<Texture2D>("button"), new Vector2(400, 790), Color.White, ButtonName.Heal), new Button(Content.Load<Texture2D>("button")
-                    , new Vector2(850, 790), Color.White, ButtonName.Upgrade), Content.Load<Texture2D>("Dora Walk Left"), 8, 5, Content.Load<Texture2D>("Dora Walk Right"), 8, 5, Content.Load<Texture2D>("Dora Walk Back"), 8, 5, Content.Load<Texture2D>("Dora Walk Front"), 8, 5, 5, 5, 5, 5, 5, 100, "", Content.Load<Texture2D>("Portrait Dora"));
+                    , new Vector2(850, 790), Color.White, ButtonName.Upgrade), Content.Load<Texture2D>("Dora Walk Left"), 8, 5, Content.Load<Texture2D>("Dora Walk Right"), 8, 5, Content.Load<Texture2D>("Dora Walk Back"), 8, 5, Content.Load<Texture2D>("Dora Walk Front"), 8, 5,
+                    5, 5, 5, 5, 5, 100, "", Content.Load<Texture2D>("Portrait Dora"), Content.Load<Texture2D>("Dora Dead"), Content.Load<Texture2D>("Dora dead still"));
 
             dora.ID = 3;
 
             mechanic = new Mechanic(Content.Load<Texture2D>("Kitty Breath Blink"), new Vector2(1000, 450), RoomE.Bridge, resource, "Kitty Kat", 174, 300, 9, 5, new Button(Content.Load<Texture2D>("button"), new Vector2(400, 665), Color.White, ButtonName.Eat),
                 new Button(Content.Load<Texture2D>("button"), new Vector2(850, 665), Color.White, ButtonName.Resolve), new Button(Content.Load<Texture2D>("button"), new Vector2(400, 790), Color.White, ButtonName.Heal), new Button(Content.Load<Texture2D>("button")
-                    , new Vector2(850, 790), Color.White, ButtonName.Upgrade), Content.Load<Texture2D>("Kitty Walk Left"), 8, 5, Content.Load<Texture2D>("Kitty Walk Right"), 8, 5, Content.Load<Texture2D>("Kitty Walk Back"), 9, 5, Content.Load<Texture2D>("Kitty Walk Front"), 9, 5, 5, 5, 5, 8, 5, 100, "Olaf", Content.Load<Texture2D>("Portrait Kitty"));
+                    , new Vector2(850, 790), Color.White, ButtonName.Upgrade), Content.Load<Texture2D>("Kitty Walk Left"), 8, 5, Content.Load<Texture2D>("Kitty Walk Right"), 8, 5, Content.Load<Texture2D>("Kitty Walk Back"), 9, 5, Content.Load<Texture2D>("Kitty Walk Front"),
+                    9, 5, 5, 5, 5, 8, 5, 100, "Olaf", Content.Load<Texture2D>("Portrait Kitty"), Content.Load<Texture2D>("Kitty Dead"), Content.Load<Texture2D>("Kitty dead still"));
 
             mechanic.ID = 1;
 
             mechanic2 = new Mechanic(Content.Load<Texture2D>("idle_pose02"), new Vector2(300, 450), RoomE.Bridge, resource, "Blondie Bubs", 300, 300, 8, 3, new Button(Content.Load<Texture2D>("button"), new Vector2(400, 665), Color.White, ButtonName.Eat),
                 new Button(Content.Load<Texture2D>("button"), new Vector2(850, 665), Color.White, ButtonName.Resolve), new Button(Content.Load<Texture2D>("button"), new Vector2(400, 790), Color.White, ButtonName.Heal), new Button(Content.Load<Texture2D>("button")
-                    , new Vector2(850, 790), Color.White, ButtonName.Upgrade), Content.Load<Texture2D>("walk_right_03"), 8, 3, Content.Load<Texture2D>("walk_right_03"), 8, 3, Content.Load<Texture2D>("walk_up_02"), 8, 3, Content.Load<Texture2D>("walk_up_02"), 8, 3, 5, 5, 5, 5, 5, 100, "Olaf", Content.Load<Texture2D>("Portrait Blondie"));
+                    , new Vector2(850, 790), Color.White, ButtonName.Upgrade), Content.Load<Texture2D>("walk_right_03"), 8, 3, Content.Load<Texture2D>("walk_right_03"), 8, 3, Content.Load<Texture2D>("walk_up_02"), 8, 3, Content.Load<Texture2D>("walk_up_02"), 8, 3,
+                    5, 5, 5, 5, 5, 100, "Olaf", Content.Load<Texture2D>("Portrait Blondie"), Content.Load<Texture2D>("Blondie Dead"), Content.Load<Texture2D>("Blondie dead still"));
 
             mechanic2.ID = 2;
 
@@ -307,17 +315,17 @@ namespace Squadron5missing
 
             if (gameState == GameState.Game)
             {
-                if (resource.Hull < 101)
+                if (resource.Hull < 75)
                 {
                     resource.Oxygen -= 0.02f;
                 }
-                if (resource.Hull < 50)
+                else if (resource.Hull < 50)
                 {
                     resource.Oxygen -= 0.03f;
                 }
-                if (resource.Hull < 10)
+                else if (resource.Hull < 10)
                 {
-                    resource.Oxygen -= 0.03f;
+                    resource.Oxygen -= 0.04f;
                 }
                 if (resource.Hull <= 0)
                 {
@@ -328,12 +336,13 @@ namespace Squadron5missing
                     gameLost = true;
                 }
                 HealthLossTimer++;
-                if (HealthLossTimer == 360 && resource.Oxygen < 10)
+                if (HealthLossTimer >= 360 && resource.Oxygen < 20)
                 {
                     for (int i = 0; i < ListOfChars.statListChar.Count; i++)
                     {
                         ListOfChars.statListChar[i].healthPoints -= 1;
                         temp = 0;
+                        HealthLossTimer = 0;
                     }
                 }
                 if (HealthLossTimer == 120)
@@ -348,20 +357,17 @@ namespace Squadron5missing
                 }
                 for (int i = 0; i < ListOfChars.statListChar.Count; i++)
                 {
-                    int lel = 0;
+                    
                     if (ListOfChars.statListChar[i].healthPoints <= 0)
                     {
                         ListOfChars.statListChar[i].IsDead = true;
                     }
-                    if (ListOfChars.statListChar[i].IsDead == true)
-                    {
-
-                        lel++;
-                    }
+                    
                     if (lel == 5)
                     {
                         gameState = GameState.Lose;
                     }
+                    Debug.WriteLine(lel);
                 }
 
                 //Updates diffrent game objects and adds the seconds to the clock
@@ -453,7 +459,7 @@ namespace Squadron5missing
             }
             if (gameState == GameState.Lose)
             {
-
+                loseScreen.Update(gameTime);
             }
             if (gameState == GameState.Win)
             {
@@ -581,7 +587,7 @@ namespace Squadron5missing
 
             if (gameState == GameState.Lose)
             {
-
+                loseScreen.Draw(spriteBatch);
             }
 
             if (gameState == GameState.Win)
