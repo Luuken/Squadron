@@ -333,7 +333,7 @@ namespace Squadron5missing
                 }
                 if (resource.Oxygen <= 0)
                 {
-                    gameLost = true;
+                    gameState = GameState.Lose;
                 }
                 HealthLossTimer++;
                 if (HealthLossTimer >= 360 && resource.Oxygen < 20)

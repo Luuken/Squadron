@@ -155,7 +155,7 @@ namespace Squadron5missing
         public void Update(SpriteBatch s, SpriteFont f, Vector2 position, Texture2D buttonTexture, Texture2D buttonTexture2, Vector2 position2)
         {
             
-            temp = rnd.Next(1, 500);
+            temp = rnd.Next(1, 6769);
             if (temp == 2)
             {
                 //binds random message too a string that is then put in a list
@@ -232,7 +232,7 @@ namespace Squadron5missing
                 //adds a menu window behind the list of problems
                 //also writes it a title
                 s.Draw(square, V2, Color.White);
-                s.DrawString(f, "List of problems", new Vector2(365, 20), Color.White);
+                s.DrawString(f, "List of problems", new Vector2(1, 1), Color.White);
                 
                 for (int i = 0; i < alertList.Count; i++)
                 {
