@@ -151,7 +151,7 @@ namespace Squadron5missing
             //Setting graphics settings
             graphics.PreferredBackBufferWidth = 1600;
             graphics.PreferredBackBufferHeight = 900;
-            graphics.IsFullScreen = true;
+            graphics.IsFullScreen = false;
             graphics.ApplyChanges();
             rand = new Random();
             //Initializing characters
@@ -193,15 +193,15 @@ namespace Squadron5missing
             p = new ErrorMessage(mechanic, mechanic2, dora, spencer, lavender, resource);
 
             //Initializing events
-            RoomCamera2 = Content.Load<Texture2D>("button");
-            RoomCamera3 = Content.Load<Texture2D>("button");
-            RoomCamera4 = Content.Load<Texture2D>("button");
+            RoomCamera2 = Content.Load<Texture2D>("Engineroom05");
+            RoomCamera3 = Content.Load<Texture2D>("infirmary003");
+            RoomCamera4 = Content.Load<Texture2D>("kitchen_02");
             RoomTextures.Add(RoomCamera2);
             RoomTextures.Add(RoomCamera3);
             RoomTextures.Add(RoomCamera4);
-            roomTab2 = new RoomTab(tab1Texture, new Vector2(1500, 150), "engineRoom", RoomE.EngineRoom, RoomTextures);
-            roomTab3 = new RoomTab(tab2Texture, new Vector2(1500, 250), "Infirmary", RoomE.Infirmary, RoomTextures);
-            roomTab4 = new RoomTab(tab3Texture , new Vector2(1500, 350), "Kitchen", RoomE.Kitchen, RoomTextures);
+            roomTab2 = new RoomTab(tab1Texture, new Vector2(1500, 150), "engineRoom", RoomE.EngineRoom, RoomCamera2);
+            roomTab3 = new RoomTab(tab2Texture, new Vector2(1500, 250), "Infirmary", RoomE.Infirmary, RoomCamera3);
+            roomTab4 = new RoomTab(tab3Texture , new Vector2(1500, 350), "Kitchen", RoomE.Kitchen, RoomCamera4);
             RoomTabs.Add(roomTab2);
             RoomTabs.Add(roomTab3);
             RoomTabs.Add(roomTab4);
@@ -365,12 +365,12 @@ namespace Squadron5missing
                 spencer.Update(gameTime);
 
 
-                roomTab1.Update();
-                roomTab2.Update();
-                roomTab3.Update();
-                roomTab4.Update();
-                roomTab5.Update();
-                roomTab6.Update();
+                //roomTab1.Update(gameTime);
+                roomTab2.Update(gameTime);
+                roomTab3.Update(gameTime);
+                roomTab4.Update(gameTime);
+                //roomTab5.Update(gameTime);
+                //roomTab6.Update(gameTime);
 
 
                 b.Scroll(GraphicsDevice);
