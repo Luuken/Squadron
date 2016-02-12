@@ -340,12 +340,18 @@ namespace Squadron5missing
             p.Update(spriteBatch, testFont, new Vector2(75, 75), yesButton, noButton, new Vector2());
             if (resource.Fuel != 0)
             {
-                Debug.WriteLine("Size of list: " + ListOfEvents.StatListEvents.Count);
-                Debug.WriteLine("Number of SE: " + ListOfEvents.StatListEvents.Where(x => x.GetType() == typeof(SchedueldEvent)).ToList().Count.ToString());
                 foreach (SchedueldEvent e in ListOfEvents.StatListEvents.Where(x => x.GetType() == typeof(SchedueldEvent)))
                 {
                     distance = e.Piloting(distance, resource);
                     resource.Fuel -= 0.2398f;
+                }
+            }
+            foreach (ScanningEvent s in ListOfEvents.StatListEvents.Where(x => x.GetType() == typeof(ScanningEvent)))
+            {
+                if (StaticGameHelper.scrapFound == true)
+                {
+                    resource.ScrapMetal += rand.Next(20, 100);
+                    StaticGameHelper.scrapFound = false;
                 }
             }
             //Update function for both the yes and the no buttons
@@ -417,8 +423,8 @@ namespace Squadron5missing
 
                 spriteBatch.DrawString(testFont, clock.ToLongTimeString(), new Vector2(3, 2), Color.White);
             
-                p.Draw(spriteBatch,testFont,ProblemMenuBackground,new Vector2(332,5),fontSmall, clock);
-            
+                p.Draw(spriteBatch,testFont,ProblemMenuBackground,new Vector2(314,5),fontSmall, clock);
+                
                 foreach (Button but in buttonList)
                 {
                     but.Draw(spriteBatch);
@@ -473,6 +479,8 @@ namespace Squadron5missing
         StartMenu,
         Game,
         End,
-        Credits
+        Credits,
+        lose,
+        win
     }
 }

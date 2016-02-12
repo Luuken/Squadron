@@ -10,5 +10,6 @@ namespace Squadron5missing
         public static float healthTimeOffsetValue = 1;
         public static float pilotingErrorOffsetValue = 1;
         public static int scrapFindingChance = 200;
+        public static bool scrapFound = false;
     }
 }

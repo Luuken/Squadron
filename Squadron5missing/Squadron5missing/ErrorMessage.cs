@@ -161,7 +161,7 @@ namespace Squadron5missing
                 {
                     StaticGameHelper.pilotingErrorOffsetValue += 0.087f;
                     tempD = rnd.Next(60, 190);
-                    alertList.Add(alertTemp + " || piloting effect - 8%");
+                    alertList.Add(alertTemp + " -OCO- piloting effect - 8%");
                     //this adds one button to each no and yes list button in the ListOfYNButtons.cs lists
                     ListOfYNButtons.ButtonList.Add(new YesButton(EventType.PilotEvent, buttonTexture, position2, Color.CadetBlue));
                     ListOfYNButtons.ButtonList2.Add(new NoButton(buttonTexture2, position, Color.CornflowerBlue));
@@ -172,7 +172,7 @@ namespace Squadron5missing
                 {
 
                     tempD = rnd.Next(20, 230);
-                    alertList.Add(alertTemp + " || find chance decreased");
+                    alertList.Add(alertTemp + " -OCO- find chance decreased");
                     StaticGameHelper.scrapFindingChance -= 35;
                     //this adds one button to each no and yes list button in the ListOfYNButtons.cs lists
                     ListOfYNButtons.ButtonList.Add(new YesButton(EventType.RadarEvent, buttonTexture, position2, Color.CadetBlue));
@@ -184,7 +184,7 @@ namespace Squadron5missing
                 {
                     StaticGameHelper.healthTimeOffsetValue -= 0.05f;
                     tempD = rnd.Next(90, 110);
-                    alertList.Add(alertTemp + " || healing effect -5%");
+                    alertList.Add(alertTemp + " -OCO- healing effect -5%");
                     //this adds one button to each no and yes list button in the ListOfYNButtons.cs lists
                     ListOfYNButtons.ButtonList.Add(new YesButton(EventType.InfermaryEvent, buttonTexture, position2, Color.CadetBlue));
                     ListOfYNButtons.ButtonList2.Add(new NoButton(buttonTexture2, position2, Color.CornflowerBlue));
@@ -196,7 +196,7 @@ namespace Squadron5missing
                 {
                     Resoure.Hull -= 10;
                     tempD = rnd.Next(50, 200);
-                    alertList.Add(alertTemp + " || hull dmg -10");
+                    alertList.Add(alertTemp + " -OCO- hull dmg -10");
                     //this adds one button to each no and yes list button in the ListOfYNButtons.cs lists
                     ListOfYNButtons.ButtonList.Add(new YesButton(EventType.EngineEvent, buttonTexture, position2, Color.CadetBlue));
                     ListOfYNButtons.ButtonList2.Add(new NoButton(buttonTexture2, position2, Color.CornflowerBlue));
@@ -264,7 +264,7 @@ namespace Squadron5missing
                         }
                         else if (ListOfYNButtons.ButtonList[i].EventType == EventType.ScanningEvent)
                         {
-                            ListOfEvents.StatListEvents.Add(new Event((double)86400, "Error", clock, "", Mech1));
+                            ListOfEvents.StatListEvents.Add(new ScanningEvent((double)86400, "Error", clock, "", Mech1));
                         }
                         else if (ListOfYNButtons.ButtonList[i].EventType == EventType.CookingEvent)
                         {
@@ -327,7 +327,7 @@ namespace Squadron5missing
                         }
                         else if (ListOfYNButtons.ButtonList[i].EventType == EventType.ScanningEvent)
                         {
-                            ListOfEvents.StatListEvents.Add(new Event((double)86400, "Error", clock, "", Mech2));
+                            ListOfEvents.StatListEvents.Add(new ScanningEvent((double)86400, "Error", clock, "", Mech2));
                         }
                         else if (ListOfYNButtons.ButtonList[i].EventType == EventType.CookingEvent)
                         {
@@ -389,7 +389,7 @@ namespace Squadron5missing
                         }
                         else if (ListOfYNButtons.ButtonList[i].EventType == EventType.ScanningEvent)
                         {
-                            ListOfEvents.StatListEvents.Add(new Event((double)86400, "Error", clock, "", Mech3));
+                            ListOfEvents.StatListEvents.Add(new ScanningEvent((double)86400, "Error", clock, "", Mech3));
                         }
                         else if (ListOfYNButtons.ButtonList[i].EventType == EventType.CookingEvent)
                         {
