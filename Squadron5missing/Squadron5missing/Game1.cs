@@ -250,7 +250,7 @@ namespace Squadron5missing
             matKnapp = Content.Load<Texture2D>("Mat knapp");
             sjukvårdsKnapp = Content.Load<Texture2D>("Sjukvårds knapp");
             repairKnapp = Content.Load<Texture2D>("Repair_knapp");
-            ProblemMenuBackground = Content.Load<Texture2D>("ProblemMenu");
+            ProblemMenuBackground = Content.Load<Texture2D>("Menu_Box (2)");
             yesButton = Content.Load<Texture2D>("YesButton");
             noButton = Content.Load<Texture2D>("NoButton");
             
@@ -550,7 +550,7 @@ namespace Squadron5missing
                 spencer.Talk(spriteBatch, fontSmall);
                 spriteBatch.DrawString(testFont, clock.ToLongTimeString(), new Vector2(3, 2), Color.White);
             
-                p.Draw(spriteBatch,testFont,ProblemMenuBackground,new Vector2(314,5),fontSmall, clock);
+                p.Draw(spriteBatch,testFont,ProblemMenuBackground,new Vector2(310,1),fontSmall, clock);
                 
                 foreach (Button but in buttonList)
                 {

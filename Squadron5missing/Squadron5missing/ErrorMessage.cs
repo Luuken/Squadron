@@ -232,7 +232,7 @@ namespace Squadron5missing
                 //adds a menu window behind the list of problems
                 //also writes it a title
                 s.Draw(square, V2, Color.White);
-                s.DrawString(f, "List of problems", new Vector2(365, 20), Color.White);
+                s.DrawString(f, "List of problems", new Vector2(1, 1), Color.White);
                 
                 for (int i = 0; i < alertList.Count; i++)
                 {
