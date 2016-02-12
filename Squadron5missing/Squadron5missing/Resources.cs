@@ -23,12 +23,12 @@ namespace Squadron5missing
         public int Food { get; set; }
         public int ScrapMetal { get; set; }
         public float Oxygen { get; set; }
-        public int Fuel { get; set; }
+        public float Fuel { get; set; }
         public int Hull { get; set; }
 
         bool hasBeenPressed = false;
 
-        public Resources(Texture2D texture, Vector2 position, SpriteFont font, SpriteBatch spriteBatch, int food, int scrapMetal, int oxygen, int fuel, int hull)
+        public Resources(Texture2D texture, Vector2 position, SpriteFont font, SpriteBatch spriteBatch, int food, int scrapMetal, float oxygen, float fuel, int hull)
         {
             this.Texture = texture;
             this.Position = position;

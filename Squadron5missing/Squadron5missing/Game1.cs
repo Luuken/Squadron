@@ -85,6 +85,7 @@ namespace Squadron5missing
         GameState gameState = GameState.PreStart;
 
         ErrorMessage p;
+        bool gameLost = false;
         public int gameSpeed = 1;
         public double distance = 0;
         int temp;
@@ -153,13 +154,20 @@ namespace Squadron5missing
                 new Button(Content.Load<Texture2D>("button"), new Vector2(850, 665), Color.White, ButtonName.Resolve), new Button(Content.Load<Texture2D>("button"), new Vector2(400, 790), Color.White, ButtonName.Heal), new Button(Content.Load<Texture2D>("button")
                     , new Vector2(850, 790), Color.White, ButtonName.Upgrade), Content.Load<Texture2D>("Dora Walk Left"), 8, 5, Content.Load<Texture2D>("Dora Walk Right"), 8, 5, Content.Load<Texture2D>("Dora Walk Back"), 8, 5, Content.Load<Texture2D>("Dora Walk Front"), 8, 5, 5, 5, 5, 5, 5, 100, "");
 
-            mechanic = new Mechanic(Content.Load<Texture2D>("Kitty Breath Blink"), new Vector2(1000, 350), RoomE.Bridge, resource, "Kitty Kat", 174, 300, 9, 5, new Button(Content.Load<Texture2D>("button"), new Vector2(400, 665), Color.White, ButtonName.Eat),
+            dora.ID = 3;
+
+            mechanic = new Mechanic(Content.Load<Texture2D>("Kitty Breath Blink"), new Vector2(1000, 450), RoomE.Bridge, resource, "Morgan the Mechanic", 174, 300, 9, 5, new Button(Content.Load<Texture2D>("button"), new Vector2(400, 665), Color.White, ButtonName.Eat),
                 new Button(Content.Load<Texture2D>("button"), new Vector2(850, 665), Color.White, ButtonName.Resolve), new Button(Content.Load<Texture2D>("button"), new Vector2(400, 790), Color.White, ButtonName.Heal), new Button(Content.Load<Texture2D>("button")
                     , new Vector2(850, 790), Color.White, ButtonName.Upgrade), Content.Load<Texture2D>("Kitty Walk Left"), 8, 5, Content.Load<Texture2D>("Kitty Walk Right"), 8, 5, Content.Load<Texture2D>("Kitty Walk Back"), 9, 5, Content.Load<Texture2D>("Kitty Walk Front"), 9, 5, 5, 5, 5, 8, 5, 100, "Olaf");
 
-            mechanic2 = new Mechanic(Content.Load<Texture2D>("idle_pose02"), new Vector2(300, 450), RoomE.Bridge, resource, "Blondie Bubs", 300, 300, 8, 3, new Button(Content.Load<Texture2D>("button"), new Vector2(400, 665), Color.White, ButtonName.Eat),
+            mechanic.ID = 1;
+
+            mechanic2 = new Mechanic(Content.Load<Texture2D>("idle_pose02"), new Vector2(300, 450), RoomE.Bridge, resource, "Morgan the Mechanic", 300, 300, 8, 3, new Button(Content.Load<Texture2D>("button"), new Vector2(400, 665), Color.White, ButtonName.Eat),
                 new Button(Content.Load<Texture2D>("button"), new Vector2(850, 665), Color.White, ButtonName.Resolve), new Button(Content.Load<Texture2D>("button"), new Vector2(400, 790), Color.White, ButtonName.Heal), new Button(Content.Load<Texture2D>("button")
                     , new Vector2(850, 790), Color.White, ButtonName.Upgrade), Content.Load<Texture2D>("walk_right_03"), 8, 3, Content.Load<Texture2D>("walk_right_03"), 8, 3, Content.Load<Texture2D>("walk_up_02"), 8, 3, Content.Load<Texture2D>("walk_up_02"), 8, 3, 5, 5, 5, 5, 5, 100, "Olaf");
+
+            mechanic2.ID = 2;
+
             ListOfChars.statListChar.Add(dora);
             ListOfChars.statListChar.Add(mechanic);
             ListOfChars.statListChar.Add(mechanic2);
@@ -245,6 +253,29 @@ namespace Squadron5missing
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState(PlayerIndex.One).IsKeyDown(Keys.Escape))
                 this.Exit();
 
+            
+            if (resource.Hull < 50)
+            {
+                resource.Oxygen -= 0.02f;
+            }
+            if (resource.Hull < 25)
+            {
+                resource.Oxygen -= 0.03f;
+            }
+            if (resource.Hull < 10)
+            {
+                resource.Oxygen -= 0.03f;
+            }
+            if (resource.Hull <= 0)
+	        {
+                resource.Oxygen -= 5f;
+	        }
+            if (resource.Oxygen <= 0)
+            {
+                gameLost = true;
+            }
+
+
             if (gameState == GameState.PreStart)
             {
                 preStartScreen.Update(gameTime);
@@ -313,6 +344,16 @@ namespace Squadron5missing
             
             p.SchedueldAlertMessage(clock, yesButton, new Vector2(75, 75), noButton);
             p.Update(spriteBatch, testFont, new Vector2(75, 75), yesButton, noButton, new Vector2());
+            if (resource.Fuel != 0)
+            {
+                Debug.WriteLine("Size of list: " + ListOfEvents.StatListEvents.Count);
+                Debug.WriteLine("Number of SE: " + ListOfEvents.StatListEvents.Where(x => x.GetType() == typeof(SchedueldEvent)).ToList().Count.ToString());
+                foreach (SchedueldEvent e in ListOfEvents.StatListEvents.Where(x => x.GetType() == typeof(SchedueldEvent)))
+                {
+                    distance = e.Piloting(distance, resource);
+                    resource.Fuel -= 0.2398f;
+                }
+            }
             //Update function for both the yes and the no buttons
             foreach (YesButton yes in ListOfYNButtons.ButtonList)
             {
@@ -405,6 +446,12 @@ namespace Squadron5missing
                 }
 
 
+            foreach (RoomTab r in RoomTabs)
+            {
+                r.Draw(spriteBatch);
+            }
+            spriteBatch.DrawString(testFont, distance.ToString(), new Vector2(1500, 0), Color.White);
+
                 foreach (YesButton yes in ListOfYNButtons.ButtonList)
                 {
                     yes.Draw(spriteBatch);
@@ -426,6 +473,7 @@ namespace Squadron5missing
                 }
 
             }
+
             spriteBatch.End();
             // TODO: Add your drawing code here
 

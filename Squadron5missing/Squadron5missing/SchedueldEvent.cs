@@ -12,14 +12,20 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Squadron5missing
 {
-    class RadarEvent : Event
+    class SchedueldEvent : Event
     {
-        public RadarEvent(double timespan, string eventName, DateTime currentTime, string startText, Mechanic chara)
+
+        public SchedueldEvent(double timespan, string eventName, DateTime currentTime, string startText, Mechanic chara)
             : base(timespan, eventName, currentTime, startText, chara)
         {
             
         }
 
+        //methods
+        /*public override void DrawText(SpriteBatch spriteBatch, SpriteFont sFont, Vector2 position)
+        {
+            base.DrawText(spriteBatch, sFont, position);
+        }*/
 
         public override void Draw(SpriteBatch spriteB, SpriteFont Font)
         {
@@ -30,10 +36,16 @@ namespace Squadron5missing
         {
             base.Update();
         }
-
-        public void MoveTooPosition()
+        public double Piloting(double dist, Resources r)
         {
-            
+            dist += (double)200;
+            return dist;
+        }
+        public void MoveTooRoom()
+        {
+            //for-loops too move to the elevators X and Y cordiantes
+            //then move move to the correct room
         }
     }
 }
+
