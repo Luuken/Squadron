@@ -81,6 +81,11 @@ namespace Squadron5missing
         //in use
         Texture2D yesButton;
         Texture2D noButton;
+        Texture2D tab1Texture;
+        Texture2D tab2Texture;
+        Texture2D tab3Texture;
+
+        List<Character> Characters;
 
         GameState gameState = GameState.PreStart;
 
@@ -90,6 +95,7 @@ namespace Squadron5missing
         public double distance = 0;
         int temp;
         int maxEvents;
+        int HealthLossTimer;
         
 
         public Game1()
@@ -109,6 +115,11 @@ namespace Squadron5missing
             // TODO: Add your initialization logic here
             clock = new DateTime();
 
+            tab1Texture = Content.Load<Texture2D>("Tab Button Engineroom");
+            tab2Texture = Content.Load<Texture2D>("Tab Button Infirmary");
+            tab3Texture = Content.Load<Texture2D>("Tab Button Kitchen");
+
+
             b = new BackScroll(Content.Load<Texture2D>("space02"), Content.Load<Texture2D>("space03"), .03f);
             background = Content.Load<Texture2D>("background12");
             menu = Content.Load<Texture2D>("menu_layout");
@@ -121,6 +132,8 @@ namespace Squadron5missing
             elevator = new ForegroundObject(Content.Load<Texture2D>("elevator_002"), new Vector2(352, 264), 500, 500, 13, 4, 100);
             radar = new ForegroundObject(Content.Load<Texture2D>("radartech01"), new Vector2(1010, 420), 350, 100, 4, 2, 100);
             screen = new ForegroundObject(Content.Load<Texture2D>("screen01"), new Vector2(990, 140), 350, 300, 2, 2, 100);
+
+            Characters = new List<Character>();
 
             this.IsMouseVisible = true;
 
@@ -145,6 +158,7 @@ namespace Squadron5missing
             spencer = new Mechanic(Content.Load<Texture2D>("spencer_idle_04"), new Vector2(1100, 400), RoomE.Bridge, resource, "Spencer Bara", 300, 300, 3, 2, new Button(Content.Load<Texture2D>("button"), new Vector2(400, 665), Color.White, ButtonName.Eat),
                 new Button(Content.Load<Texture2D>("button"), new Vector2(850, 665), Color.White, ButtonName.Resolve), new Button(Content.Load<Texture2D>("button"), new Vector2(400, 790), Color.White, ButtonName.Heal), new Button(Content.Load<Texture2D>("button")
                     , new Vector2(850, 790), Color.White, ButtonName.Upgrade), Content.Load<Texture2D>("spencer_walk_left_00"), 8, 3, Content.Load<Texture2D>("spencer_walk_right_01"), 8, 3, Content.Load<Texture2D>("spencer_walk_up_04"), 8, 3, Content.Load<Texture2D>("spencer_walk_down_05"), 8, 3, 5, 5, 5, 5, 5, 100, "");
+
             spencer.ID = 4;
 
             lavender = new Mechanic(Content.Load<Texture2D>("Lavender_Idle"), new Vector2(500, 400), RoomE.Bridge, resource, "Lavender Flowers", 174, 300, 10, 5, new Button(Content.Load<Texture2D>("button"), new Vector2(400, 665), Color.White, ButtonName.Eat),
@@ -173,37 +187,25 @@ namespace Squadron5missing
             ListOfChars.statListChar.Add(dora);
             ListOfChars.statListChar.Add(mechanic);
             ListOfChars.statListChar.Add(mechanic2);
+            ListOfChars.statListChar.Add(spencer);
+            ListOfChars.statListChar.Add(lavender);
 
             p = new ErrorMessage(mechanic, mechanic2, dora, spencer, lavender, resource);
 
             //Initializing events
-
-            //engineEvent = new EngineEvent(200, "Engine broke down", clock, "The engines Fluxual Accelerate Perperator has been damaged and needs repair");
-
-            RoomCamera1 = Content.Load<Texture2D>("button");
             RoomCamera2 = Content.Load<Texture2D>("button");
             RoomCamera3 = Content.Load<Texture2D>("button");
             RoomCamera4 = Content.Load<Texture2D>("button");
-            RoomCamera5 = Content.Load<Texture2D>("button");
-            RoomCamera6 = Content.Load<Texture2D>("button");
-            RoomTextures.Add(RoomCamera1);
             RoomTextures.Add(RoomCamera2);
             RoomTextures.Add(RoomCamera3);
             RoomTextures.Add(RoomCamera4);
-            RoomTextures.Add(RoomCamera5);
-            RoomTextures.Add(RoomCamera6);
-            roomTab1 = new RoomTab(sjukvårdsKnapp, new Vector2(1500, 50), "bridge", RoomE.Bridge, RoomTextures);
-            roomTab2 = new RoomTab(repairKnapp, new Vector2(1500, 150), "engineRoom", RoomE.EngineRoom, RoomTextures);
-            roomTab3 = new RoomTab(sjukvårdsKnapp, new Vector2(1500, 250), "cockpit", RoomE.Cockpit, RoomTextures);
-            roomTab4 = new RoomTab(sjukvårdsKnapp, new Vector2(1500, 350), "infermary", RoomE.Infirmary, RoomTextures);
-            roomTab5 = new RoomTab(sjukvårdsKnapp, new Vector2(1500, 450), "kitchen", RoomE.Kitchen, RoomTextures);
-            roomTab6 = new RoomTab(sjukvårdsKnapp, new Vector2(1500, 550), "battlestation", RoomE.Battlestation, RoomTextures);
-            RoomTabs.Add(roomTab1);
+            roomTab2 = new RoomTab(tab1Texture, new Vector2(1500, 150), "engineRoom", RoomE.EngineRoom, RoomTextures);
+            roomTab3 = new RoomTab(tab2Texture, new Vector2(1500, 250), "Infirmary", RoomE.Infirmary, RoomTextures);
+            roomTab4 = new RoomTab(tab3Texture , new Vector2(1500, 350), "Kitchen", RoomE.Kitchen, RoomTextures);
             RoomTabs.Add(roomTab2);
             RoomTabs.Add(roomTab3);
             RoomTabs.Add(roomTab4);
-            RoomTabs.Add(roomTab5);
-            RoomTabs.Add(roomTab6);
+           
             //Initializing variables
             maxEvents = 5;
         }
@@ -256,11 +258,11 @@ namespace Squadron5missing
                 this.Exit();
 
             
-            if (resource.Hull < 50)
+            if (resource.Hull < 101)
             {
                 resource.Oxygen -= 0.02f;
             }
-            if (resource.Hull < 25)
+            if (resource.Hull < 50)
             {
                 resource.Oxygen -= 0.03f;
             }
@@ -276,6 +278,46 @@ namespace Squadron5missing
             {
                 gameLost = true;
             }
+            HealthLossTimer++;
+            if (HealthLossTimer == 360 && resource.Oxygen < 10)
+            {
+                for (int i = 0; i < ListOfChars.statListChar.Count; i++)
+                {
+		         ListOfChars.statListChar[i].healthPoints -= 1;
+                 temp = 0;
+                }
+            }
+            if (HealthLossTimer == 120)
+            {
+                for (int i = 0; i < ListOfChars.statListChar.Count; i++)
+                {
+                    if(ListOfChars.statListChar[i].Hunger <= 0)
+                    {
+                        ListOfChars.statListChar[i].healthPoints -= 1;
+                    }
+                }
+            }
+            for (int i = 0; i < ListOfChars.statListChar.Count; i++)
+            {
+                int lel = 0;
+                if (ListOfChars.statListChar[i].healthPoints <= 0)
+                {
+                    ListOfChars.statListChar[i].IsDead = true;
+                }
+                if (ListOfChars.statListChar[i].IsDead == true)
+                {
+
+                    lel++;
+                }
+                if (lel == 5)
+                {
+                    gameState = GameState.Lose;
+                }
+            }
+            
+            
+                
+            
 
 
             if (gameState == GameState.PreStart)
@@ -296,11 +338,18 @@ namespace Squadron5missing
 
                 if (startButton.Pressed == true)
                 {
-                    gameState = GameState.Game;
+                    gameState = GameState.Intro;
                 }
                 if (quitButton.Pressed == true)
                 {
                     this.Exit();
+                }
+            }
+            if (gameState == GameState.Intro)
+            {
+                if (Keyboard.GetState().IsKeyDown(Keys.Enter))
+                {
+                    gameState = GameState.Game;
                 }
             }
 
@@ -315,12 +364,14 @@ namespace Squadron5missing
                 lavender.Update(gameTime);
                 spencer.Update(gameTime);
 
+
                 roomTab1.Update();
                 roomTab2.Update();
                 roomTab3.Update();
                 roomTab4.Update();
                 roomTab5.Update();
                 roomTab6.Update();
+
 
                 b.Scroll(GraphicsDevice);
 
@@ -423,6 +474,10 @@ namespace Squadron5missing
                 quitButton.TextOnButton(spriteBatch, testFont);
                 creditsButton.TextOnButton(spriteBatch, testFont);
             }
+            if (gameState == GameState.Intro)
+            {
+                //spriteBatch.Draw(IntroBild, new Vector2(0, 0), Color.White);
+            }
 
             if (gameState == GameState.Game)
             {
@@ -520,5 +575,7 @@ namespace Squadron5missing
         Credits,
         Lose,
         Win,
+        Intro
+
     }
 }

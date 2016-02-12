@@ -1,14 +1,15 @@
 Content\TestFont.xnb
-Content\CsFontSmall.xnb
+Content\placeHolder.xnb
 Content\Repair_knapp.xnb
 Content\Mat knapp.xnb
 Content\Sjukvårds knapp.xnb
-Content\placeHolder.xnb
 Content\space.xnb
 Content\space02.xnb
 Content\space03.xnb
+Content\CsFontSmall.xnb
 Content\ProblemMenu.xnb
 Content\chair01.xnb
+Content\button.xnb
 Content\YesButton.xnb
 Content\NoButton.xnb
 Content\Kitty Walk Left.xnb
@@ -18,12 +19,10 @@ Content\menu_layout.xnb
 Content\Kitty Breath Blink.xnb
 Content\chair02.xnb
 Content\elevator_002.xnb
+Content\evenMeny.xnb
 Content\Kitty Walk Back.xnb
 Content\Kitty Walk Front.xnb
-Content\button.xnb
 Content\resource_button.xnb
-Content\room_02.xnb
-Content\evenMeny.xnb
 Content\Larm.xnb
 Content\walk_up_02.xnb
 Content\walk_right_03.xnb
@@ -36,7 +35,20 @@ Content\Dora Walk Right.xnb
 Content\Start Button.xnb
 Content\start00.xnb
 Content\Space BG.xnb
+Content\Lavender Walk Back.xnb
+Content\Lavender Walk Front.xnb
+Content\lavender walk left.xnb
+Content\lavender walk right.xnb
+Content\Lavender_Idle.xnb
+Content\Spencer_walk_down_05.xnb
+Content\spencer_walk_left_00.xnb
+Content\spencer_walk_right_01.xnb
+Content\Spencer_walk_up_04.xnb
+Content\spencer_idle_04.xnb
 Content\Tab Button Barracks.xnb
 Content\Tab Button Engineroom.xnb
 Content\Tab Button Infirmary.xnb
 Content\Tab Button Kitchen.xnb
+Content\background12.xnb
+Content\radartech01.xnb
+Content\screen01.xnb

@@ -28,6 +28,7 @@ namespace Squadron5missing
         //properties
         protected Texture2D Texture { get; set; }
         public Vector2 Position { get; set; }
+        public int healthPoints { get; set; }
         public RoomE RoomV { get; set; }
         protected string CharName { get; set; }
         protected int AnimWidth { get; set; }
@@ -57,7 +58,7 @@ namespace Squadron5missing
         protected int Stamina { get; set; } //rapairs and fights
         protected int Constitution { get; set; } //not getting sick
         protected int Handyness { get; set; } //general handyness and workspeed also repairs
-        protected float Hunger { get; set; }
+        public float Hunger { get; set; }
 
         //private members
         private int frame = 0;
@@ -72,6 +73,7 @@ namespace Squadron5missing
         //boolean(s)
         public bool characterSelected = false;
         public bool characterIdle = true;
+        public bool IsDead = false;
 
         //constructor(s)
         protected Character(Texture2D texture, Vector2 position, RoomE room, string name, int animWidth, int animHeight, int maxFrames, int spritesPerRow,

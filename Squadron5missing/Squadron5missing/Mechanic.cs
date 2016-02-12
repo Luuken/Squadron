@@ -37,7 +37,7 @@ namespace Squadron5missing
         ButtonName selectedOption = ButtonName.Default;
         List<Button> buttonList = new List<Button>();
 
-        int healthPoints;
+        
         
         //boolean(s)
         bool hasCreatedButtons = false;
