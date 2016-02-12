@@ -24,6 +24,8 @@ namespace Squadron5missing
         public Mechanic Mech1 { get; set; }
         public Mechanic Mech2 { get; set; }
         public Mechanic Mech3 { get; set; }
+        public Mechanic Mech4 { get; set; }
+        public Mechanic Mech5 { get; set; }
         public Resources Resoure { get; set; }
         //variables for this class only
         Random rnd = new Random();
@@ -59,11 +61,13 @@ namespace Squadron5missing
         private string SMessage2 = "Select radar technichan for the day";
         private string SMessage3 = "Someone needs to make food for the week";
 
-        public ErrorMessage(Mechanic m, Mechanic m2, Mechanic m3, Resources resoure)
+        public ErrorMessage(Mechanic m, Mechanic m2, Mechanic m3, Mechanic m4, Mechanic m5, Resources resoure)
         {
             this.Mech1 = m;
             this.Mech2 = m2;
             this.Mech3 = m3;
+            this.Mech4 = m4;
+            this.Mech5 = m5;
             this.Resoure = resoure;
         }
 
@@ -407,6 +411,130 @@ namespace Squadron5missing
                         ListOfYNButtons.ButtonList2.RemoveAt(i);
                         alertList.RemoveAt(i);
                         Mech3.resolvePressed = false;
+
+                    }
+
+                }
+            }
+            else if (Mech4.resolvePressed == true)
+            {
+                //adds a menu window behind the list of problems
+                //also writes it a title
+                s.Draw(square, V2, Color.White);
+                s.DrawString(f, "List of problems", new Vector2(365, 20), Color.White);
+
+                for (int i = 0; i < alertList.Count; i++)
+                {
+                    s.DrawString(fs, alertList[i], new Vector2(400, 50 + (i * 20)), Color.White);
+                    //sets the position of yes and no buttons
+                    //they are then drawn out in the draw function of the individual yes and no button classes
+                    ListOfYNButtons.ButtonList[i].Position = new Vector2(358, 50 + (i * 20));
+                    ListOfYNButtons.ButtonList2[i].Position = new Vector2(378, 50 + (i * 20));
+
+                    if (ListOfYNButtons.ButtonList[i].yesPressed == true)
+                    {
+                        if (ListOfYNButtons.ButtonList[i].EventType == EventType.PilotEvent)
+                        {
+                            ListOfEvents.StatListEvents.Add(new PilotEvent((double)rnd.Next(70, 110), "Error", clock, "", Mech4));
+                        }
+                        else if (ListOfYNButtons.ButtonList[i].EventType == EventType.RadarEvent)
+                        {
+                            ListOfEvents.StatListEvents.Add(new RadarEvent((double)rnd.Next(70, 110), "Error", clock, "", Mech4));
+                        }
+                        else if (ListOfYNButtons.ButtonList[i].EventType == EventType.InfermaryEvent)
+                        {
+                            ListOfEvents.StatListEvents.Add(new InfermaryEvent((double)rnd.Next(70, 110), "Error", clock, "", Mech4));
+                        }
+                        else if (ListOfYNButtons.ButtonList[i].EventType == EventType.EngineEvent)
+                        {
+                            ListOfEvents.StatListEvents.Add(new RadarEvent((double)rnd.Next(70, 110), "Error", clock, "", Mech4));
+                        }
+                        else if (ListOfYNButtons.ButtonList[i].EventType == EventType.PilotingEvent)
+                        {
+                            ListOfEvents.StatListEvents.Add(new SchedueldEvent((double)86400, "Error", clock, "", Mech4));
+                        }
+                        else if (ListOfYNButtons.ButtonList[i].EventType == EventType.ScanningEvent)
+                        {
+                            ListOfEvents.StatListEvents.Add(new ScanningEvent((double)86400, "Error", clock, "", Mech4));
+                        }
+                        else if (ListOfYNButtons.ButtonList[i].EventType == EventType.CookingEvent)
+                        {
+                            ListOfEvents.StatListEvents.Add(new Event((double)86400, "Error", clock, "", Mech4));
+                        }
+                        ListOfYNButtons.ButtonList.RemoveAt(i);
+                        ListOfYNButtons.ButtonList2.RemoveAt(i);
+                        alertList.RemoveAt(i);
+                        Mech4.resolvePressed = false;
+                        Mech4.yesIsSelected = true;
+                    }
+                    else if (ListOfYNButtons.ButtonList2[i].noPressed == true)
+                    {
+                        ListOfYNButtons.ButtonList.RemoveAt(i);
+                        ListOfYNButtons.ButtonList2.RemoveAt(i);
+                        alertList.RemoveAt(i);
+                        Mech4.resolvePressed = false;
+
+                    }
+
+                }
+            }
+            else if (Mech5.resolvePressed == true)
+            {
+                //adds a menu window behind the list of problems
+                //also writes it a title
+                s.Draw(square, V2, Color.White);
+                s.DrawString(f, "List of problems", new Vector2(365, 20), Color.White);
+
+                for (int i = 0; i < alertList.Count; i++)
+                {
+                    s.DrawString(fs, alertList[i], new Vector2(400, 50 + (i * 20)), Color.White);
+                    //sets the position of yes and no buttons
+                    //they are then drawn out in the draw function of the individual yes and no button classes
+                    ListOfYNButtons.ButtonList[i].Position = new Vector2(358, 50 + (i * 20));
+                    ListOfYNButtons.ButtonList2[i].Position = new Vector2(378, 50 + (i * 20));
+
+                    if (ListOfYNButtons.ButtonList[i].yesPressed == true)
+                    {
+                        if (ListOfYNButtons.ButtonList[i].EventType == EventType.PilotEvent)
+                        {
+                            ListOfEvents.StatListEvents.Add(new PilotEvent((double)rnd.Next(70, 110), "Error", clock, "", Mech5));
+                        }
+                        else if (ListOfYNButtons.ButtonList[i].EventType == EventType.RadarEvent)
+                        {
+                            ListOfEvents.StatListEvents.Add(new RadarEvent((double)rnd.Next(70, 110), "Error", clock, "", Mech5));
+                        }
+                        else if (ListOfYNButtons.ButtonList[i].EventType == EventType.InfermaryEvent)
+                        {
+                            ListOfEvents.StatListEvents.Add(new InfermaryEvent((double)rnd.Next(70, 110), "Error", clock, "", Mech5));
+                        }
+                        else if (ListOfYNButtons.ButtonList[i].EventType == EventType.EngineEvent)
+                        {
+                            ListOfEvents.StatListEvents.Add(new RadarEvent((double)rnd.Next(70, 110), "Error", clock, "", Mech5));
+                        }
+                        else if (ListOfYNButtons.ButtonList[i].EventType == EventType.PilotingEvent)
+                        {
+                            ListOfEvents.StatListEvents.Add(new SchedueldEvent((double)86400, "Error", clock, "", Mech5));
+                        }
+                        else if (ListOfYNButtons.ButtonList[i].EventType == EventType.ScanningEvent)
+                        {
+                            ListOfEvents.StatListEvents.Add(new ScanningEvent((double)86400, "Error", clock, "", Mech5));
+                        }
+                        else if (ListOfYNButtons.ButtonList[i].EventType == EventType.CookingEvent)
+                        {
+                            ListOfEvents.StatListEvents.Add(new Event((double)86400, "Error", clock, "", Mech5));
+                        }
+                        ListOfYNButtons.ButtonList.RemoveAt(i);
+                        ListOfYNButtons.ButtonList2.RemoveAt(i);
+                        alertList.RemoveAt(i);
+                        Mech5.resolvePressed = false;
+                        Mech5.yesIsSelected = true;
+                    }
+                    else if (ListOfYNButtons.ButtonList2[i].noPressed == true)
+                    {
+                        ListOfYNButtons.ButtonList.RemoveAt(i);
+                        ListOfYNButtons.ButtonList2.RemoveAt(i);
+                        alertList.RemoveAt(i);
+                        Mech5.resolvePressed = false;
 
                     }
 
