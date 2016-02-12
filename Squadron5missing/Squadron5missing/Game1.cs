@@ -48,6 +48,7 @@ namespace Squadron5missing
         Texture2D background;
         Texture2D menu;
         Texture2D spaceBackground;
+        Texture2D introScreen;
 
         Button startButton;
         Button quitButton;
@@ -119,11 +120,11 @@ namespace Squadron5missing
             tab2Texture = Content.Load<Texture2D>("Tab Button Infirmary");
             tab3Texture = Content.Load<Texture2D>("Tab Button Kitchen");
 
-
             b = new BackScroll(Content.Load<Texture2D>("space02"), Content.Load<Texture2D>("space03"), .03f);
             background = Content.Load<Texture2D>("background12");
             menu = Content.Load<Texture2D>("menu_layout");
             preStartScreen = new Button(Content.Load<Texture2D>("start00"), new Vector2(0,0), Color.White, ButtonName.Default);
+            introScreen = Content.Load<Texture2D>("Intro");
 
             startButton = new Button(Content.Load<Texture2D>("Start Button"), new Vector2(GraphicsDevice.Viewport.Width - 300, 50), Color.White, ButtonName.Start);
             creditsButton = new Button(Content.Load<Texture2D>("Start Button"), new Vector2(GraphicsDevice.Viewport.Width - 300, 350), Color.White, ButtonName.Credits);
@@ -200,8 +201,8 @@ namespace Squadron5missing
             RoomTextures.Add(RoomCamera3);
             RoomTextures.Add(RoomCamera4);
             roomTab2 = new RoomTab(tab1Texture, new Vector2(1500, 150), "engineRoom", RoomE.EngineRoom, RoomTextures);
-            roomTab3 = new RoomTab(tab2Texture, new Vector2(1500, 250), "Infirmary", RoomE.Infirmary, RoomTextures);
-            roomTab4 = new RoomTab(tab3Texture , new Vector2(1500, 350), "Kitchen", RoomE.Kitchen, RoomTextures);
+            roomTab3 = new RoomTab(tab2Texture, new Vector2(1500, 300), "Infirmary", RoomE.Infirmary, RoomTextures);
+            roomTab4 = new RoomTab(tab3Texture , new Vector2(1500, 450), "Kitchen", RoomE.Kitchen, RoomTextures);
             RoomTabs.Add(roomTab2);
             RoomTabs.Add(roomTab3);
             RoomTabs.Add(roomTab4);
@@ -347,7 +348,7 @@ namespace Squadron5missing
             }
             if (gameState == GameState.Intro)
             {
-                if (Keyboard.GetState().IsKeyDown(Keys.Enter))
+                if (Keyboard.GetState().IsKeyDown(Keys.Space))
                 {
                     gameState = GameState.Game;
                 }
@@ -364,13 +365,11 @@ namespace Squadron5missing
                 lavender.Update(gameTime);
                 spencer.Update(gameTime);
 
-
-                roomTab1.Update();
-                roomTab2.Update();
-                roomTab3.Update();
-                roomTab4.Update();
-                roomTab5.Update();
-                roomTab6.Update();
+                foreach (RoomTab r in RoomTabs)
+                {
+                    r.Update(); 
+                }
+                
 
 
                 b.Scroll(GraphicsDevice);
@@ -476,7 +475,7 @@ namespace Squadron5missing
             }
             if (gameState == GameState.Intro)
             {
-                //spriteBatch.Draw(IntroBild, new Vector2(0, 0), Color.White);
+                spriteBatch.Draw(introScreen, new Vector2(0, 0), Color.White);
             }
 
             if (gameState == GameState.Game)
