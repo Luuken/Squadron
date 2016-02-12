@@ -31,6 +31,8 @@ namespace Squadron5missing
         Mechanic spencer;
         Mechanic lavender;
         EngineEvent engineEvent;
+        SoundEffect JazzTunes;
+        SoundEffect SadPiano;
 
         Resources resource;
 
@@ -73,6 +75,8 @@ namespace Squadron5missing
         Texture2D RoomCamera6;
         List<Texture2D> RoomTextures;
         List<RoomTab> RoomTabs;
+        SoundEffectInstance instance;
+        SoundEffectInstance instance2;
 
         //Not in use remove when there is time
         Texture2D repairKnapp;
@@ -128,6 +132,19 @@ namespace Squadron5missing
             menu = Content.Load<Texture2D>("menu_layout");
             preStartScreen = new Button(Content.Load<Texture2D>("start00"), new Vector2(0,0), Color.White, ButtonName.Default);
             introScreen = Content.Load<Texture2D>("Intro");
+
+            JazzTunes = Content.Load<SoundEffect>("Jazzigt-cocktail");
+            instance = JazzTunes.CreateInstance();
+            instance.IsLooped = true;
+            
+            SadPiano = Content.Load<SoundEffect>("Sad_piano1");
+            instance2 = SadPiano.CreateInstance();
+            instance2.IsLooped = true;
+            instance2.Play();
+            
+            
+            
+
 
             startButton = new Button(Content.Load<Texture2D>("Start Button"), new Vector2(GraphicsDevice.Viewport.Width - 300, 50), Color.White, ButtonName.Start);
             creditsButton = new Button(Content.Load<Texture2D>("Start Button"), new Vector2(GraphicsDevice.Viewport.Width - 300, 350), Color.White, ButtonName.Credits);
@@ -236,7 +253,7 @@ namespace Squadron5missing
             ProblemMenuBackground = Content.Load<Texture2D>("ProblemMenu");
             yesButton = Content.Load<Texture2D>("YesButton");
             noButton = Content.Load<Texture2D>("NoButton");
-
+            
             //loads rectangles
             repairKnappRectangle = new Rectangle(125, 3, 111, 83);
             sjukvårdsKnappRectangle = new Rectangle(125, 103, 111, 83);
@@ -263,7 +280,7 @@ namespace Squadron5missing
             // Allows the game to exit
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState(PlayerIndex.One).IsKeyDown(Keys.Escape))
                 this.Exit();
-
+            
             
             
             
@@ -274,6 +291,8 @@ namespace Squadron5missing
 
             if (gameState == GameState.PreStart)
             {
+                
+                
                 preStartScreen.Update(gameTime);
 
                 if (preStartScreen.Pressed == true)
@@ -284,6 +303,7 @@ namespace Squadron5missing
 
             if (gameState == GameState.StartMenu)
             {
+
                 startButton.Update(gameTime);
                 creditsButton.Update(gameTime);
                 quitButton.Update(gameTime);
@@ -307,10 +327,6 @@ namespace Squadron5missing
 
             if (gameState == GameState.Game)
             {
-                if (resource.Hull < 101)
-                {
-                    resource.Oxygen -= 0.02f;
-                }
                 if (resource.Hull < 50)
                 {
                     resource.Oxygen -= 0.03f;
@@ -555,7 +571,7 @@ namespace Squadron5missing
             {
                 r.Draw(spriteBatch);
             }
-            spriteBatch.DrawString(testFont, distance.ToString(), new Vector2(1500, 0), Color.White);
+            spriteBatch.DrawString(testFont,"Distance: " + distance.ToString(), new Vector2(1300, 0), Color.White);
 
                 foreach (YesButton yes in ListOfYNButtons.ButtonList)
                 {
