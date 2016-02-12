@@ -468,7 +468,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
     <Compile Include="Kitty Dead.png">
       <Name>Kitty Dead</Name>
       <Importer>TextureImporter</Importer>
@@ -541,7 +540,9 @@
   <ItemGroup>
     <Compile Include="end_screen02.png">
       <Name>end_screen02</Name>
-=======
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      </Compile>
     <Compile Include="Jazzigt-cocktail.wav">
       <Name>Jazzigt-cocktail</Name>
       <Importer>WavImporter</Importer>
@@ -558,7 +559,6 @@
   <ItemGroup>
     <Compile Include="Menu_Box %282%29.png">
       <Name>Menu_Box %282%29</Name>
->>>>>>> origin/master
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
