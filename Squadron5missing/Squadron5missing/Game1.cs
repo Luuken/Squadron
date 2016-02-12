@@ -50,6 +50,9 @@ namespace Squadron5missing
         Texture2D spaceBackground;
         Texture2D introScreen;
 
+        Texture2D victoryTexture;
+        Vector2 victoryPos;
+
         Button startButton;
         Button quitButton;
         Button creditsButton;
@@ -148,6 +151,9 @@ namespace Squadron5missing
             resource = new Resources(Content.Load<Texture2D>("resource_button"), new Vector2(2, 18), testFont, spriteBatch, 200, 300, 100, 3000, 100);
 
             buttonList = new List<Button>();
+
+            victoryTexture = Content.Load<Texture2D>("victory_00");
+            victoryPos = new Vector2(-1000, 0);
             
             //Setting graphics settings
             graphics.PreferredBackBufferWidth = 1600;
@@ -451,7 +457,23 @@ namespace Squadron5missing
             }
             if (gameState == GameState.Win)
             {
+                mechanic.Update(gameTime);
+                mechanic2.Update(gameTime);
+                dora.Update(gameTime);
+                lavender.Update(gameTime);
+                spencer.Update(gameTime);
 
+                elevator.Update(gameTime);
+                radar.Update(gameTime);
+                screen.Update(gameTime);
+
+                b.Scroll(GraphicsDevice);
+
+                victoryPos.X += 1;
+                if (victoryPos.X > 500)
+                {
+                    victoryPos.X = 500;
+                }
             }
         }
 
@@ -564,6 +586,19 @@ namespace Squadron5missing
 
             if (gameState == GameState.Win)
             {
+                b.Draw(spriteBatch);
+                spriteBatch.Draw(victoryTexture, victoryPos, Color.White);
+                spriteBatch.Draw(background, new Vector2(0, 0), Color.White);
+                elevator.Draw(spriteBatch);
+                radar.Draw(spriteBatch);
+                screen.Draw(spriteBatch);
+
+                mechanic.Draw(spriteBatch);
+                mechanic2.Draw(spriteBatch);
+                dora.Draw(spriteBatch);
+                lavender.Draw(spriteBatch);
+                spencer.Draw(spriteBatch);
+
                 spriteBatch.DrawString(testFont, "YOU WIN!!", new Vector2(700, 400), Color.White);
             }
 
