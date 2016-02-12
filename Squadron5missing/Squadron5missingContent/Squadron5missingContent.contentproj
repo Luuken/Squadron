@@ -196,13 +196,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="room_02.png">
-      <Name>room_02</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Larm.png">
       <Name>Larm</Name>
       <Importer>TextureImporter</Importer>
@@ -307,7 +300,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-	<Compile Include="Lavender Walk Back.png">
+    <Compile Include="Lavender Walk Back.png">
       <Name>Lavender Walk Back</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
@@ -377,10 +370,31 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-	  <Compile Include="spencer_idle_04.png">
-		<Name>spencer_idle_04</Name>
-		<Importer>TextureImporter</Importer>
-		<Processor>TextureProcessor</Processor>
+    <Compile Include="spencer_idle_04.png">
+      <Name>spencer_idle_04</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="background12.png">
+      <Name>background12</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="radartech01.png">
+      <Name>radartech01</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="screen01.png">
+      <Name>screen01</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />

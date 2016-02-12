@@ -35,9 +35,9 @@ namespace Squadron5missing
         Resources resource;
 
         //Put all foreground objects here
-        ForegroundObject chair;
         ForegroundObject elevator;
-        ForegroundObject alarm;
+        ForegroundObject radar;
+        ForegroundObject screen;
 
         Random rand;
         //List<string> alertList = new List<string>();
@@ -110,7 +110,7 @@ namespace Squadron5missing
             clock = new DateTime();
 
             b = new BackScroll(Content.Load<Texture2D>("space02"), Content.Load<Texture2D>("space03"), .03f);
-            background = Content.Load<Texture2D>("room_02");
+            background = Content.Load<Texture2D>("background12");
             menu = Content.Load<Texture2D>("menu_layout");
             preStartScreen = new Button(Content.Load<Texture2D>("start00"), new Vector2(0,0), Color.White, ButtonName.Default);
 
@@ -118,9 +118,9 @@ namespace Squadron5missing
             creditsButton = new Button(Content.Load<Texture2D>("Start Button"), new Vector2(GraphicsDevice.Viewport.Width - 300, 350), Color.White, ButtonName.Credits);
             quitButton = new Button(Content.Load<Texture2D>("Start Button"), new Vector2(GraphicsDevice.Viewport.Width - 300, 650), Color.White, ButtonName.Quit);
 
-            chair = new ForegroundObject(Content.Load<Texture2D>("chair02"), new Vector2(762, 430), 150, 150, 2, 2, 400);
             elevator = new ForegroundObject(Content.Load<Texture2D>("elevator_002"), new Vector2(352, 264), 500, 500, 13, 4, 100);
-            alarm = new ForegroundObject(Content.Load<Texture2D>("Larm"), new Vector2(GraphicsDevice.Viewport.Width - 107, 46), 300, 300, 1, 1, 10000);
+            radar = new ForegroundObject(Content.Load<Texture2D>("radartech01"), new Vector2(1010, 420), 350, 100, 4, 2, 100);
+            screen = new ForegroundObject(Content.Load<Texture2D>("screen01"), new Vector2(990, 140), 350, 300, 2, 2, 100);
 
             this.IsMouseVisible = true;
 
@@ -145,10 +145,12 @@ namespace Squadron5missing
             spencer = new Mechanic(Content.Load<Texture2D>("spencer_idle_04"), new Vector2(1100, 400), RoomE.Bridge, resource, "Spencer Bara", 300, 300, 3, 2, new Button(Content.Load<Texture2D>("button"), new Vector2(400, 665), Color.White, ButtonName.Eat),
                 new Button(Content.Load<Texture2D>("button"), new Vector2(850, 665), Color.White, ButtonName.Resolve), new Button(Content.Load<Texture2D>("button"), new Vector2(400, 790), Color.White, ButtonName.Heal), new Button(Content.Load<Texture2D>("button")
                     , new Vector2(850, 790), Color.White, ButtonName.Upgrade), Content.Load<Texture2D>("spencer_walk_left_00"), 8, 3, Content.Load<Texture2D>("spencer_walk_right_01"), 8, 3, Content.Load<Texture2D>("spencer_walk_up_04"), 8, 3, Content.Load<Texture2D>("spencer_walk_down_05"), 8, 3, 5, 5, 5, 5, 5, 100, "");
+            spencer.ID = 4;
 
             lavender = new Mechanic(Content.Load<Texture2D>("Lavender_Idle"), new Vector2(500, 400), RoomE.Bridge, resource, "Lavender Flowers", 174, 300, 10, 5, new Button(Content.Load<Texture2D>("button"), new Vector2(400, 665), Color.White, ButtonName.Eat),
                 new Button(Content.Load<Texture2D>("button"), new Vector2(850, 665), Color.White, ButtonName.Resolve), new Button(Content.Load<Texture2D>("button"), new Vector2(400, 790), Color.White, ButtonName.Heal), new Button(Content.Load<Texture2D>("button")
                     , new Vector2(850, 790), Color.White, ButtonName.Upgrade), Content.Load<Texture2D>("lavender walk left"), 8, 5, Content.Load<Texture2D>("lavender walk right"), 8, 5, Content.Load<Texture2D>("Lavender Walk Back"), 8, 5, Content.Load<Texture2D>("Lavender Walk Front"), 8, 5, 5, 5, 5, 5, 5, 100, "");
+            lavender.ID = 5;
 
             dora = new Mechanic(Content.Load<Texture2D>("Dora Hairflip"), new Vector2(700, 400), RoomE.Bridge, resource, "Dora \"the Explorah\" Dandy", 174, 300, 13, 5, new Button(Content.Load<Texture2D>("button"), new Vector2(400, 665), Color.White, ButtonName.Eat),
                 new Button(Content.Load<Texture2D>("button"), new Vector2(850, 665), Color.White, ButtonName.Resolve), new Button(Content.Load<Texture2D>("button"), new Vector2(400, 790), Color.White, ButtonName.Heal), new Button(Content.Load<Texture2D>("button")
@@ -172,7 +174,7 @@ namespace Squadron5missing
             ListOfChars.statListChar.Add(mechanic);
             ListOfChars.statListChar.Add(mechanic2);
 
-            p = new ErrorMessage(mechanic, mechanic2, dora, resource);
+            p = new ErrorMessage(mechanic, mechanic2, dora, spencer, lavender, resource);
 
             //Initializing events
 
@@ -306,83 +308,95 @@ namespace Squadron5missing
             {
 
 
-            //Updates diffrent game objects and adds the seconds to the clock
-            mechanic.Update(gameTime);
-            mechanic2.Update(gameTime);
-            dora.Update(gameTime);
-            lavender.Update(gameTime);
-            spencer.Update(gameTime);
+                //Updates diffrent game objects and adds the seconds to the clock
+                mechanic.Update(gameTime);
+                mechanic2.Update(gameTime);
+                dora.Update(gameTime);
+                lavender.Update(gameTime);
+                spencer.Update(gameTime);
 
-            roomTab1.Update();
-            roomTab2.Update();
-            roomTab3.Update();
-            roomTab4.Update();
-            roomTab5.Update();
-            roomTab6.Update();
+                roomTab1.Update();
+                roomTab2.Update();
+                roomTab3.Update();
+                roomTab4.Update();
+                roomTab5.Update();
+                roomTab6.Update();
 
-            b.Scroll(GraphicsDevice);
+                b.Scroll(GraphicsDevice);
 
-            resource.MaxAndMinResource();
+                resource.MaxAndMinResource();
 
-            chair.Update(gameTime);
-            elevator.Update(gameTime);
+                elevator.Update(gameTime);
+                radar.Update(gameTime);
+                screen.Update(gameTime);
 
-            if (Keyboard.GetState().IsKeyDown(Keys.D1))
-            {
-                gameSpeed = 1;
-            }
-            if (Keyboard.GetState().IsKeyDown(Keys.D2))
-            {
-                gameSpeed = 3;
-            }
-            if (Keyboard.GetState().IsKeyDown(Keys.D3))
-            {
-                gameSpeed = 10;
-            }
-            
-            clock = clock.AddMilliseconds(16.6666666666667 * gameSpeed);
-            
-            p.SchedueldAlertMessage(clock, yesButton, new Vector2(75, 75), noButton);
-            p.Update(spriteBatch, testFont, new Vector2(75, 75), yesButton, noButton, new Vector2());
-            if (resource.Fuel != 0)
-            {
-                foreach (SchedueldEvent e in ListOfEvents.StatListEvents.Where(x => x.GetType() == typeof(SchedueldEvent)))
+                if (Keyboard.GetState().IsKeyDown(Keys.D1))
                 {
-                    distance = e.Piloting(distance, resource);
-                    resource.Fuel -= 0.2398f;
+                    gameSpeed = 1;
                 }
-            }
-            foreach (ScanningEvent s in ListOfEvents.StatListEvents.Where(x => x.GetType() == typeof(ScanningEvent)))
-            {
-                if (StaticGameHelper.scrapFound == true)
+                if (Keyboard.GetState().IsKeyDown(Keys.D2))
                 {
-                    resource.ScrapMetal += rand.Next(20, 100);
-                    StaticGameHelper.scrapFound = false;
+                    gameSpeed = 3;
                 }
-            }
-            //Update function for both the yes and the no buttons
-            foreach (YesButton yes in ListOfYNButtons.ButtonList)
-            {
-                yes.Update(gameTime);
-            }
-            foreach (NoButton no in ListOfYNButtons.ButtonList2)
-            {
-                no.Update(gameTime);
-            }
-            foreach (Button but in buttonList)
-            {
-                but.Update(gameTime);
-            }
-
-            if (mechanic.characterSelected) { mechanic2.characterSelected = false; dora.characterSelected = false; spencer.characterSelected = false; lavender.characterSelected = false; }
-            if (mechanic2.characterSelected) { mechanic.characterSelected = false; dora.characterSelected = false; spencer.characterSelected = false; lavender.characterSelected = false; }
-            if (dora.characterSelected) { mechanic.characterSelected = false; mechanic2.characterSelected = false; spencer.characterSelected = false; lavender.characterSelected = false; }
-            if (lavender.characterSelected) { mechanic2.characterSelected = false; dora.characterSelected = false; spencer.characterSelected = false; mechanic.characterSelected = false; }
-            if (spencer.characterSelected) { mechanic.characterSelected = false; mechanic2.characterSelected = false; dora.characterSelected = false; lavender.characterSelected = false;}
+                if (Keyboard.GetState().IsKeyDown(Keys.D3))
+                {
+                    gameSpeed = 10;
+                }
             
+                clock = clock.AddMilliseconds(16.6666666666667 * gameSpeed);
             
+                p.SchedueldAlertMessage(clock, yesButton, new Vector2(75, 75), noButton);
+                p.Update(spriteBatch, testFont, new Vector2(75, 75), yesButton, noButton, new Vector2());
+                if (resource.Fuel != 0)
+                {
+                    foreach (SchedueldEvent e in ListOfEvents.StatListEvents.Where(x => x.GetType() == typeof(SchedueldEvent)))
+                    {
+                        distance = e.Piloting(distance, resource);
+                        resource.Fuel -= 0.2398f;
+                    }
+                }
+                foreach (ScanningEvent s in ListOfEvents.StatListEvents.Where(x => x.GetType() == typeof(ScanningEvent)))
+                {
+                    if (StaticGameHelper.scrapFound == true)
+                    {
+                        resource.ScrapMetal += rand.Next(20, 100);
+                        StaticGameHelper.scrapFound = false;
+                    }
+                }
+                //Update function for both the yes and the no buttons
+                foreach (YesButton yes in ListOfYNButtons.ButtonList)
+                {
+                    yes.Update(gameTime);
+                }
+                foreach (NoButton no in ListOfYNButtons.ButtonList2)
+                {
+                    no.Update(gameTime);
+                }
+                foreach (Button but in buttonList)
+                {
+                    but.Update(gameTime);
+                }
 
-            base.Update(gameTime);
+                if (mechanic.characterSelected) { mechanic2.characterSelected = false; dora.characterSelected = false; spencer.characterSelected = false; lavender.characterSelected = false; }
+                if (mechanic2.characterSelected) { mechanic.characterSelected = false; dora.characterSelected = false; spencer.characterSelected = false; lavender.characterSelected = false; }
+                if (dora.characterSelected) { mechanic.characterSelected = false; mechanic2.characterSelected = false; spencer.characterSelected = false; lavender.characterSelected = false; }
+                if (lavender.characterSelected) { mechanic2.characterSelected = false; dora.characterSelected = false; spencer.characterSelected = false; mechanic.characterSelected = false; }
+                if (spencer.characterSelected) { mechanic.characterSelected = false; mechanic2.characterSelected = false; dora.characterSelected = false; lavender.characterSelected = false;}
+
+                if (distance == 1080000)
+                {
+                    gameState = GameState.Win;
+                }
+
+                base.Update(gameTime);
+            }
+            if (gameState == GameState.Lose)
+            {
+
+            }
+            if (gameState == GameState.Win)
+            {
+
             }
         }
 
@@ -415,9 +429,9 @@ namespace Squadron5missing
 
                 b.Draw(spriteBatch);
                 spriteBatch.Draw(background, new Vector2(0, 0), Color.White);
-                chair.Draw(spriteBatch);
                 elevator.Draw(spriteBatch);
-                alarm.Draw(spriteBatch);
+                radar.Draw(spriteBatch);
+                screen.Draw(spriteBatch);
 
                 for (int i = 0; i < ListOfEvents.StatListEvents.Count; i++)
                 {
@@ -480,6 +494,16 @@ namespace Squadron5missing
 
             }
 
+            if (gameState == GameState.Lose)
+            {
+
+            }
+
+            if (gameState == GameState.Win)
+            {
+                spriteBatch.DrawString(testFont, "YOU WIN!!", new Vector2(700, 400), Color.White);
+            }
+
             spriteBatch.End();
             // TODO: Add your drawing code here
 
@@ -496,6 +520,5 @@ namespace Squadron5missing
         Credits,
         Lose,
         Win,
-        Credits
     }
 }
