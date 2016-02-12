@@ -239,7 +239,7 @@ namespace Squadron5missing
         {
             if (characterSelected)
             {
-                spriteBatch.DrawString(font, "Health: " + healthPoints, new Vector2(Position.X + 10, Position.Y - 24), Color.White);
+                spriteBatch.DrawString(font, "Health: " + healthPoints, new Vector2(Position.X + 10, Position.Y - 30), Color.White);
                 spriteBatch.DrawString(font, "Hunger: " + Math.Round(Hunger), new Vector2(Position.X + 10, Position.Y - 10), Color.White);
             }
 

@@ -29,6 +29,7 @@ namespace Squadron5missing
         Mechanic mechanic2;
         Mechanic dora;
         Mechanic spencer;
+        Mechanic lavender;
         EngineEvent engineEvent;
 
         Resources resource;
@@ -141,23 +142,27 @@ namespace Squadron5missing
             graphics.ApplyChanges();
             rand = new Random();
             //Initializing characters
-            /*spencer = new Mechanic(Content.Load<Texture2D>("spencer_idle_02"), new Vector2(600, 500), RoomE.Bridge, resource, "Spencer Bara", 300, 300, 3, 2, new Button(Content.Load<Texture2D>("button"), new Vector2(400, 665), Color.White, ButtonName.Eat),
+            spencer = new Mechanic(Content.Load<Texture2D>("spencer_idle_04"), new Vector2(1100, 400), RoomE.Bridge, resource, "Spencer Bara", 300, 300, 3, 2, new Button(Content.Load<Texture2D>("button"), new Vector2(400, 665), Color.White, ButtonName.Eat),
                 new Button(Content.Load<Texture2D>("button"), new Vector2(850, 665), Color.White, ButtonName.Resolve), new Button(Content.Load<Texture2D>("button"), new Vector2(400, 790), Color.White, ButtonName.Heal), new Button(Content.Load<Texture2D>("button")
-                    , new Vector2(850, 790), Color.White, ButtonName.Upgrade), Content.Load<Texture2D>("spencer_idle_02"), 8, 3, Content.Load<Texture2D>("spencer_idle_02"), 8, 3, Content.Load<Texture2D>("spencer_walk_up_03"), 8, 3, Content.Load<Texture2D>("spencer_walk_up_03"), 8, 3, 5, 5, 5, 5, 5, 100, "");*/
+                    , new Vector2(850, 790), Color.White, ButtonName.Upgrade), Content.Load<Texture2D>("spencer_walk_left_00"), 8, 3, Content.Load<Texture2D>("spencer_walk_right_01"), 8, 3, Content.Load<Texture2D>("spencer_walk_up_04"), 8, 3, Content.Load<Texture2D>("spencer_walk_down_05"), 8, 3, 5, 5, 5, 5, 5, 100, "");
 
-            dora = new Mechanic(Content.Load<Texture2D>("Dora Hairflip"), new Vector2(700, 400), RoomE.Bridge, resource, "Dora the Explorah", 174, 300, 13, 5, new Button(Content.Load<Texture2D>("button"), new Vector2(400, 665), Color.White, ButtonName.Eat),
+            lavender = new Mechanic(Content.Load<Texture2D>("Lavender_Idle"), new Vector2(500, 400), RoomE.Bridge, resource, "Lavender Flowers", 174, 300, 10, 5, new Button(Content.Load<Texture2D>("button"), new Vector2(400, 665), Color.White, ButtonName.Eat),
+                new Button(Content.Load<Texture2D>("button"), new Vector2(850, 665), Color.White, ButtonName.Resolve), new Button(Content.Load<Texture2D>("button"), new Vector2(400, 790), Color.White, ButtonName.Heal), new Button(Content.Load<Texture2D>("button")
+                    , new Vector2(850, 790), Color.White, ButtonName.Upgrade), Content.Load<Texture2D>("lavender walk left"), 8, 5, Content.Load<Texture2D>("lavender walk right"), 8, 5, Content.Load<Texture2D>("Lavender Walk Back"), 8, 5, Content.Load<Texture2D>("Lavender Walk Front"), 8, 5, 5, 5, 5, 5, 5, 100, "");
+
+            dora = new Mechanic(Content.Load<Texture2D>("Dora Hairflip"), new Vector2(700, 400), RoomE.Bridge, resource, "Dora \"the Explorah\" Dandy", 174, 300, 13, 5, new Button(Content.Load<Texture2D>("button"), new Vector2(400, 665), Color.White, ButtonName.Eat),
                 new Button(Content.Load<Texture2D>("button"), new Vector2(850, 665), Color.White, ButtonName.Resolve), new Button(Content.Load<Texture2D>("button"), new Vector2(400, 790), Color.White, ButtonName.Heal), new Button(Content.Load<Texture2D>("button")
                     , new Vector2(850, 790), Color.White, ButtonName.Upgrade), Content.Load<Texture2D>("Dora Walk Left"), 8, 5, Content.Load<Texture2D>("Dora Walk Right"), 8, 5, Content.Load<Texture2D>("Dora Walk Back"), 8, 5, Content.Load<Texture2D>("Dora Walk Front"), 8, 5, 5, 5, 5, 5, 5, 100, "");
 
             dora.ID = 3;
 
-            mechanic = new Mechanic(Content.Load<Texture2D>("Kitty Breath Blink"), new Vector2(1000, 450), RoomE.Bridge, resource, "Morgan the Mechanic", 174, 300, 9, 5, new Button(Content.Load<Texture2D>("button"), new Vector2(400, 665), Color.White, ButtonName.Eat),
+            mechanic = new Mechanic(Content.Load<Texture2D>("Kitty Breath Blink"), new Vector2(1000, 450), RoomE.Bridge, resource, "Kitty Kat", 174, 300, 9, 5, new Button(Content.Load<Texture2D>("button"), new Vector2(400, 665), Color.White, ButtonName.Eat),
                 new Button(Content.Load<Texture2D>("button"), new Vector2(850, 665), Color.White, ButtonName.Resolve), new Button(Content.Load<Texture2D>("button"), new Vector2(400, 790), Color.White, ButtonName.Heal), new Button(Content.Load<Texture2D>("button")
                     , new Vector2(850, 790), Color.White, ButtonName.Upgrade), Content.Load<Texture2D>("Kitty Walk Left"), 8, 5, Content.Load<Texture2D>("Kitty Walk Right"), 8, 5, Content.Load<Texture2D>("Kitty Walk Back"), 9, 5, Content.Load<Texture2D>("Kitty Walk Front"), 9, 5, 5, 5, 5, 8, 5, 100, "Olaf");
 
             mechanic.ID = 1;
 
-            mechanic2 = new Mechanic(Content.Load<Texture2D>("idle_pose02"), new Vector2(300, 450), RoomE.Bridge, resource, "Morgan the Mechanic", 300, 300, 8, 3, new Button(Content.Load<Texture2D>("button"), new Vector2(400, 665), Color.White, ButtonName.Eat),
+            mechanic2 = new Mechanic(Content.Load<Texture2D>("idle_pose02"), new Vector2(300, 450), RoomE.Bridge, resource, "Blondie Bubs", 300, 300, 8, 3, new Button(Content.Load<Texture2D>("button"), new Vector2(400, 665), Color.White, ButtonName.Eat),
                 new Button(Content.Load<Texture2D>("button"), new Vector2(850, 665), Color.White, ButtonName.Resolve), new Button(Content.Load<Texture2D>("button"), new Vector2(400, 790), Color.White, ButtonName.Heal), new Button(Content.Load<Texture2D>("button")
                     , new Vector2(850, 790), Color.White, ButtonName.Upgrade), Content.Load<Texture2D>("walk_right_03"), 8, 3, Content.Load<Texture2D>("walk_right_03"), 8, 3, Content.Load<Texture2D>("walk_up_02"), 8, 3, Content.Load<Texture2D>("walk_up_02"), 8, 3, 5, 5, 5, 5, 5, 100, "Olaf");
 
@@ -305,7 +310,8 @@ namespace Squadron5missing
             mechanic.Update(gameTime);
             mechanic2.Update(gameTime);
             dora.Update(gameTime);
-            //spencer.Update(gameTime);
+            lavender.Update(gameTime);
+            spencer.Update(gameTime);
 
             roomTab1.Update();
             roomTab2.Update();
@@ -368,10 +374,11 @@ namespace Squadron5missing
                 but.Update(gameTime);
             }
 
-            if (mechanic.characterSelected) { mechanic2.characterSelected = false; dora.characterSelected = false;}
-            if (mechanic2.characterSelected) { mechanic.characterSelected = false; dora.characterSelected = false;}
-            if (dora.characterSelected) { mechanic.characterSelected = false; mechanic2.characterSelected = false;}
-            //if (spencer.characterSelected) { mechanic.characterSelected = false; mechanic2.characterSelected = false; dora.characterSelected = false; }
+            if (mechanic.characterSelected) { mechanic2.characterSelected = false; dora.characterSelected = false; spencer.characterSelected = false; lavender.characterSelected = false; }
+            if (mechanic2.characterSelected) { mechanic.characterSelected = false; dora.characterSelected = false; spencer.characterSelected = false; lavender.characterSelected = false; }
+            if (dora.characterSelected) { mechanic.characterSelected = false; mechanic2.characterSelected = false; spencer.characterSelected = false; lavender.characterSelected = false; }
+            if (lavender.characterSelected) { mechanic2.characterSelected = false; dora.characterSelected = false; spencer.characterSelected = false; mechanic.characterSelected = false; }
+            if (spencer.characterSelected) { mechanic.characterSelected = false; mechanic2.characterSelected = false; dora.characterSelected = false; lavender.characterSelected = false;}
             
             
 
@@ -398,6 +405,9 @@ namespace Squadron5missing
                 startButton.Draw(spriteBatch);
                 quitButton.Draw(spriteBatch);
                 creditsButton.Draw(spriteBatch);
+                startButton.TextOnButton(spriteBatch, testFont);
+                quitButton.TextOnButton(spriteBatch, testFont);
+                creditsButton.TextOnButton(spriteBatch, testFont);
             }
 
             if (gameState == GameState.Game)
@@ -420,6 +430,8 @@ namespace Squadron5missing
                 mechanic.Draw(spriteBatch);
                 mechanic2.Draw(spriteBatch);
                 dora.Draw(spriteBatch);
+                lavender.Draw(spriteBatch);
+                spencer.Draw(spriteBatch);
 
                 spriteBatch.DrawString(testFont, clock.ToLongTimeString(), new Vector2(3, 2), Color.White);
             
@@ -458,6 +470,8 @@ namespace Squadron5missing
                 mechanic.DrawText(spriteBatch, testFont);
                 mechanic2.DrawText(spriteBatch, testFont);
                 dora.DrawText(spriteBatch, testFont);
+                lavender.DrawText(spriteBatch, testFont);
+                spencer.DrawText(spriteBatch, testFont);
 
                 foreach (RoomTab r in RoomTabs)
                 {
@@ -480,7 +494,8 @@ namespace Squadron5missing
         Game,
         End,
         Credits,
-        lose,
-        win
+        Lose,
+        Win,
+        Credits
     }
 }

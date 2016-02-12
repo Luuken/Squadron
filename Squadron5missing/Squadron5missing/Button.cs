@@ -90,5 +90,10 @@ namespace Squadron5missing
         {
             spriteBatch.Draw(Texture, Position, ButtonColorOverlay);
         }
+
+        public void TextOnButton(SpriteBatch spriteBatch, SpriteFont spriteFont)
+        {
+            spriteBatch.DrawString(spriteFont, BName.ToString(), new Vector2(Position.X + 174, Position.Y + 75), Color.White);
+        }
     }
 }
