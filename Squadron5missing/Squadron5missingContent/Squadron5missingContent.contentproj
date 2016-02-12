@@ -307,7 +307,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-	<Compile Include="Lavender Walk Back.png">
+    <Compile Include="Lavender Walk Back.png">
       <Name>Lavender Walk Back</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
@@ -377,10 +377,17 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-	  <Compile Include="spencer_idle_04.png">
-		<Name>spencer_idle_04</Name>
-		<Importer>TextureImporter</Importer>
-		<Processor>TextureProcessor</Processor>
+    <Compile Include="spencer_idle_04.png">
+      <Name>spencer_idle_04</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Intro.png">
+      <Name>Intro</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
