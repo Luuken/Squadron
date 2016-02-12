@@ -67,7 +67,11 @@ namespace Squadron5missing
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
+            if (IsDead == true)
+            {
+                characterSelected = false;
 
+            }
 
             if (characterSelected == true && hasCreatedButtons == false)
             {
