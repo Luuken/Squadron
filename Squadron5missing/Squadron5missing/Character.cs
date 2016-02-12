@@ -26,7 +26,7 @@ namespace Squadron5missing
     class Character
     {
         //properties
-        protected Texture2D Texture { get; set; }
+        public Texture2D Texture { get; set; }
         public Vector2 Position { get; set; }
         public int healthPoints { get; set; }
         public RoomE RoomV { get; set; }
