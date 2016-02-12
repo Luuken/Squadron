@@ -48,6 +48,7 @@ namespace Squadron5missing
         Texture2D background;
         Texture2D menu;
         Texture2D spaceBackground;
+        Texture2D introScreen;
 
         Button startButton;
         Button quitButton;
@@ -119,11 +120,11 @@ namespace Squadron5missing
             tab2Texture = Content.Load<Texture2D>("Tab Button Infirmary");
             tab3Texture = Content.Load<Texture2D>("Tab Button Kitchen");
 
-
             b = new BackScroll(Content.Load<Texture2D>("space02"), Content.Load<Texture2D>("space03"), .03f);
             background = Content.Load<Texture2D>("background12");
             menu = Content.Load<Texture2D>("menu_layout");
             preStartScreen = new Button(Content.Load<Texture2D>("start00"), new Vector2(0,0), Color.White, ButtonName.Default);
+            introScreen = Content.Load<Texture2D>("Intro");
 
             startButton = new Button(Content.Load<Texture2D>("Start Button"), new Vector2(GraphicsDevice.Viewport.Width - 300, 50), Color.White, ButtonName.Start);
             creditsButton = new Button(Content.Load<Texture2D>("Start Button"), new Vector2(GraphicsDevice.Viewport.Width - 300, 350), Color.White, ButtonName.Credits);
@@ -347,7 +348,7 @@ namespace Squadron5missing
             }
             if (gameState == GameState.Intro)
             {
-                if (Keyboard.GetState().IsKeyDown(Keys.Enter))
+                if (Keyboard.GetState().IsKeyDown(Keys.Space))
                 {
                     gameState = GameState.Game;
                 }
@@ -365,12 +366,17 @@ namespace Squadron5missing
                 spencer.Update(gameTime);
 
 
+
                 //roomTab1.Update(gameTime);
                 roomTab2.Update(gameTime);
                 roomTab3.Update(gameTime);
                 roomTab4.Update(gameTime);
                 //roomTab5.Update(gameTime);
                 //roomTab6.Update(gameTime);
+
+
+                
+
 
 
                 b.Scroll(GraphicsDevice);
@@ -476,7 +482,7 @@ namespace Squadron5missing
             }
             if (gameState == GameState.Intro)
             {
-                //spriteBatch.Draw(IntroBild, new Vector2(0, 0), Color.White);
+                spriteBatch.Draw(introScreen, new Vector2(0, 0), Color.White);
             }
 
             if (gameState == GameState.Game)
