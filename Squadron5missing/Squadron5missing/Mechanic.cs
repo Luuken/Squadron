@@ -37,7 +37,7 @@ namespace Squadron5missing
         Direction direction = Direction.None;
         ButtonName selectedOption = ButtonName.Default;
         List<Button> buttonList = new List<Button>();
-
+        Random rand = new Random();
         
         
         //boolean(s)
@@ -45,6 +45,8 @@ namespace Squadron5missing
         public bool resolvePressed = false;
         public bool yesIsSelected = false;
         bool healSelected = false;
+        int timer;
+        string heyytext;
 
         //contructor(s)
         public Mechanic(Texture2D texture, Vector2 position, RoomE room, Resources resource, string name, int animWidth, int animHeight, int maxFrames, int spritesPerRow, Button button1, Button button2, Button button3, Button button4, Texture2D walkLeft, int walkLeftFrames, int walkLeftSPR, Texture2D walkRight, int walkRightFrames, int walkRightSPR,
@@ -65,7 +67,7 @@ namespace Squadron5missing
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
-            
+
 
             if (characterSelected == true && hasCreatedButtons == false)
             {
@@ -229,6 +231,7 @@ namespace Squadron5missing
         public override void Draw(SpriteBatch spriteBatch)
         {
             base.Draw(spriteBatch);
+            
             /*if (characterSelected)
             {
                 foreach (Button b in buttonList)
@@ -249,6 +252,50 @@ namespace Squadron5missing
             }
 
             base.DrawText(spriteBatch, font);
+        }
+        public void Talk(SpriteBatch s, SpriteFont f)
+        {
+            List<string> heyyy= new List<string>();
+            Random rnd = new Random();
+            heyyy.Add("Is there life on mars?");
+            heyyy.Add("Can you here me major tom?");
+            heyyy.Add("Hi.");
+            heyyy.Add("is this real life, or is just fantasy?");
+            heyyy.Add("no one can here me scream in space?\nAAAAAAAAAHHHHH!!!!!");
+            heyyy.Add("Mom get the camera!");
+            heyyy.Add("got mems?");
+            heyyy.Add("How do you get a baby astruonaut too sleep, you rocket...");
+            heyyy.Add("Why didn't the sun go too college, he already had a million degrees");
+            heyyy.Add("what do you call a crazy moon, a lunatic");
+            heyyy.Add("I heard there's a new restaurant on the Moon, but it lacks atmosphere");
+            heyyy.Add("our ship hangs in the sky in much the same way that bricks don't.");
+            heyyy.Add("It's not a phase DAD!");
+            heyyy.Add("Two dating astronauts met up for a launch date.");
+            heyyy.Add("Why did the cow go in the space ship? \nHe wanted to see the moon!");
+            heyyy.Add("Little is known about the inhabbitants \nof planet-837 Sector:B Orchid \n but they like PB&Js'");
+            heyyy.Add("When i return to earth everyone\nwill want my rare space memes");
+            heyyy.Add("We don't acctualy know the Super-engine\nworks, but it does so...");
+            heyyy.Add("The food here? it's fine I guess?");
+            heyyy.Add("do you come here often?");
+            heyyy.Add("knock knock, wait this won't work...");
+            heyyy.Add("what happens if a red and a blue spaceship crash together? Everyone dies...");
+
+            int tempi = rand.Next(1, 2301);
+            
+            
+            if (tempi == 2)
+            {
+                if (timer == 0)
+                {
+                    timer = 240;
+                    heyytext = heyyy[rnd.Next(1, 23)];
+                }
+            }
+            if (timer > 0)
+            {
+                s.DrawString(f, heyytext, new Vector2(Position.X - 30, Position.Y - 30), Color.White);
+                timer--;
+            }
         }
     }
 }

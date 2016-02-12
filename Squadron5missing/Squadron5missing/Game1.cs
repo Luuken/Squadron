@@ -259,62 +259,7 @@ namespace Squadron5missing
                 this.Exit();
 
             
-            if (resource.Hull < 101)
-            {
-                resource.Oxygen -= 0.02f;
-            }
-            if (resource.Hull < 50)
-            {
-                resource.Oxygen -= 0.03f;
-            }
-            if (resource.Hull < 10)
-            {
-                resource.Oxygen -= 0.03f;
-            }
-            if (resource.Hull <= 0)
-	        {
-                resource.Oxygen -= 5f;
-	        }
-            if (resource.Oxygen <= 0)
-            {
-                gameLost = true;
-            }
-            HealthLossTimer++;
-            if (HealthLossTimer == 360 && resource.Oxygen < 10)
-            {
-                for (int i = 0; i < ListOfChars.statListChar.Count; i++)
-                {
-		         ListOfChars.statListChar[i].healthPoints -= 1;
-                 temp = 0;
-                }
-            }
-            if (HealthLossTimer == 120)
-            {
-                for (int i = 0; i < ListOfChars.statListChar.Count; i++)
-                {
-                    if(ListOfChars.statListChar[i].Hunger <= 0)
-                    {
-                        ListOfChars.statListChar[i].healthPoints -= 1;
-                    }
-                }
-            }
-            for (int i = 0; i < ListOfChars.statListChar.Count; i++)
-            {
-                int lel = 0;
-                if (ListOfChars.statListChar[i].healthPoints <= 0)
-                {
-                    ListOfChars.statListChar[i].IsDead = true;
-                }
-                if (ListOfChars.statListChar[i].IsDead == true)
-                {
-
-                    lel++;
-                }
-                if (lel == 5)
-                {
-                    gameState = GameState.Lose;
-                }
-            }
+            
             
             
                 
@@ -356,7 +301,62 @@ namespace Squadron5missing
 
             if (gameState == GameState.Game)
             {
+                if (resource.Hull < 101)
+                {
+                    resource.Oxygen -= 0.02f;
+                }
+                if (resource.Hull < 50)
+                {
+                    resource.Oxygen -= 0.03f;
+                }
+                if (resource.Hull < 10)
+                {
+                    resource.Oxygen -= 0.03f;
+                }
+                if (resource.Hull <= 0)
+                {
+                    resource.Oxygen -= 5f;
+                }
+                if (resource.Oxygen <= 0)
+                {
+                    gameLost = true;
+                }
+                HealthLossTimer++;
+                if (HealthLossTimer == 360 && resource.Oxygen < 10)
+                {
+                    for (int i = 0; i < ListOfChars.statListChar.Count; i++)
+                    {
+                        ListOfChars.statListChar[i].healthPoints -= 1;
+                        temp = 0;
+                    }
+                }
+                if (HealthLossTimer == 120)
+                {
+                    for (int i = 0; i < ListOfChars.statListChar.Count; i++)
+                    {
+                        if (ListOfChars.statListChar[i].Hunger <= 0)
+                        {
+                            ListOfChars.statListChar[i].healthPoints -= 1;
+                        }
+                    }
+                }
+                for (int i = 0; i < ListOfChars.statListChar.Count; i++)
+                {
+                    int lel = 0;
+                    if (ListOfChars.statListChar[i].healthPoints <= 0)
+                    {
+                        ListOfChars.statListChar[i].IsDead = true;
+                    }
+                    if (ListOfChars.statListChar[i].IsDead == true)
+                    {
 
+                        lel++;
+                    }
+                    if (lel == 5)
+                    {
+                        gameState = GameState.Lose;
+                    }
+                }
 
                 //Updates diffrent game objects and adds the seconds to the clock
                 mechanic.Update(gameTime);
@@ -364,8 +364,6 @@ namespace Squadron5missing
                 dora.Update(gameTime);
                 lavender.Update(gameTime);
                 spencer.Update(gameTime);
-
-
 
                 //roomTab1.Update(gameTime);
                 roomTab2.Update(gameTime);
@@ -507,7 +505,11 @@ namespace Squadron5missing
                 dora.Draw(spriteBatch);
                 lavender.Draw(spriteBatch);
                 spencer.Draw(spriteBatch);
-
+                mechanic.Talk(spriteBatch, fontSmall);
+                mechanic2.Talk(spriteBatch, fontSmall);
+                dora.Talk(spriteBatch, fontSmall);
+                lavender.Talk(spriteBatch, fontSmall);
+                spencer.Talk(spriteBatch, fontSmall);
                 spriteBatch.DrawString(testFont, clock.ToLongTimeString(), new Vector2(3, 2), Color.White);
             
                 p.Draw(spriteBatch,testFont,ProblemMenuBackground,new Vector2(314,5),fontSmall, clock);
