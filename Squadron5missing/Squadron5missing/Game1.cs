@@ -150,19 +150,19 @@ namespace Squadron5missing
                 new Button(Content.Load<Texture2D>("button"), new Vector2(850, 665), Color.White, ButtonName.Resolve), new Button(Content.Load<Texture2D>("button"), new Vector2(400, 790), Color.White, ButtonName.Heal), new Button(Content.Load<Texture2D>("button")
                     , new Vector2(850, 790), Color.White, ButtonName.Upgrade), Content.Load<Texture2D>("lavender walk left"), 8, 5, Content.Load<Texture2D>("lavender walk right"), 8, 5, Content.Load<Texture2D>("Lavender Walk Back"), 8, 5, Content.Load<Texture2D>("Lavender Walk Front"), 8, 5, 5, 5, 5, 5, 5, 100, "");
 
-            dora = new Mechanic(Content.Load<Texture2D>("Dora Hairflip"), new Vector2(700, 400), RoomE.Bridge, resource, "Dora the Explorah", 174, 300, 13, 5, new Button(Content.Load<Texture2D>("button"), new Vector2(400, 665), Color.White, ButtonName.Eat),
+            dora = new Mechanic(Content.Load<Texture2D>("Dora Hairflip"), new Vector2(700, 400), RoomE.Bridge, resource, "Dora \"the Explorah\" Dandy", 174, 300, 13, 5, new Button(Content.Load<Texture2D>("button"), new Vector2(400, 665), Color.White, ButtonName.Eat),
                 new Button(Content.Load<Texture2D>("button"), new Vector2(850, 665), Color.White, ButtonName.Resolve), new Button(Content.Load<Texture2D>("button"), new Vector2(400, 790), Color.White, ButtonName.Heal), new Button(Content.Load<Texture2D>("button")
                     , new Vector2(850, 790), Color.White, ButtonName.Upgrade), Content.Load<Texture2D>("Dora Walk Left"), 8, 5, Content.Load<Texture2D>("Dora Walk Right"), 8, 5, Content.Load<Texture2D>("Dora Walk Back"), 8, 5, Content.Load<Texture2D>("Dora Walk Front"), 8, 5, 5, 5, 5, 5, 5, 100, "");
 
             dora.ID = 3;
 
-            mechanic = new Mechanic(Content.Load<Texture2D>("Kitty Breath Blink"), new Vector2(1000, 450), RoomE.Bridge, resource, "Morgan the Mechanic", 174, 300, 9, 5, new Button(Content.Load<Texture2D>("button"), new Vector2(400, 665), Color.White, ButtonName.Eat),
+            mechanic = new Mechanic(Content.Load<Texture2D>("Kitty Breath Blink"), new Vector2(1000, 450), RoomE.Bridge, resource, "Kitty Kat", 174, 300, 9, 5, new Button(Content.Load<Texture2D>("button"), new Vector2(400, 665), Color.White, ButtonName.Eat),
                 new Button(Content.Load<Texture2D>("button"), new Vector2(850, 665), Color.White, ButtonName.Resolve), new Button(Content.Load<Texture2D>("button"), new Vector2(400, 790), Color.White, ButtonName.Heal), new Button(Content.Load<Texture2D>("button")
                     , new Vector2(850, 790), Color.White, ButtonName.Upgrade), Content.Load<Texture2D>("Kitty Walk Left"), 8, 5, Content.Load<Texture2D>("Kitty Walk Right"), 8, 5, Content.Load<Texture2D>("Kitty Walk Back"), 9, 5, Content.Load<Texture2D>("Kitty Walk Front"), 9, 5, 5, 5, 5, 8, 5, 100, "Olaf");
 
             mechanic.ID = 1;
 
-            mechanic2 = new Mechanic(Content.Load<Texture2D>("idle_pose02"), new Vector2(300, 450), RoomE.Bridge, resource, "Morgan the Mechanic", 300, 300, 8, 3, new Button(Content.Load<Texture2D>("button"), new Vector2(400, 665), Color.White, ButtonName.Eat),
+            mechanic2 = new Mechanic(Content.Load<Texture2D>("idle_pose02"), new Vector2(300, 450), RoomE.Bridge, resource, "Blondie Bubs", 300, 300, 8, 3, new Button(Content.Load<Texture2D>("button"), new Vector2(400, 665), Color.White, ButtonName.Eat),
                 new Button(Content.Load<Texture2D>("button"), new Vector2(850, 665), Color.White, ButtonName.Resolve), new Button(Content.Load<Texture2D>("button"), new Vector2(400, 790), Color.White, ButtonName.Heal), new Button(Content.Load<Texture2D>("button")
                     , new Vector2(850, 790), Color.White, ButtonName.Upgrade), Content.Load<Texture2D>("walk_right_03"), 8, 3, Content.Load<Texture2D>("walk_right_03"), 8, 3, Content.Load<Texture2D>("walk_up_02"), 8, 3, Content.Load<Texture2D>("walk_up_02"), 8, 3, 5, 5, 5, 5, 5, 100, "Olaf");
 
