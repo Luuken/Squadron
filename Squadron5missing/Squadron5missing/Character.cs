@@ -116,7 +116,7 @@ namespace Squadron5missing
         //method(s) add Update and Draw functions!
         public virtual void Update(GameTime gameTime)
         {
-            if (Mouse.GetState().X > Position.X && Mouse.GetState().X < (Position.X + AnimWidth))
+            if (Mouse.GetState().X > Position.X && Mouse.GetState().X < (Position.X + 174))
             {
                 if (Mouse.GetState().Y > Position.Y && Mouse.GetState().Y < (Position.Y + AnimHeight))
                 {

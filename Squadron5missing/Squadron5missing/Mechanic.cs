@@ -29,6 +29,7 @@ namespace Squadron5missing
         public Resources Resource { get; set; }
         public Vector2 OldPos { get; set; }
         public Texture2D OldTexture { get; set; }
+        public Texture2D Portrait { get; set; }
         public int OldFrames { get; set; }
         public int OldSPR { get; set; }
         public int ID { get; set; }
@@ -47,7 +48,7 @@ namespace Squadron5missing
 
         //contructor(s)
         public Mechanic(Texture2D texture, Vector2 position, RoomE room, Resources resource, string name, int animWidth, int animHeight, int maxFrames, int spritesPerRow, Button button1, Button button2, Button button3, Button button4, Texture2D walkLeft, int walkLeftFrames, int walkLeftSPR, Texture2D walkRight, int walkRightFrames, int walkRightSPR,
-            Texture2D walkUp, int walkUpFrames, int walkUpSPR, Texture2D walkDown, int walkDownFrames, int walkDownSPR, int intel, int perc, int stam, int con, int hand, int hunger, string wName)
+            Texture2D walkUp, int walkUpFrames, int walkUpSPR, Texture2D walkDown, int walkDownFrames, int walkDownSPR, int intel, int perc, int stam, int con, int hand, int hunger, string wName, Texture2D portrait)
             : base(texture, position, room, name, animWidth, animHeight, maxFrames, spritesPerRow, button1, button2, button3, button4, walkLeft, walkLeftFrames, walkLeftSPR, walkRight, walkRightFrames, walkRightSPR, walkUp, walkUpFrames, walkUpSPR, walkDown, walkDownFrames, walkDownSPR, intel, perc, stam, con, hand, hunger)
         {
             this.WrenchName = wName;
@@ -57,6 +58,7 @@ namespace Squadron5missing
             this.OldTexture = texture;
             this.OldSPR = spritesPerRow;
             this.OldFrames = maxFrames;
+            this.Portrait = portrait;
         }
 
         //method(s)
@@ -241,6 +243,9 @@ namespace Squadron5missing
             {
                 spriteBatch.DrawString(font, "Health: " + healthPoints, new Vector2(Position.X + 10, Position.Y - 30), Color.White);
                 spriteBatch.DrawString(font, "Hunger: " + Math.Round(Hunger), new Vector2(Position.X + 10, Position.Y - 10), Color.White);
+                spriteBatch.DrawString(font, CharName, new Vector2(20, 560), Color.White);
+
+                spriteBatch.Draw(Portrait, new Vector2(70, 580), Color.White);
             }
 
             base.DrawText(spriteBatch, font);
