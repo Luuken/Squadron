@@ -161,7 +161,7 @@ namespace Squadron5missing
                 {
                     StaticGameHelper.pilotingErrorOffsetValue += 0.087f;
                     tempD = rnd.Next(60, 190);
-                    alertList.Add(alertTemp);
+                    alertList.Add(alertTemp + " || piloting effect - 8%");
                     //this adds one button to each no and yes list button in the ListOfYNButtons.cs lists
                     ListOfYNButtons.ButtonList.Add(new YesButton(EventType.PilotEvent, buttonTexture, position2, Color.CadetBlue));
                     ListOfYNButtons.ButtonList2.Add(new NoButton(buttonTexture2, position, Color.CornflowerBlue));
@@ -172,7 +172,7 @@ namespace Squadron5missing
                 {
 
                     tempD = rnd.Next(20, 230);
-                    alertList.Add(alertTemp);
+                    alertList.Add(alertTemp + " || find chance decreased");
                     StaticGameHelper.scrapFindingChance -= 35;
                     //this adds one button to each no and yes list button in the ListOfYNButtons.cs lists
                     ListOfYNButtons.ButtonList.Add(new YesButton(EventType.RadarEvent, buttonTexture, position2, Color.CadetBlue));
@@ -184,7 +184,7 @@ namespace Squadron5missing
                 {
                     StaticGameHelper.healthTimeOffsetValue -= 0.05f;
                     tempD = rnd.Next(90, 110);
-                    alertList.Add(alertTemp);
+                    alertList.Add(alertTemp + " || healing effect -5%");
                     //this adds one button to each no and yes list button in the ListOfYNButtons.cs lists
                     ListOfYNButtons.ButtonList.Add(new YesButton(EventType.InfermaryEvent, buttonTexture, position2, Color.CadetBlue));
                     ListOfYNButtons.ButtonList2.Add(new NoButton(buttonTexture2, position2, Color.CornflowerBlue));
@@ -196,13 +196,14 @@ namespace Squadron5missing
                 {
                     Resoure.Hull -= 10;
                     tempD = rnd.Next(50, 200);
-                    alertList.Add(alertTemp);
+                    alertList.Add(alertTemp + " || hull dmg -10");
                     //this adds one button to each no and yes list button in the ListOfYNButtons.cs lists
                     ListOfYNButtons.ButtonList.Add(new YesButton(EventType.EngineEvent, buttonTexture, position2, Color.CadetBlue));
                     ListOfYNButtons.ButtonList2.Add(new NoButton(buttonTexture2, position2, Color.CornflowerBlue));
                     startTimer = true;
                     timer = 0;
                 }
+                
 
             }
             //timer for how long the alerts are supposed to be drawn on screen
