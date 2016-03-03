@@ -20,6 +20,7 @@ namespace Squadron5missing
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         BackScroll b;
+        ScanningEvent scan;
         
         DateTime clock;
         SpriteFont testFont;
@@ -102,7 +103,8 @@ namespace Squadron5missing
         int maxEvents;
         int HealthLossTimer;
         int lel = 0;
-        
+        bool writeOutScrap = false;
+        int temporaryInt = 0;
 
         public Game1()
         {
@@ -139,6 +141,8 @@ namespace Squadron5missing
             radar = new ForegroundObject(Content.Load<Texture2D>("radartech01"), new Vector2(1010, 420), 350, 100, 4, 2, 100);
             screen = new ForegroundObject(Content.Load<Texture2D>("screen01"), new Vector2(990, 140), 350, 300, 2, 2, 100);
             loseScreen = new ForegroundObject(Content.Load<Texture2D>("end_screen02"), new Vector2(0, 0), 1600, 900, 2, 2, 100);
+
+
 
             Characters = new List<Character>();
 
@@ -414,7 +418,7 @@ namespace Squadron5missing
             
                 p.SchedueldAlertMessage(clock, yesButton, new Vector2(75, 75), noButton);
                 p.Update(spriteBatch, testFont, new Vector2(75, 75), yesButton, noButton, new Vector2());
-                if (resource.Fuel != 0)
+                if (resource.Fuel > 0)
                 {
                     foreach (SchedueldEvent e in ListOfEvents.StatListEvents.Where(x => x.GetType() == typeof(SchedueldEvent)))
                     {
@@ -424,9 +428,13 @@ namespace Squadron5missing
                 }
                 foreach (ScanningEvent s in ListOfEvents.StatListEvents.Where(x => x.GetType() == typeof(ScanningEvent)))
                 {
+                    s.Scanning();
                     if (StaticGameHelper.scrapFound == true)
                     {
                         resource.ScrapMetal += rand.Next(20, 100);
+                        resource.Fuel += rand.Next(20, 110);
+                        writeOutScrap = true;
+
                         StaticGameHelper.scrapFound = false;
                     }
                 }
@@ -513,19 +521,26 @@ namespace Squadron5missing
 
             if (gameState == GameState.Game)
             {
-
                 b.Draw(spriteBatch);
                 spriteBatch.Draw(background, new Vector2(0, 0), Color.White);
                 elevator.Draw(spriteBatch);
                 radar.Draw(spriteBatch);
                 screen.Draw(spriteBatch);
-
+                if (writeOutScrap == true)
+                {
+                    spriteBatch.DrawString(testFont, "Scrap FOUND!", new Vector2(0, 200), Color.Green);
+                    temporaryInt++;
+                    if (temporaryInt == 20)
+                    {
+                        writeOutScrap = false;
+                        temporaryInt = 0;
+                    }
+                }
                 for (int i = 0; i < ListOfEvents.StatListEvents.Count; i++)
                 {
                     ListOfEvents.StatListEvents[i].CurrentTime = clock;
                     ListOfEvents.StatListEvents[i].Update();
                 }
-
                 resource.Draw(spriteBatch, testFont);
                 //engineEvent.DrawText(spriteBatch, testFont, new Vector2(100, 700));
                 mechanic.Draw(spriteBatch);

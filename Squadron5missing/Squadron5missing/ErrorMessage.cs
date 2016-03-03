@@ -155,7 +155,7 @@ namespace Squadron5missing
         public void Update(SpriteBatch s, SpriteFont f, Vector2 position, Texture2D buttonTexture, Texture2D buttonTexture2, Vector2 position2)
         {
             
-            temp = rnd.Next(1, 6769);
+            temp = rnd.Next(1,3000);
             if (temp == 2)
             {
                 //binds random message too a string that is then put in a list

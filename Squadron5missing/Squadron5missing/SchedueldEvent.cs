@@ -38,7 +38,7 @@ namespace Squadron5missing
         }
         public double Piloting(double dist, Resources r)
         {
-            dist += (double)200;
+            dist += (double)12;
             return dist;
         }
         public void MoveTooRoom()
