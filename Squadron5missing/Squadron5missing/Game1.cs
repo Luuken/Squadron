@@ -530,7 +530,7 @@ namespace Squadron5missing
                 {
                     spriteBatch.DrawString(testFont, "Scrap FOUND!", new Vector2(0, 200), Color.Green);
                     temporaryInt++;
-                    if (temporaryInt == 20)
+                    if (temporaryInt == 30)
                     {
                         writeOutScrap = false;
                         temporaryInt = 0;
